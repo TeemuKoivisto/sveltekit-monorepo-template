@@ -6,7 +6,7 @@
 FROM node:16.10.0-slim
 
 ENV NODE_ENV build
-ENV INSTALL_PATH /usr/local/quarterback_api
+ENV INSTALL_PATH /usr/local/example_api
 
 WORKDIR ${INSTALL_PATH}
 
@@ -19,7 +19,7 @@ COPY packages/api/package.json ./packages/api/package.json
 COPY packages/db/package.json ./packages/db/package.json
 COPY packages/types/package.json ./packages/types/package.json
 
-RUN pnpm i --frozen-lockfile --filter @manuscripts/quarterback-api \
+RUN pnpm i --frozen-lockfile --filter @example/api \
   --filter @example/db \
   --filter @example/types
 
@@ -31,8 +31,8 @@ COPY packages/types ./packages/types
 RUN pnpm --filter @example/types build
 
 COPY packages/api ./packages/api
-# RUN pnpm test --filter @manuscripts/quarterback-api test
-RUN pnpm --filter @manuscripts/quarterback-api build
+# RUN pnpm test --filter @example/api test
+RUN pnpm --filter @example/api build
 
 # RUN pnpm prune
 

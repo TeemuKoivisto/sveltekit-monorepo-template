@@ -321,7 +321,7 @@ export namespace Prisma {
    * From https://github.com/sindresorhus/type-fest/
    * Matches a JSON array.
    */
-  export type JsonArray = Array<JsonValue>
+  export interface JsonArray extends Array<JsonValue> {}
 
   /**
    * From https://github.com/sindresorhus/type-fest/
@@ -339,7 +339,7 @@ export namespace Prisma {
    * Matches a JSON array.
    * Unlike `JsonArray`, readonly arrays are assignable to this type.
    */
-  export type InputJsonArray = ReadonlyArray<InputJsonValue | null>
+  export interface InputJsonArray extends ReadonlyArray<InputJsonValue | null> {}
 
   /**
    * Matches any valid value that can be used as an input for operations like
@@ -515,7 +515,7 @@ export namespace Prisma {
     ? False
     : T extends Uint8Array
     ? False
-    : T extends bigint
+    : T extends BigInt
     ? False
     : T extends object
     ? True
@@ -540,12 +540,12 @@ export namespace Prisma {
 
   type EitherLoose<O extends object, K extends Key> = ComputeRaw<__Either<O, K>>
 
-  type _Either<O extends object, K extends Key, strict extends boolean> = {
+  type _Either<O extends object, K extends Key, strict extends Boolean> = {
     1: EitherStrict<O, K>
     0: EitherLoose<O, K>
   }[strict]
 
-  type Either<O extends object, K extends Key, strict extends boolean = 1> = O extends unknown
+  type Either<O extends object, K extends Key, strict extends Boolean = 1> = O extends unknown
     ? _Either<O, K, strict>
     : never
 
@@ -579,7 +579,7 @@ export namespace Prisma {
   type AtBasic<O extends object, K extends Key> = K extends keyof O ? O[K] : never
   type AtStrict<O extends object, K extends Key> = O[K & keyof O]
   type AtLoose<O extends object, K extends Key> = O extends unknown ? AtStrict<O, K> : never
-  export type At<O extends object, K extends Key, strict extends boolean = 1> = {
+  export type At<O extends object, K extends Key, strict extends Boolean = 1> = {
     1: AtStrict<O, K>
     0: AtLoose<O, K>
   }[strict]
@@ -622,7 +622,7 @@ export namespace Prisma {
   */
   export type False = 0
 
-  export type Not<B extends boolean> = {
+  export type Not<B extends Boolean> = {
     0: 1
     1: 0
   }[B]
@@ -635,7 +635,7 @@ export namespace Prisma {
 
   export type Has<U extends Union, U1 extends Union> = Not<Extends<Exclude<U1, U>, U1>>
 
-  export type Or<B1 extends boolean, B2 extends boolean> = {
+  export type Or<B1 extends Boolean, B2 extends Boolean> = {
     0: {
       0: 0
       1: 1
