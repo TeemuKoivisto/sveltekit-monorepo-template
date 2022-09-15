@@ -1,1 +1,1 @@
-# @teemukoivisto/types
+# @awesome-org/types

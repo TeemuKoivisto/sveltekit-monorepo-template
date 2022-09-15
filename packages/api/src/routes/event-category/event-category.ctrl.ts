@@ -4,7 +4,7 @@ import {
   ICreateCategoryResponse,
   ICreateCategoryRequest,
   IUpdateCategoryRequest
-} from '@teemukoivisto/types'
+} from '@awesome-org/types'
 import { NextFunction } from 'express'
 import Joi from 'joi'
 

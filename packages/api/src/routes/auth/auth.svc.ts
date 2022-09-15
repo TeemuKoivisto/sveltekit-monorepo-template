@@ -1,5 +1,5 @@
-import { Maybe, ILoginParams, ISignUpParams, IUser } from '@teemukoivisto/types'
-import { User } from '@teemukoivisto/db'
+import { Maybe, ILoginParams, ISignUpParams, IUser } from '@awesome-org/types'
+import { User } from '@awesome-org/db'
 import { compare, hash } from 'bcrypt'
 
 import { prisma } from '$common'

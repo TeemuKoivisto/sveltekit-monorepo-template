@@ -1,5 +1,5 @@
 import { derived, get, writable } from 'svelte/store'
-import type { IJwt, IUser, ILoginParams } from '@teemukoivisto/types'
+import type { IJwt, IUser, ILoginParams } from '@awesome-org/types'
 
 import { persistedWritable } from './persist'
 

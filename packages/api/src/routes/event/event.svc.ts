@@ -1,4 +1,4 @@
-import { Maybe, Event, ICreateEventRequest, IUpdateEventRequest } from '@teemukoivisto/types'
+import { Maybe, Event, ICreateEventRequest, IUpdateEventRequest } from '@awesome-org/types'
 
 import { CustomError, log, prisma } from '$common'
 

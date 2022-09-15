@@ -1,5 +1,5 @@
 {
-  "name": "@teemukoivisto/client",
+  "name": "@awesome-org/client",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -33,7 +33,7 @@
     "vite": "^3.1.0"
   },
   "dependencies": {
-    "@teemukoivisto/types": "workspace:*",
+    "@awesome-org/types": "workspace:*",
     "@iconify/svelte": "^2.2.1",
     "autoprefixer": "^10.4.8",
     "lodash.debounce": "^4.0.8",

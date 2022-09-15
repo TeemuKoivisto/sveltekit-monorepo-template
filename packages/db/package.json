@@ -1,5 +1,5 @@
 {
-  "name": "@teemukoivisto/db",
+  "name": "@awesome-org/db",
   "version": "0.0.1",
   "private": true,
   "main": "generated/index.js",

@@ -3,7 +3,7 @@ import type {
   IUserGetResponse,
   IUserEditParams,
   IUserEditResponse
-} from '@teemukoivisto/types'
+} from '@awesome-org/types'
 
 import { get, put, del } from './methods'
 

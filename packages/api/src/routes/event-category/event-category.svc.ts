@@ -3,7 +3,7 @@ import {
   EventCategory,
   ICreateCategoryRequest,
   IUpdateCategoryRequest
-} from '@teemukoivisto/types'
+} from '@awesome-org/types'
 
 import { CustomError, log, prisma } from '$common'
 

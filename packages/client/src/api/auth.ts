@@ -5,7 +5,7 @@ import type {
   ISignUpResponse,
   IRequestPasswordResetParams,
   IPasswordResetParams
-} from '@teemukoivisto/types'
+} from '@awesome-org/types'
 
 import { DEFAULT_HEADERS, post } from './methods'
 

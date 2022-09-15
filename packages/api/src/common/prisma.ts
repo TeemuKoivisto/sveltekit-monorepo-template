@@ -1,3 +1,3 @@
-import { PrismaClient } from '@teemukoivisto/db'
+import { PrismaClient } from '@awesome-org/db'
 
 export const prisma = new PrismaClient()

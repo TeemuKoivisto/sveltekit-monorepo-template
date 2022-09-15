@@ -1,5 +1,5 @@
-import { Maybe, IUserEditParams, IUser } from '@teemukoivisto/types'
-import { User } from '@teemukoivisto/db'
+import { Maybe, IUserEditParams, IUser } from '@awesome-org/types'
+import { User } from '@awesome-org/db'
 
 import { CustomError, prisma } from '$common'
 

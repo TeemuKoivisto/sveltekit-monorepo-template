@@ -5,7 +5,7 @@
 
   import LoginForm from '$components/LoginForm.svelte'
 
-  import type { ILoginParams } from '@teemukoivisto/types'
+  import type { ILoginParams } from '@awesome-org/types'
 
   let loading = false,
     loginError: string | null = null

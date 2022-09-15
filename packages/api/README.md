@@ -1,1 +1,1 @@
-# @teemukoivisto/api
+# @awesome-org/api

@@ -4,7 +4,7 @@ import type {
   ICreateEventRequest,
   ICreateEventResponse,
   IUpdateEventRequest
-} from '@teemukoivisto/types'
+} from '@awesome-org/types'
 
 import { get, post, put, del } from './methods'
 

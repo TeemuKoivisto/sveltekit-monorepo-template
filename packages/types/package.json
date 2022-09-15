@@ -1,5 +1,5 @@
 {
-  "name": "@teemukoivisto/types",
+  "name": "@awesome-org/types",
   "version": "0.0.1",
   "main": "dist/index.cjs",
   "module": "dist/index.js",

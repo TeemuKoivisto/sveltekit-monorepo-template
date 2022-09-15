@@ -1,5 +1,5 @@
 <script>
-  import { UserRole } from '@teemukoivisto/types'
+  import { UserRole } from '@awesome-org/types'
 
   import { user, isLoggedIn } from '$stores/auth'
   import { authActions } from '$stores/auth.actions'

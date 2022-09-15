@@ -4,7 +4,7 @@ import {
   ICreateEventResponse,
   IGetEventResponse,
   IUpdateEventRequest
-} from '@teemukoivisto/types'
+} from '@awesome-org/types'
 import { NextFunction } from 'express'
 import Joi from 'joi'
 
