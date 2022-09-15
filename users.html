@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>teemukoivisto.github.io</title>
+
+    <script>
+      try {
+        if (!('theme' in localStorage)) {
+          localStorage.theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light'
+        }
+
+        document.querySelector('html').classList.add(localStorage.theme)
+      } catch (e) {
+        console.error(e)
+      }
+    </script>
+
+    <!-- <link rel="icon" href="/favicon.png" /> -->
+
+    <meta http-equiv="content-security-policy" content="">
+	<link href="./_app/immutable/assets/_layout-83db093c.css" rel="stylesheet">
+	<link href="./_app/immutable/assets/_page-388841b7.css" rel="stylesheet">
+	<link href="./_app/immutable/assets/Button-edbcd6db.css" rel="stylesheet">
+	<link rel="modulepreload" href="./_app/immutable/start-df8ca9da.js">
+	<link rel="modulepreload" href="./_app/immutable/chunks/index-646e022c.js">
+	<link rel="modulepreload" href="./_app/immutable/chunks/singletons-29b57a8a.js">
+	<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-5cc863cf.js">
+	<link rel="modulepreload" href="./_app/immutable/chunks/navigation-ab624de0.js">
+	<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.ts-b8ee4d7c.js">
+	<link rel="modulepreload" href="./_app/immutable/chunks/_layout-1daba58d.js">
+	<link rel="modulepreload" href="./_app/immutable/components/pages/users/_page.svelte-131908bc.js">
+	<link rel="modulepreload" href="./_app/immutable/chunks/Button-3d0a8f75.js">
+  </head>
+
+  <body>
+    <div id="svelte">
+
+
+<div><div class="py-4 bg-red-500"><nav class="flex items-center px-12 py-1 justify-between xs:flex-row xs:items-start"><div><a data-sveltekit:prefetch href="/" class="hover:underline text-white svelte-15xpjw4">Example </a>
+      
+      </div>
+    <div><button class="hover:underline text-white">login</button></div></nav>
+</div>
+  <main class="min-h-screen"><section class="p-4 h-full m-auto items-center lg:container md:p-16 md:pt-16 xs:p-8 rounded-2xl"><h1 class="mb-8 text-5xl font-bold cursive">Users</h1>
+  <div><ul class="svelte-ocqjvo"><li class="flex flex-wrap justify-center items-center svelte-ocqjvo"><span class="col font-bold svelte-ocqjvo">Role</span>
+        <span class="col font-bold svelte-ocqjvo">Firstname</span>
+        <span class="col font-bold svelte-ocqjvo">Lastname</span>
+        <span class="col font-bold svelte-ocqjvo">Email</span>
+        <div></div></li>
+      </ul></div>
+</section></main>
+  <footer class="py-4 bg-red-500"><nav class="flex items-center justify-center xs:flex-row xs:items-start"><a data-sveltekit:prefetch href="/" class="title-text hover:underline text-white">Example</a></nav></footer></div>
+
+
+		<script type="module" data-sveltekit-hydrate="1q7hpsl">
+		import { start } from "./_app/immutable/start-df8ca9da.js";
+
+		start({
+			env: {},
+			hydrate: {
+				status: 200,
+				error: null,
+				node_ids: [0, 6],
+				params: {},
+				routeId: "users",
+				data: (function(a){return [a,a]}(null)),
+				form: null
+			},
+			paths: {"base":"","assets":""},
+			target: document.querySelector('[data-sveltekit-hydrate="1q7hpsl"]').parentNode,
+			trailing_slash: "never"
+		});
+	</script>
+	</div>
+  </body>
+</html>

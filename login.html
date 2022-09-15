@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>teemukoivisto.github.io</title>
+
+    <script>
+      try {
+        if (!('theme' in localStorage)) {
+          localStorage.theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light'
+        }
+
+        document.querySelector('html').classList.add(localStorage.theme)
+      } catch (e) {
+        console.error(e)
+      }
+    </script>
+
+    <!-- <link rel="icon" href="/favicon.png" /> -->
+
+    <meta http-equiv="content-security-policy" content="">
+	<link href="./_app/immutable/assets/_layout-83db093c.css" rel="stylesheet">
+	<link href="./_app/immutable/assets/_page-e336b34e.css" rel="stylesheet">
+	<link href="./_app/immutable/assets/Spinner-ced4708d.css" rel="stylesheet">
+	<link href="./_app/immutable/assets/FormField-3f2252dc.css" rel="stylesheet">
+	<link rel="modulepreload" href="./_app/immutable/start-df8ca9da.js">
+	<link rel="modulepreload" href="./_app/immutable/chunks/index-646e022c.js">
+	<link rel="modulepreload" href="./_app/immutable/chunks/singletons-29b57a8a.js">
+	<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-5cc863cf.js">
+	<link rel="modulepreload" href="./_app/immutable/chunks/navigation-ab624de0.js">
+	<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.ts-b8ee4d7c.js">
+	<link rel="modulepreload" href="./_app/immutable/chunks/_layout-1daba58d.js">
+	<link rel="modulepreload" href="./_app/immutable/components/pages/login/_page.svelte-77406ea5.js">
+	<link rel="modulepreload" href="./_app/immutable/chunks/Spinner-036b3cfb.js">
+	<link rel="modulepreload" href="./_app/immutable/chunks/FormField-60c562b2.js">
+  </head>
+
+  <body>
+    <div id="svelte">
+
+
+<div><div class="py-4 bg-red-500"><nav class="flex items-center px-12 py-1 justify-between xs:flex-row xs:items-start"><div><a data-sveltekit:prefetch href="/" class="hover:underline text-white svelte-15xpjw4">Example </a>
+      
+      </div>
+    <div><button class="hover:underline text-white">login</button></div></nav>
+</div>
+  <main class="min-h-screen"><div class="h-full w-full absolute bg-gray-100"><div class="absolute inset-0 flex items-center main-bg"><section class="p-16 mx-auto inline-block bg-white text-container border rounded-2xl"><h1 class="mb-8 text-5xl font-bold cursive">login</h1>
+      <div><button class="py-1 px-2 border border-gray-400 hover:border-gray-600 rounded w-full">Sign in with Google</button>
+        <hr class="mt-10 mb-8 border-gray-400">
+        <form class="undefined flex items-center flex-col justify-center svelte-1o3kwuj"><div class="w-full"><label for="login-email">Email</label>
+    <span data-component="field"><div class="w-full"><span class="pl-2 pr-1 w-max"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden role="img" slot="icon" width="24" height="24" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><!-- HTML_TAG_START --><path fill="currentColor" d="m20 8l-8 5l-8-5V6l8 5l8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"/><!-- HTML_TAG_END --></svg></span>
+    <input slot="input" required id="login-email" type="email" name="email" class="w-full" autocomplete="on" placeholder="Email" value=""></div>
+</span></div>
+  <div class="mt-2 w-full"><label for="login-password" class="flex justify-between">Password
+      </label>
+    <span data-component="field"><div class="w-full"><span class="pl-2 pr-1 w-max"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden role="img" slot="icon" width="24" height="24" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><!-- HTML_TAG_START --><path fill="currentColor" d="M12 17a2 2 0 0 0 2-2a2 2 0 0 0-2-2a2 2 0 0 0-2 2a2 2 0 0 0 2 2m6-9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h1V6a5 5 0 0 1 5-5a5 5 0 0 1 5 5v2h1m-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3Z"/><!-- HTML_TAG_END --></svg></span>
+    <input slot="input" required id="login-password" type="password" name="password" autocomplete="on" placeholder="********" value=""></div>
+</span></div>
+  
+  <button class="flex justify-center w-full px-4 py-2 mt-5 leading-tight text-white bg-red-500 rounded" type="submit">Log in</button>
+  <a data-sveltekit:prefetch href="signup" class="px-4 py-2 mt-5 leading-tight text-center rounded hover:underline">Register
+  </a>
+</form></div></section></div>
+</div></main>
+  <footer class="py-4 bg-red-500"><nav class="flex items-center justify-center xs:flex-row xs:items-start"><a data-sveltekit:prefetch href="/" class="title-text hover:underline text-white">Example</a></nav></footer></div>
+
+
+		<script type="module" data-sveltekit-hydrate="rf2xba">
+		import { start } from "./_app/immutable/start-df8ca9da.js";
+
+		start({
+			env: {},
+			hydrate: {
+				status: 200,
+				error: null,
+				node_ids: [0, 4],
+				params: {},
+				routeId: "login",
+				data: (function(a){return [a,a]}(null)),
+				form: null
+			},
+			paths: {"base":"","assets":""},
+			target: document.querySelector('[data-sveltekit-hydrate="rf2xba"]').parentNode,
+			trailing_slash: "never"
+		});
+	</script>
+	</div>
+  </body>
+</html>
