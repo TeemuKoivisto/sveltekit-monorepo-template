@@ -1,0 +1,29 @@
+name: Push api image to Docker
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+
+jobs:
+  push_to_registry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build api image and push it to Docker registry
+        env:
+          DOCKER_IMAGE: example-api
+          DOCKER_PAT: ${{ secrets.DOCKER_PAT }}
+          DOCKER_REGISTRY: docker.io
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+        run: |
+          echo ${DOCKER_PAT} | docker login \
+            --username=${DOCKER_USER} \
+            ${DOCKER_REGISTRY} \
+            --password-stdin
+          docker build \
+            --file ./packages/api/Dockerfile \
+            --no-cache \
+            --tag ${DOCKER_REGISTRY}/${DOCKER_USER}/${DOCKER_IMAGE} .
+          docker push ${DOCKER_REGISTRY}/${DOCKER_USER}/${DOCKER_IMAGE}:latest

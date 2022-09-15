@@ -13,6 +13,8 @@ runs:
         pnpm --filter prosemirror-dev-toolkit svelte-check
         pnpm --filter prosemirror-dev-toolkit test:unit
       shell: bash
+      env:
+        VITE_API_URL: https://example-api.teemukoivisto.xyz
 
     - name: Run tests with Cypress
       id: cypress
