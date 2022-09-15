@@ -3,5 +3,5 @@
 
 if (exec < /dev/tty) ; then
   # /dev/tty is available
-  exec < /dev/tty && yarn cs
+  exec < /dev/tty && pnpm cs
 fi

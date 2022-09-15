@@ -5,11 +5,11 @@ Monorepo boilerplate that I use, transformed into its own template repository.
 ## How to setup
 
 1. Copy the template using `Use this template`
-2. Add [GH_ACTIONS_DEPLOY_KEY](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys). Basically, run `ssh-keygen -t ed25519 -C "your_email@example.com"` and copy the public key to `Settings > Deploy keys > Add deploy key` (I named it `GH_ACTIONS_DEPLOY_KEY - public SSH key`). Then copy the private key to `Settings > Secrets > Actions` with name `GH_ACTIONS_DEPLOY_KEY`. This is required for the Github pages deployment and pushing the Changesets tags (eg `@awesome-org/types@0.1.2`) from CI
-3. For default GITHUB_TOKEN permissions at `Settings > Actions > General` tick `Allow all actions and reusable workflows` `Read and write permissions` and check `Allow GitHub actions to create and approve pull requests`
-4. Add also to secrets API_URL (the IP or URL of your deployed instance), [DOCKER_PAT](https://docs.docker.com/docker-hub/access-tokens/) & DOCKER_USER for pushing API image to docker.io registry and optionally NPM_TOKEN if you want to publish packages to npm
+2. Add [GH_ACTIONS_DEPLOY_KEY](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys). Basically, run `ssh-keygen -t ed25519 -C "your_email@example.com"` and copy the public key to `Settings > Deploy keys > Add deploy key` (I named it `GH_ACTIONS_DEPLOY_KEY - public SSH key`). Then copy the private key to `Settings > Secrets > Actions` with name `GH_ACTIONS_DEPLOY_KEY`. This is required for the Github pages deployment and you can use it to SSH to other instances as well
+3. For default GITHUB_TOKEN permissions at `Settings > Actions > General` tick `Allow all actions and reusable workflows` `Read and write permissions` and check `Allow GitHub actions to create and approve pull requests`. This is required for the Changesets to create PRs and push tags (eg `@awesome-org/types@0.1.2`) from CI
+4. Add also to secrets API_URL (the IP or URL of your deployed instance), [DOCKER_PAT](https://docs.docker.com/docker-hub/access-tokens/) & DOCKER_USER for pushing [API image to docker.io registry](https://hub.docker.com/r/tekkk/example-api) and optionally NPM_TOKEN if you want to publish packages to npm
 5. Clone the repo
-6. Run copy & replace for `@awesome-org` using your own organization / username
+6. Run copy & replace for `@awesome-org` and `@teemukoivisto` using your own organization / username
 7. Follow **How to run** instructions to run the app, then commit your changes preferably using https://www.conventionalcommits.org/en/v1.0.0/ This makes your CHANGELOGs much nicer
 
 ## NPM packages
