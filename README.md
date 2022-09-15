@@ -5,10 +5,11 @@ Monorepo boilerplate that I use, transformed into its own template repository.
 ## How to setup
 
 1. Copy the template using `Use this template`
-2. Add [GH_ACTIONS_DEPLOY_KEY](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys), API_URL (deployed API instance IP or URL), [DOCKER_PAT](https://docs.docker.com/docker-hub/access-tokens/) & DOCKER_USER for pushing API image to docker.io registry and optionally NPM_TOKEN if you want to publish to npm to the repo secrets `Settings > Secrets > Actions`
-3. Clone the repo
-4. Run copy & replace for `@awesome-org` using your own organization / username
-5. Follow **How to run** instructions to run the app, then commit your changes preferably using https://www.conventionalcommits.org/en/v1.0.0/ This makes your CHANGELOGs much nicer
+2. Add [GH_ACTIONS_DEPLOY_KEY](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys). Basically, run `ssh-keygen -t ed25519 -C "your_email@example.com"` and copy the public key to `Settings > Deploy keys > Add deploy key` (I named it `GH_ACTIONS_DEPLOY_KEY - public SSH key`). Then copy the private key to `Settings > Secrets > Actions` with name `GH_ACTIONS_DEPLOY_KEY`. This is required for the Github pages deployment and pushing the Changesets tags (eg `@awesome-org/types@0.1.2`) from CI 
+3. Add also to secrets API_URL (the IP or URL of your deployed instance), [DOCKER_PAT](https://docs.docker.com/docker-hub/access-tokens/) & DOCKER_USER for pushing API image to docker.io registry and optionally NPM_TOKEN if you want to publish packages to npm
+4. Clone the repo
+5. Run copy & replace for `@awesome-org` using your own organization / username
+6. Follow **How to run** instructions to run the app, then commit your changes preferably using https://www.conventionalcommits.org/en/v1.0.0/ This makes your CHANGELOGs much nicer
 
 ## How to run
 
