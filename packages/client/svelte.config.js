@@ -19,9 +19,9 @@ export default {
       routes: './src/routes',
       lib: './src/lib'
     },
-    // paths: {
-    //   base: DEPLOY_TO_GH ? '/sveltekit-monorepo-template' : ''
-    // },
+    paths: {
+      base: DEPLOY_TO_GH ? '/sveltekit-monorepo-template' : ''
+    },
     adapter: adapter({
       // default options are shown
       pages: 'build',

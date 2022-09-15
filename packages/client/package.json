@@ -5,11 +5,8 @@
   "type": "module",
   "scripts": {
     "install": "svelte-kit sync || true",
-    "build": "rimraf build && vite build",
+    "build": "rimraf build && DEPLOY_TO_GH0=true vite build",
     "dev": "vite",
-    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|html|ts|tsx|svelte|md|graphql|mdx)\"",
-    "lint": "prettier --check --plugin-search-dir=. . && eslint -c ../../.eslintrc.json .",
-    "lint:fix": "eslint -c ../../.eslintrc.json --fix --ext .js,.ts,.svelte,.css,.scss,.html ./src",
     "preview": "vite preview --port 4708",
     "svelte-check": "svelte-check"
   },

@@ -7,7 +7,7 @@
     "client": "concurrently --kill-others 'pnpm --filter client dev'",
     "utils": "concurrently --kill-others 'pnpm --filter types watch'",
     "format": "prettier --write \"**/*.+(js|jsx|json|html|css|less|scss|ts|tsx|svelte|yml|yaml|md|graphql|mdx)\" .",
-    "lint:fix": "eslint --ignore-path .gitignore --fix --ext .js,.cjs,.ts,.tsx,.svelte .",
+    "lint:fix": "eslint --ignore-path .gitignore --fix --ext .js,.cjs,.ts,.tsx,.svelte,.css,.scss,.html .",
     "cs": "changeset && git add .changeset",
     "ci:version": "changeset version",
     "ci:publish": "changeset publish && git push --follow-tags",
