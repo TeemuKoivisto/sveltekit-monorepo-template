@@ -36,10 +36,13 @@ jobs:
         run: |
           cat << EOF > "$HOME/.npmrc"
             //registry.npmjs.org/:_authToken=$NPM_TOKEN
+            //npm.pkg.github.com/:_authToken=$GITHUB_TOKEN
+            @awesome-org:registry=https://registry.npmjs.org/
+            @teemukoivisto:registry=https://npm.pkg.github.com/
           EOF
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HOME: ${{ github.workspace }}
 
       - name: Create and publish versions
