@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "$common": ["src/common"],
+      "$common/*": ["src/common/*"],
+      "$jwt": ["src/jwt"],
+      "$jwt/*": ["src/jwt/*"],
+      "$middlewares": ["src/middlewares"],
+      "$routes": ["src/routes"],
+      "$routes/*": ["src/routes/*"],
+      "$typings": ["src/typings"],
+      "$typings/*": ["src/typings/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated"
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+model User {
+  id         String          @id @default(uuid())
+  email      String          @unique
+  firstname  String          @db.VarChar(255)
+  lastname   String          @db.VarChar(255)
+  password   String          @db.VarChar(255)
+  role       UserRole        @default(USER)
+  events     Event[]         @relation("EventToUser")
+  categories EventCategory[] @relation("EventCategoryToUser")
+
+  @@map("app_user")
+}
+
+model Event {
+  id          String        @id @default(uuid())
+  name        String        @default("") @db.VarChar(500)
+  body        Json
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  category    EventCategory @relation("EventToEventCategory", fields: [category_id], references: [id], onDelete: Cascade)
+  category_id String
+  user        User          @relation("EventToUser", fields: [user_id], references: [id])
+  user_id     String
+
+  @@map("event")
+}
+
+model EventCategory {
+  id        String   @id @default(uuid())
+  name      String   @default("") @db.VarChar(500)
+  body      Json
+  createdAt DateTime @default(now())
+  events    Event[]  @relation("EventToEventCategory")
+  user      User     @relation("EventCategoryToUser", fields: [user_id], references: [id])
+  user_id   String
+
+  @@map("event_category")
+}

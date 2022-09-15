@@ -1,0 +1,32 @@
+{
+  "name": "@example/db",
+  "version": "0.0.1",
+  "private": true,
+  "main": "generated/index.js",
+  "types": "generated/index.d.ts",
+  "scripts": {
+    "prod:init": "prisma generate && prisma migrate deploy && pnpm run cp-files",
+    "prod:migrate": "prisma migrate deploy --schema=./prisma/schema.prisma",
+    "prod:reset": "prisma migrate reset --force --preview-feature && prisma migrate deploy --preview-feature",
+    "init": "pnpm run migrate && pnpm run cp-files",
+    "cp-files": "mkdir -p ../api/.prisma && cp ./generated/schema.prisma ../api/.prisma && cp ./generated/index.d.ts ../types/prisma",
+    "build": "prisma generate && pnpm run cp-files",
+    "format": "prisma format",
+    "generate": "prisma generate",
+    "migrate": "prisma migrate dev && pnpm run cp-files",
+    "delete": "prisma migrate reset",
+    "reset": "prisma migrate reset && pnpm run cp-files",
+    "seed": "ts-node ./prisma/seed.ts"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/node": "^17.0.35",
+    "bcrypt": "5.0.0",
+    "prisma": "^4.3.1",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.3.1"
+  }
+}

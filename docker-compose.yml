@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: packages/api/Dockerfile
+    ports:
+      - 8180:8180
+    environment:
+      NODE_ENV: production
+      PORT: 8180
+      LOG_LEVEL: info
+      JWT_SECRET: verylongrandomstring
+      DATABASE_URL: postgresql://pg-user:pg-password@host.docker.internal:5552/local_example_db?schema=public
+    restart: always
+  postgres:
+    image: postgres:13.4-alpine
+    ports:
+      - 5552:5432
+    environment:
+      POSTGRES_PASSWORD: pg-password
+      POSTGRES_USER: pg-user
+      POSTGRES_DB: local_example_db
+    volumes:
+      - ./vol/postgres:/var/lib/postgresql/data
+
+networks:
+  default:
+    name: example-local

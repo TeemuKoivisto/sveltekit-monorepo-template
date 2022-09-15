@@ -1,0 +1,8 @@
+vol/postgres
+**node_modules
+**dist
+**tmp
+**build
+**Dockerfile
+**.prisma
+**.env

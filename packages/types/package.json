@@ -1,0 +1,34 @@
+{
+  "name": "@example/types",
+  "version": "0.0.1",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "type": "module",
+  "types": "types/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "rimraf dist && rollup -c",
+    "format": "prettier --write \"*.+(js|json|yml|yaml|ts|md|graphql|mdx)\" src/",
+    "lint": "eslint --cache --ext .js,.ts, ./src ./types",
+    "lint:fix": "eslint --fix --ext .js,.ts, ./src ./types",
+    "watch": "rollup -cw"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "rollup": "^2.74.0",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "typescript": "^4.6.4"
+  },
+  "files": [
+    "dist",
+    "src",
+    "prisma",
+    "types"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;800&family=Raleway:wght@500;700&family=Berkshire+Swash&display=swap');
+/* Pirate One, UnifrakturMaguntia as other text font*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: 16px;
+}
