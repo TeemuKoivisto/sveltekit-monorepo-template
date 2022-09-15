@@ -27,6 +27,8 @@ jobs:
 
       - name: Build
         run: pnpm -r build
+        env:
+          VITE_API_URL: https://example-api.teemukoivisto.xyz
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
