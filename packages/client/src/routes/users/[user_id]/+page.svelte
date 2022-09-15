@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import Icon from '@iconify/svelte/dist/OfflineIcon.svelte'
-  import type { IUser } from '@example/types'
+  import type { IUser } from '@teemukoivisto/types'
 
   import { user, isLoggedIn } from '$stores/auth'
   import { userActions } from '$stores/user'

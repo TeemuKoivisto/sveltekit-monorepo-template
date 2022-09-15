@@ -19,20 +19,20 @@ COPY packages/api/package.json ./packages/api/package.json
 COPY packages/db/package.json ./packages/db/package.json
 COPY packages/types/package.json ./packages/types/package.json
 
-RUN pnpm i --frozen-lockfile --filter @example/api \
-  --filter @example/db \
-  --filter @example/types
+RUN pnpm i --frozen-lockfile --filter @teemukoivisto/api \
+  --filter @teemukoivisto/db \
+  --filter @teemukoivisto/types
 
 COPY packages/db ./packages/db
-RUN pnpm --filter @example/db generate
+RUN pnpm --filter @teemukoivisto/db generate
 COPY packages/db/prisma/schema.prisma ./packages/api/node_modules/schema.prisma
 
 COPY packages/types ./packages/types
-RUN pnpm --filter @example/types build
+RUN pnpm --filter @teemukoivisto/types build
 
 COPY packages/api ./packages/api
-# RUN pnpm test --filter @example/api test
-RUN pnpm --filter @example/api build
+# RUN pnpm test --filter @teemukoivisto/api test
+RUN pnpm --filter @teemukoivisto/api build
 
 # RUN pnpm prune
 
@@ -41,4 +41,4 @@ ENV CORS_ENABLED 0
 
 EXPOSE ${PORT}
 
-CMD pnpm --filter @example/db prod:migrate && node ./packages/api/dist/index.js
+CMD pnpm --filter @teemukoivisto/db prod:migrate && node ./packages/api/dist/index.js

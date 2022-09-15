@@ -1,4 +1,4 @@
-import type { ILoginParams, ISignUpParams, IUser } from '@example/types'
+import type { ILoginParams, ISignUpParams, IUser } from '@teemukoivisto/types'
 
 import * as authApi from '$api/auth'
 

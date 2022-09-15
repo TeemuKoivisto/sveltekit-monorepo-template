@@ -4,7 +4,7 @@ import type {
   ICreateCategoryRequest,
   ICreateCategoryResponse,
   IUpdateCategoryRequest
-} from '@example/types'
+} from '@teemukoivisto/types'
 
 import { get, post, put, del } from './methods'
 

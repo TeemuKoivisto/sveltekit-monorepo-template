@@ -1,5 +1,5 @@
 {
-  "name": "@example/db",
+  "name": "@teemukoivisto/db",
   "version": "0.0.1",
   "private": true,
   "main": "generated/index.js",

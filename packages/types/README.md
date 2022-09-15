@@ -1,1 +1,1 @@
-# @example/types
+# @teemukoivisto/types

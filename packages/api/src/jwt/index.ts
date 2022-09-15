@@ -3,7 +3,7 @@ const { sign, verify } = pkg
 
 import { config } from '$common'
 
-import { Maybe, IUser } from '@example/types'
+import { Maybe, IUser } from '@teemukoivisto/types'
 import { ILoginJwt, IResetPasswordJwt } from '$typings/auth'
 
 export function generateLoginPayload(user: IUser) {

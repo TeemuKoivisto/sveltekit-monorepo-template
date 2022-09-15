@@ -1,4 +1,4 @@
-import { IUser } from '@example/types'
+import { IUser } from '@teemukoivisto/types'
 
 export interface ILoginJwt {
   expires: number

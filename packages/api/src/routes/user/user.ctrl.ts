@@ -1,10 +1,10 @@
-import { UserRole } from '@example/db'
+import { UserRole } from '@teemukoivisto/db'
 import {
   IUserListResponse,
   IUserGetResponse,
   IUserEditParams,
   IUserEditResponse
-} from '@example/types'
+} from '@teemukoivisto/types'
 import { NextFunction, Response } from 'express'
 import Joi from 'joi'
 

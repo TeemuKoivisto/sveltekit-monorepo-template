@@ -5,7 +5,7 @@ import {
   ISignUpResponse,
   IRequestPasswordResetParams,
   IPasswordResetParams
-} from '@example/types'
+} from '@teemukoivisto/types'
 import { NextFunction, Request, Response } from 'express'
 import Joi, { valid } from 'joi'
 

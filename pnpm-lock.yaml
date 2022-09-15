@@ -40,8 +40,8 @@ importers:
 
   packages/api:
     specifiers:
-      '@example/db': workspace:*
-      '@example/types': workspace:*
+      '@teemukoivisto/db': workspace:*
+      '@teemukoivisto/types': workspace:*
       '@rollup/plugin-alias': ^3.1.9
       '@rollup/plugin-commonjs': ^22.0.0
       '@rollup/plugin-json': ^4.1.0
@@ -66,8 +66,8 @@ importers:
       typescript: ^4.6.4
       winston: ^3.7.2
     dependencies:
-      '@example/db': link:../db
-      '@example/types': link:../types
+      '@teemukoivisto/db': link:../db
+      '@teemukoivisto/types': link:../types
       bcrypt: 5.0.0
       cors: 2.8.5
       express: 4.18.1
@@ -95,7 +95,7 @@ importers:
 
   packages/client:
     specifiers:
-      '@example/types': workspace:*
+      '@teemukoivisto/types': workspace:*
       '@iconify-icons/fe': ^1.2.2
       '@iconify-icons/feather': ^1.2.2
       '@iconify-icons/mdi': ^1.2.29
@@ -123,7 +123,7 @@ importers:
       uuid: ^9.0.0
       vite: ^3.1.0
     dependencies:
-      '@example/types': link:../types
+      '@teemukoivisto/types': link:../types
       '@iconify/svelte': 2.2.1
       autoprefixer: 10.4.11_postcss@8.4.16
       lodash.debounce: 4.0.8

@@ -1,6 +1,6 @@
-import { Maybe, ILoginParams, ISignUpParams, IUser } from '@example/types'
+import { Maybe, ILoginParams, ISignUpParams, IUser } from '@teemukoivisto/types'
+import { User } from '@teemukoivisto/db'
 import { compare, hash } from 'bcrypt'
-import { User } from '@example/db'
 
 import { prisma } from '$common'
 

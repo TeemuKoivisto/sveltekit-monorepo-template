@@ -1,5 +1,5 @@
 {
-  "name": "@example/api",
+  "name": "@teemukoivisto/api",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -30,8 +30,8 @@
     "typescript": "^4.6.4"
   },
   "dependencies": {
-    "@example/db": "workspace:*",
-    "@example/types": "workspace:*",
+    "@teemukoivisto/db": "workspace:*",
+    "@teemukoivisto/types": "workspace:*",
     "bcrypt": "5.0.0",
     "cors": "^2.8.5",
     "express": "^4.18.1",

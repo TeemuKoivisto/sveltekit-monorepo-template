@@ -1,1 +1,1 @@
-# @example/api
+# @teemukoivisto/api

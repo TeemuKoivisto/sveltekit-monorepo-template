@@ -2,7 +2,7 @@ import { get as storeGet } from 'svelte/store'
 import { jwt } from '$stores/auth'
 import { API_URL } from '$config'
 
-import type { Maybe } from '@example/types'
+import type { Maybe } from '@teemukoivisto/types'
 
 export const DEFAULT_HEADERS = {
   Accept: 'application/json',

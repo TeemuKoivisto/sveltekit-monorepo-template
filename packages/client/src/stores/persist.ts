@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store'
-import type { Maybe } from '@example/types'
+import type { Maybe } from '@teemukoivisto/types'
 
 import type {
   Persisted,
