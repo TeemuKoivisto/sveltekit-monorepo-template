@@ -9,7 +9,7 @@ export default {
   input: 'src/index.ts',
   output: [
     {
-      file: pkg.module,
+      file: './dist/index.js',
       format: 'es'
     }
   ],

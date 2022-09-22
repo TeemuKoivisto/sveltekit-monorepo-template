@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "start": "concurrently --kill-others 'pnpm utils' 'pnpm api' 'pnpm client'",
-    "api": "concurrently --kill-others 'pnpm --filter api watch' 'pnpm --filter api dev'",
+    "api": "concurrently --kill-others 'pnpm --filter api watch' 'sleep 2 && pnpm --filter api dev'",
     "client": "concurrently --kill-others 'pnpm --filter client dev'",
     "utils": "concurrently --kill-others 'pnpm --filter types watch'",
     "format": "prettier --write \"**/*.+(js|jsx|json|html|css|less|scss|ts|tsx|svelte|yml|yaml|md|graphql|mdx)\" .",
@@ -33,6 +33,7 @@
     "eslint-plugin-svelte3": "^4.0.0",
     "husky": "^8.0.1",
     "prettier": "^2.7.1",
-    "prettier-plugin-svelte": "^2.7.0"
+    "prettier-plugin-svelte": "^2.7.0",
+    "rimraf": "^3.0.2"
   }
  }

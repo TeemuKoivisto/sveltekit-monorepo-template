@@ -23,7 +23,6 @@
     "postcss": "^8.4.16",
     "postcss-load-config": "^4.0.1",
     "prettier-plugin-svelte": "^2.7.0",
-    "rimraf": "^3.0.2",
     "sass": "^1.54.8",
     "svelte": "^3.50.0",
     "svelte-check": "^2.9.0",

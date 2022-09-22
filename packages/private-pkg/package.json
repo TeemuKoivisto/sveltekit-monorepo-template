@@ -8,7 +8,10 @@
   "types": "types/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
-    ".": "./dist/index.es.js"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
   },
   "files": [
     "dist"
@@ -19,10 +22,9 @@
   },
   "scripts": {
     "build": "rimraf dist && rollup -c",
-    "watch": "rollup -cw"
+    "watch": "rimraf dist && rollup -cw"
   },
   "devDependencies": {
-    "rimraf": "^3.0.2",
     "rollup": "^2.74.0",
     "rollup-plugin-typescript2": "^0.34.0",
     "typescript": "^4.6.4"
