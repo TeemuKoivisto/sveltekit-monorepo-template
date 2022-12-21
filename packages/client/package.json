@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "install": "svelte-kit sync || true",
-    "build": "rimraf build && DEPLOY_TO_GH0=true vite build",
+    "build": "vite build",
     "dev": "vite",
-    "preview": "vite preview --port 4708",
+    "preview": "vite preview",
     "svelte-check": "svelte-check"
   },
   "devDependencies": {

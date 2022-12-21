@@ -1,7 +1,7 @@
 import adapter from '@sveltejs/adapter-static'
 import preprocess from 'svelte-preprocess'
 
-const { DEPLOY_TO_GH } = process.env
+// const { DEPLOY_TO_GH } = process.env
 
 /** @type {import('@sveltejs/kit').Config} */
 export default {
@@ -18,9 +18,10 @@ export default {
       routes: './src/routes',
       lib: './src/lib'
     },
-    paths: {
-      base: DEPLOY_TO_GH ? '/sveltekit-monorepo-template' : ''
-    },
+    // Not working as of 22.12.2022
+    // paths: {
+    //   base: DEPLOY_TO_GH ? '/sveltekit-monorepo-template' : ''
+    // },
     adapter: adapter({
       // default options are shown
       pages: 'build',
