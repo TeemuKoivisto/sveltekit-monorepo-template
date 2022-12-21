@@ -2,6 +2,9 @@
 
 Monorepo boilerplate that I use, transformed into its own template repository.
 
+[Netlify](https://marvelous-madeleine-842e30.netlify.app)
+[GitHub pages](https://teemukoivisto.github.io/sveltekit-monorepo-template/)
+
 ## How to setup
 
 1. Copy the template using `Use this template`

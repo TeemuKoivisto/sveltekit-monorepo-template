@@ -1,0 +1,26 @@
+[build]
+  publish = "packages/client/build"
+
+[[redirects]]
+  from = "/users/*"
+  to = "/200.html"
+  status = 200
+
+# [[plugins]]
+#   package = "netlify-plugin-inline-critical-css"
+#     [plugins.inputs]
+#       fileFilter = ['index.html']
+#       directoryFilter = ['!*']
+
+#[[plugins]]
+#  package = "netlify-plugin-a11y"
+#    [plugins.inputs]
+#      checkPaths = ['/']
+#      # resultMode = "warn"
+
+[[plugins]]
+  package = "@netlify/plugin-sitemap"
+
+  [plugins.inputs]
+    buildDir = "packages/site/dist"
+    trailingSlash = true
