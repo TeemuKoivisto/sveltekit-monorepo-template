@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { get } from 'svelte/store'
   import { onMount } from 'svelte'
+  import { page } from '$app/stores'
   import Icon from '@iconify/svelte/dist/OfflineIcon.svelte'
   import type { IUser } from '@awesome-org/types'
 
@@ -11,12 +13,11 @@
   import Spinner from '$elements/Spinner.svelte'
   import UserCircle from '$elements/UserCircle.svelte'
 
-  export let data: any
-
   let editedUser: IUser | undefined
 
   onMount(async () => {
-    const resp = await userActions.getUser(data.user_id)
+    const params = get(page).params
+    const resp = await userActions.getUser(params.user_id)
     if ('data' in resp) {
       editedUser = resp.data
       ;(firstName = editedUser?.firstname),
