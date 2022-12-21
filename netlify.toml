@@ -1,4 +1,5 @@
 [build]
+  command = "pnpm --filter types build && pnpm --filter client build"
   publish = "packages/client/build"
 
 [[redirects]]
