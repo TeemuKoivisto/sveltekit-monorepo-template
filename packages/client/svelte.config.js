@@ -14,7 +14,6 @@ export default {
   ],
 
   kit: {
-    trailingSlash: 'never',
     files: {
       routes: './src/routes',
       lib: './src/lib'

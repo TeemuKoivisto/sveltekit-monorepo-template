@@ -95,31 +95,6 @@ export class PrismaClient<
     | undefined = 'rejectOnNotFound' extends keyof T ? T['rejectOnNotFound'] : false
 > {
   /**
-   * @private
-   */
-  private fetcher
-  /**
-   * @private
-   */
-  private readonly dmmf
-  /**
-   * @private
-   */
-  private connectionPromise?
-  /**
-   * @private
-   */
-  private disconnectionPromise?
-  /**
-   * @private
-   */
-  private readonly engineConfig
-  /**
-   * @private
-   */
-  private readonly measurePerformance
-
-  /**
    * ##  Prisma Client ʲˢ
    *
    * Type-safe database client for TypeScript & Node.js
@@ -226,7 +201,19 @@ export class PrismaClient<
    *
    * Read more in our [docs](https://www.prisma.io/docs/concepts/components/prisma-client/transactions).
    */
-  $transaction<P extends PrismaPromise<any>[]>(arg: [...P]): Promise<UnwrapTuple<P>>
+  $transaction<P extends PrismaPromise<any>[]>(
+    arg: [...P],
+    options?: { isolationLevel?: Prisma.TransactionIsolationLevel }
+  ): Promise<UnwrapTuple<P>>
+
+  $transaction<R>(
+    fn: (prisma: Prisma.TransactionClient) => Promise<R>,
+    options?: {
+      maxWait?: number
+      timeout?: number
+      isolationLevel?: Prisma.TransactionIsolationLevel
+    }
+  ): Promise<R>
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -291,14 +278,14 @@ export namespace Prisma {
   /**
    * Metrics
    */
-  export import Metrics = runtime.Metrics
-  export import Metric = runtime.Metric
-  export import MetricHistogram = runtime.MetricHistogram
-  export import MetricHistogramBucket = runtime.MetricHistogramBucket
+  export type Metrics = runtime.Metrics
+  export type Metric<T> = runtime.Metric<T>
+  export type MetricHistogram = runtime.MetricHistogram
+  export type MetricHistogramBucket = runtime.MetricHistogramBucket
 
   /**
-   * Prisma Client JS version: 4.3.1
-   * Query Engine version: c875e43600dfe042452e0b868f7a48b817b9640b
+   * Prisma Client JS version: 4.8.0
+   * Query Engine version: d6e67a83f971b175a593ccc12e15c4a757f93ffe
    */
   export type PrismaVersion = {
     client: string
@@ -321,7 +308,7 @@ export namespace Prisma {
    * From https://github.com/sindresorhus/type-fest/
    * Matches a JSON array.
    */
-  export interface JsonArray extends Array<JsonValue> {}
+  export type JsonArray = Array<JsonValue>
 
   /**
    * From https://github.com/sindresorhus/type-fest/
@@ -339,7 +326,7 @@ export namespace Prisma {
    * Matches a JSON array.
    * Unlike `JsonArray`, readonly arrays are assignable to this type.
    */
-  export interface InputJsonArray extends ReadonlyArray<InputJsonValue | null> {}
+  export type InputJsonArray = ReadonlyArray<InputJsonValue | null>
 
   /**
    * Matches any valid value that can be used as an input for operations like
@@ -463,9 +450,9 @@ export namespace Prisma {
     [K in keyof T]-?: {} extends Prisma__Pick<T, K> ? never : K
   }[keyof T]
 
-  export type TruthyKeys<T> = {
-    [key in keyof T]: T[key] extends false | undefined | null ? never : key
-  }[keyof T]
+  export type TruthyKeys<T> = keyof {
+    [K in keyof T as T[K] extends false | undefined | null ? never : K]: K
+  }
 
   export type TrueKeys<T> = TruthyKeys<Prisma__Pick<T, RequiredKeys<T>>>
 
@@ -515,7 +502,7 @@ export namespace Prisma {
     ? False
     : T extends Uint8Array
     ? False
-    : T extends BigInt
+    : T extends bigint
     ? False
     : T extends object
     ? True
@@ -540,12 +527,12 @@ export namespace Prisma {
 
   type EitherLoose<O extends object, K extends Key> = ComputeRaw<__Either<O, K>>
 
-  type _Either<O extends object, K extends Key, strict extends Boolean> = {
+  type _Either<O extends object, K extends Key, strict extends boolean> = {
     1: EitherStrict<O, K>
     0: EitherLoose<O, K>
   }[strict]
 
-  type Either<O extends object, K extends Key, strict extends Boolean = 1> = O extends unknown
+  type Either<O extends object, K extends Key, strict extends boolean = 1> = O extends unknown
     ? _Either<O, K, strict>
     : never
 
@@ -579,7 +566,7 @@ export namespace Prisma {
   type AtBasic<O extends object, K extends Key> = K extends keyof O ? O[K] : never
   type AtStrict<O extends object, K extends Key> = O[K & keyof O]
   type AtLoose<O extends object, K extends Key> = O extends unknown ? AtStrict<O, K> : never
-  export type At<O extends object, K extends Key, strict extends Boolean = 1> = {
+  export type At<O extends object, K extends Key, strict extends boolean = 1> = {
     1: AtStrict<O, K>
     0: AtLoose<O, K>
   }[strict]
@@ -597,6 +584,18 @@ export namespace Prisma {
   type _Record<K extends keyof any, T> = {
     [P in K]: T
   }
+
+  // cause typescript not to expand types and preserve names
+  type NoExpand<T> = T extends unknown ? T : never
+
+  // this type assumes the passed object is entirely optional
+  type AtLeast<O extends object, K extends string> = NoExpand<
+    O extends unknown
+      ?
+          | (K extends keyof O ? { [P in K]: O[P] } & O : O)
+          | ({ [P in keyof O as P extends K ? K : never]-?: O[P] } & O)
+      : never
+  >
 
   type _Strict<U, _U = U> = U extends unknown
     ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>>
@@ -622,7 +621,7 @@ export namespace Prisma {
   */
   export type False = 0
 
-  export type Not<B extends Boolean> = {
+  export type Not<B extends boolean> = {
     0: 1
     1: 0
   }[B]
@@ -635,7 +634,7 @@ export namespace Prisma {
 
   export type Has<U extends Union, U1 extends Union> = Not<Extends<Exclude<U1, U>, U1>>
 
-  export type Or<B1 extends Boolean, B2 extends Boolean> = {
+  export type Or<B1 extends boolean, B2 extends boolean> = {
     0: {
       0: 0
       1: 1
@@ -710,7 +709,7 @@ export namespace Prisma {
    */
   type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T
 
-  export import FieldRef = runtime.FieldRef
+  export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>
 
   type FieldRefInputType<Model, FieldType> = Model extends never
     ? never
@@ -751,6 +750,7 @@ export namespace Prisma {
     db?: Datasource
   }
 
+  export type DefaultPrismaClient = PrismaClient
   export type RejectOnNotFound = boolean | ((error: Error) => Error)
   export type RejectPerModel = { [P in ModelName]?: RejectOnNotFound }
   export type RejectPerOperation = {
@@ -881,7 +881,7 @@ export namespace Prisma {
     | 'findRaw'
 
   /**
-   * These options are being passed in to the middleware as "params"
+   * These options are being passed into the middleware as "params"
    */
   export type MiddlewareParams = {
     model?: ModelName
@@ -901,6 +901,14 @@ export namespace Prisma {
 
   // tested in getLogLevel.test.ts
   export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined
+
+  /**
+   * `PrismaClient` proxy available in interactive transactions.
+   */
+  export type TransactionClient = Omit<
+    Prisma.DefaultPrismaClient,
+    '$connect' | '$disconnect' | '$on' | '$transaction' | '$use'
+  >
 
   export type Datasource = {
     url?: string
@@ -925,22 +933,21 @@ export namespace Prisma {
   }
 
   export type UserCountOutputTypeGetPayload<
-    S extends boolean | null | undefined | UserCountOutputTypeArgs,
-    U = keyof S
-  > = S extends true
+    S extends boolean | null | undefined | UserCountOutputTypeArgs
+  > = S extends { select: any; include: any }
+    ? 'Please either choose `select` or `include`'
+    : S extends true
     ? UserCountOutputType
     : S extends undefined
     ? never
-    : S extends UserCountOutputTypeArgs
-    ? 'include' extends U
-      ? UserCountOutputType
-      : 'select' extends U
-      ? {
-          [P in TrueKeys<S['select']>]: P extends keyof UserCountOutputType
-            ? UserCountOutputType[P]
-            : never
-        }
-      : UserCountOutputType
+    : S extends { include: any } & UserCountOutputTypeArgs
+    ? UserCountOutputType
+    : S extends { select: any } & UserCountOutputTypeArgs
+    ? {
+        [P in TruthyKeys<S['select']>]: P extends keyof UserCountOutputType
+          ? UserCountOutputType[P]
+          : never
+      }
     : UserCountOutputType
 
   // Custom InputTypes
@@ -969,22 +976,21 @@ export namespace Prisma {
   }
 
   export type EventCategoryCountOutputTypeGetPayload<
-    S extends boolean | null | undefined | EventCategoryCountOutputTypeArgs,
-    U = keyof S
-  > = S extends true
+    S extends boolean | null | undefined | EventCategoryCountOutputTypeArgs
+  > = S extends { select: any; include: any }
+    ? 'Please either choose `select` or `include`'
+    : S extends true
     ? EventCategoryCountOutputType
     : S extends undefined
     ? never
-    : S extends EventCategoryCountOutputTypeArgs
-    ? 'include' extends U
-      ? EventCategoryCountOutputType
-      : 'select' extends U
-      ? {
-          [P in TrueKeys<S['select']>]: P extends keyof EventCategoryCountOutputType
-            ? EventCategoryCountOutputType[P]
-            : never
-        }
-      : EventCategoryCountOutputType
+    : S extends { include: any } & EventCategoryCountOutputTypeArgs
+    ? EventCategoryCountOutputType
+    : S extends { select: any } & EventCategoryCountOutputTypeArgs
+    ? {
+        [P in TruthyKeys<S['select']>]: P extends keyof EventCategoryCountOutputType
+          ? EventCategoryCountOutputType[P]
+          : never
+      }
     : EventCategoryCountOutputType
 
   // Custom InputTypes
@@ -1175,48 +1181,48 @@ export namespace Prisma {
     lastname?: boolean
     password?: boolean
     role?: boolean
-    events?: boolean | EventFindManyArgs
-    categories?: boolean | EventCategoryFindManyArgs
+    events?: boolean | UserEventsArgs
+    categories?: boolean | UserCategoriesArgs
     _count?: boolean | UserCountOutputTypeArgs
   }
 
   export type UserInclude = {
-    events?: boolean | EventFindManyArgs
-    categories?: boolean | EventCategoryFindManyArgs
+    events?: boolean | UserEventsArgs
+    categories?: boolean | UserCategoriesArgs
     _count?: boolean | UserCountOutputTypeArgs
   }
 
-  export type UserGetPayload<
-    S extends boolean | null | undefined | UserArgs,
-    U = keyof S
-  > = S extends true
+  export type UserGetPayload<S extends boolean | null | undefined | UserArgs> = S extends {
+    select: any
+    include: any
+  }
+    ? 'Please either choose `select` or `include`'
+    : S extends true
     ? User
     : S extends undefined
     ? never
-    : S extends UserArgs | UserFindManyArgs
-    ? 'include' extends U
-      ? User & {
-          [P in TrueKeys<S['include']>]: P extends 'events'
-            ? Array<EventGetPayload<Exclude<S['include'], undefined | null>[P]>>
-            : P extends 'categories'
-            ? Array<EventCategoryGetPayload<Exclude<S['include'], undefined | null>[P]>>
-            : P extends '_count'
-            ? UserCountOutputTypeGetPayload<Exclude<S['include'], undefined | null>[P]>
-            : never
-        }
-      : 'select' extends U
-      ? {
-          [P in TrueKeys<S['select']>]: P extends 'events'
-            ? Array<EventGetPayload<Exclude<S['select'], undefined | null>[P]>>
-            : P extends 'categories'
-            ? Array<EventCategoryGetPayload<Exclude<S['select'], undefined | null>[P]>>
-            : P extends '_count'
-            ? UserCountOutputTypeGetPayload<Exclude<S['select'], undefined | null>[P]>
-            : P extends keyof User
-            ? User[P]
-            : never
-        }
-      : User
+    : S extends { include: any } & (UserArgs | UserFindManyArgs)
+    ? User & {
+        [P in TruthyKeys<S['include']>]: P extends 'events'
+          ? Array<EventGetPayload<S['include'][P]>>
+          : P extends 'categories'
+          ? Array<EventCategoryGetPayload<S['include'][P]>>
+          : P extends '_count'
+          ? UserCountOutputTypeGetPayload<S['include'][P]>
+          : never
+      }
+    : S extends { select: any } & (UserArgs | UserFindManyArgs)
+    ? {
+        [P in TruthyKeys<S['select']>]: P extends 'events'
+          ? Array<EventGetPayload<S['select'][P]>>
+          : P extends 'categories'
+          ? Array<EventCategoryGetPayload<S['select'][P]>>
+          : P extends '_count'
+          ? UserCountOutputTypeGetPayload<S['select'][P]>
+          : P extends keyof User
+          ? User[P]
+          : never
+      }
     : User
 
   type UserCountArgs = Merge<
@@ -1251,12 +1257,24 @@ export namespace Prisma {
     >(
       args: SelectSubset<T, UserFindUniqueArgs>
     ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'User'> extends True
-      ? CheckSelect<T, Prisma__UserClient<User>, Prisma__UserClient<UserGetPayload<T>>>
-      : CheckSelect<
-          T,
-          Prisma__UserClient<User | null>,
-          Prisma__UserClient<UserGetPayload<T> | null>
-        >
+      ? Prisma__UserClient<UserGetPayload<T>>
+      : Prisma__UserClient<UserGetPayload<T> | null, null>
+
+    /**
+     * Find one User that matches the filter or throw an error  with `error.code='P2025'`
+     *     if no matches were found.
+     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     **/
+    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, UserFindUniqueOrThrowArgs>
+    ): Prisma__UserClient<UserGetPayload<T>>
 
     /**
      * Find the first User that matches the filter.
@@ -1279,12 +1297,26 @@ export namespace Prisma {
     >(
       args?: SelectSubset<T, UserFindFirstArgs>
     ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'User'> extends True
-      ? CheckSelect<T, Prisma__UserClient<User>, Prisma__UserClient<UserGetPayload<T>>>
-      : CheckSelect<
-          T,
-          Prisma__UserClient<User | null>,
-          Prisma__UserClient<UserGetPayload<T> | null>
-        >
+      ? Prisma__UserClient<UserGetPayload<T>>
+      : Prisma__UserClient<UserGetPayload<T> | null, null>
+
+    /**
+     * Find the first User that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     **/
+    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, UserFindFirstOrThrowArgs>
+    ): Prisma__UserClient<UserGetPayload<T>>
 
     /**
      * Find zero or more Users that matches the filter.
@@ -1304,7 +1336,7 @@ export namespace Prisma {
      **/
     findMany<T extends UserFindManyArgs>(
       args?: SelectSubset<T, UserFindManyArgs>
-    ): CheckSelect<T, PrismaPromise<Array<User>>, PrismaPromise<Array<UserGetPayload<T>>>>
+    ): PrismaPromise<Array<UserGetPayload<T>>>
 
     /**
      * Create a User.
@@ -1320,7 +1352,7 @@ export namespace Prisma {
      **/
     create<T extends UserCreateArgs>(
       args: SelectSubset<T, UserCreateArgs>
-    ): CheckSelect<T, Prisma__UserClient<User>, Prisma__UserClient<UserGetPayload<T>>>
+    ): Prisma__UserClient<UserGetPayload<T>>
 
     /**
      * Create many Users.
@@ -1352,7 +1384,7 @@ export namespace Prisma {
      **/
     delete<T extends UserDeleteArgs>(
       args: SelectSubset<T, UserDeleteArgs>
-    ): CheckSelect<T, Prisma__UserClient<User>, Prisma__UserClient<UserGetPayload<T>>>
+    ): Prisma__UserClient<UserGetPayload<T>>
 
     /**
      * Update one User.
@@ -1371,7 +1403,7 @@ export namespace Prisma {
      **/
     update<T extends UserUpdateArgs>(
       args: SelectSubset<T, UserUpdateArgs>
-    ): CheckSelect<T, Prisma__UserClient<User>, Prisma__UserClient<UserGetPayload<T>>>
+    ): Prisma__UserClient<UserGetPayload<T>>
 
     /**
      * Delete zero or more Users.
@@ -1429,41 +1461,7 @@ export namespace Prisma {
      **/
     upsert<T extends UserUpsertArgs>(
       args: SelectSubset<T, UserUpsertArgs>
-    ): CheckSelect<T, Prisma__UserClient<User>, Prisma__UserClient<UserGetPayload<T>>>
-
-    /**
-     * Find one User that matches the filter or throw
-     * `NotFoundError` if no matches were found.
-     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     **/
-    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(
-      args?: SelectSubset<T, UserFindUniqueOrThrowArgs>
-    ): CheckSelect<T, Prisma__UserClient<User>, Prisma__UserClient<UserGetPayload<T>>>
-
-    /**
-     * Find the first User that matches the filter or
-     * throw `NotFoundError` if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     **/
-    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, UserFindFirstOrThrowArgs>
-    ): CheckSelect<T, Prisma__UserClient<User>, Prisma__UserClient<UserGetPayload<T>>>
+    ): Prisma__UserClient<UserGetPayload<T>>
 
     /**
      * Count the number of Users.
@@ -1594,7 +1592,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export class Prisma__UserClient<T> implements PrismaPromise<T> {
+  export class Prisma__UserClient<T, Null = never> implements PrismaPromise<T> {
     [prisma]: true
     private readonly _dmmf
     private readonly _fetcher
@@ -1622,17 +1620,13 @@ export namespace Prisma {
     )
     readonly [Symbol.toStringTag]: 'PrismaClientPromise'
 
-    events<T extends EventFindManyArgs = {}>(
-      args?: Subset<T, EventFindManyArgs>
-    ): CheckSelect<T, PrismaPromise<Array<Event>>, PrismaPromise<Array<EventGetPayload<T>>>>
+    events<T extends UserEventsArgs = {}>(
+      args?: Subset<T, UserEventsArgs>
+    ): PrismaPromise<Array<EventGetPayload<T>> | Null>
 
-    categories<T extends EventCategoryFindManyArgs = {}>(
-      args?: Subset<T, EventCategoryFindManyArgs>
-    ): CheckSelect<
-      T,
-      PrismaPromise<Array<EventCategory>>,
-      PrismaPromise<Array<EventCategoryGetPayload<T>>>
-    >
+    categories<T extends UserCategoriesArgs = {}>(
+      args?: Subset<T, UserCategoriesArgs>
+    ): PrismaPromise<Array<EventCategoryGetPayload<T>> | Null>
 
     private get _document()
     /**
@@ -1686,7 +1680,7 @@ export namespace Prisma {
   }
 
   /**
-   * User: findUnique
+   * User findUnique
    */
   export interface UserFindUniqueArgs extends UserFindUniqueArgsBase {
     /**
@@ -1694,6 +1688,27 @@ export namespace Prisma {
      * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
      */
     rejectOnNotFound?: RejectOnNotFound
+  }
+
+  /**
+   * User findUniqueOrThrow
+   */
+  export type UserFindUniqueOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the User
+     *
+     **/
+    select?: UserSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     *
+     **/
+    include?: UserInclude | null
+    /**
+     * Filter, which User to fetch.
+     *
+     **/
+    where: UserWhereUniqueInput
   }
 
   /**
@@ -1753,7 +1768,7 @@ export namespace Prisma {
   }
 
   /**
-   * User: findFirst
+   * User findFirst
    */
   export interface UserFindFirstArgs extends UserFindFirstArgsBase {
     /**
@@ -1761,6 +1776,62 @@ export namespace Prisma {
      * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
      */
     rejectOnNotFound?: RejectOnNotFound
+  }
+
+  /**
+   * User findFirstOrThrow
+   */
+  export type UserFindFirstOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the User
+     *
+     **/
+    select?: UserSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     *
+     **/
+    include?: UserInclude | null
+    /**
+     * Filter, which User to fetch.
+     *
+     **/
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Users to fetch.
+     *
+     **/
+    orderBy?: Enumerable<UserOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for Users.
+     *
+     **/
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Users from the position of the cursor.
+     *
+     **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Users.
+     *
+     **/
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of Users.
+     *
+     **/
+    distinct?: Enumerable<UserScalarFieldEnum>
   }
 
   /**
@@ -1952,14 +2023,48 @@ export namespace Prisma {
   }
 
   /**
-   * User: findUniqueOrThrow
+   * User.events
    */
-  export type UserFindUniqueOrThrowArgs = UserFindUniqueArgsBase
+  export type UserEventsArgs = {
+    /**
+     * Select specific fields to fetch from the Event
+     *
+     **/
+    select?: EventSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     *
+     **/
+    include?: EventInclude | null
+    where?: EventWhereInput
+    orderBy?: Enumerable<EventOrderByWithRelationInput>
+    cursor?: EventWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Enumerable<EventScalarFieldEnum>
+  }
 
   /**
-   * User: findFirstOrThrow
+   * User.categories
    */
-  export type UserFindFirstOrThrowArgs = UserFindFirstArgsBase
+  export type UserCategoriesArgs = {
+    /**
+     * Select specific fields to fetch from the EventCategory
+     *
+     **/
+    select?: EventCategorySelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     *
+     **/
+    include?: EventCategoryInclude | null
+    where?: EventCategoryWhereInput
+    orderBy?: Enumerable<EventCategoryOrderByWithRelationInput>
+    cursor?: EventCategoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Enumerable<EventCategoryScalarFieldEnum>
+  }
 
   /**
    * User without action
@@ -2161,33 +2266,33 @@ export namespace Prisma {
     user?: boolean | UserArgs
   }
 
-  export type EventGetPayload<
-    S extends boolean | null | undefined | EventArgs,
-    U = keyof S
-  > = S extends true
+  export type EventGetPayload<S extends boolean | null | undefined | EventArgs> = S extends {
+    select: any
+    include: any
+  }
+    ? 'Please either choose `select` or `include`'
+    : S extends true
     ? Event
     : S extends undefined
     ? never
-    : S extends EventArgs | EventFindManyArgs
-    ? 'include' extends U
-      ? Event & {
-          [P in TrueKeys<S['include']>]: P extends 'category'
-            ? EventCategoryGetPayload<Exclude<S['include'], undefined | null>[P]>
-            : P extends 'user'
-            ? UserGetPayload<Exclude<S['include'], undefined | null>[P]>
-            : never
-        }
-      : 'select' extends U
-      ? {
-          [P in TrueKeys<S['select']>]: P extends 'category'
-            ? EventCategoryGetPayload<Exclude<S['select'], undefined | null>[P]>
-            : P extends 'user'
-            ? UserGetPayload<Exclude<S['select'], undefined | null>[P]>
-            : P extends keyof Event
-            ? Event[P]
-            : never
-        }
-      : Event
+    : S extends { include: any } & (EventArgs | EventFindManyArgs)
+    ? Event & {
+        [P in TruthyKeys<S['include']>]: P extends 'category'
+          ? EventCategoryGetPayload<S['include'][P]>
+          : P extends 'user'
+          ? UserGetPayload<S['include'][P]>
+          : never
+      }
+    : S extends { select: any } & (EventArgs | EventFindManyArgs)
+    ? {
+        [P in TruthyKeys<S['select']>]: P extends 'category'
+          ? EventCategoryGetPayload<S['select'][P]>
+          : P extends 'user'
+          ? UserGetPayload<S['select'][P]>
+          : P extends keyof Event
+          ? Event[P]
+          : never
+      }
     : Event
 
   type EventCountArgs = Merge<
@@ -2222,12 +2327,24 @@ export namespace Prisma {
     >(
       args: SelectSubset<T, EventFindUniqueArgs>
     ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Event'> extends True
-      ? CheckSelect<T, Prisma__EventClient<Event>, Prisma__EventClient<EventGetPayload<T>>>
-      : CheckSelect<
-          T,
-          Prisma__EventClient<Event | null>,
-          Prisma__EventClient<EventGetPayload<T> | null>
-        >
+      ? Prisma__EventClient<EventGetPayload<T>>
+      : Prisma__EventClient<EventGetPayload<T> | null, null>
+
+    /**
+     * Find one Event that matches the filter or throw an error  with `error.code='P2025'`
+     *     if no matches were found.
+     * @param {EventFindUniqueOrThrowArgs} args - Arguments to find a Event
+     * @example
+     * // Get one Event
+     * const event = await prisma.event.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     **/
+    findUniqueOrThrow<T extends EventFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, EventFindUniqueOrThrowArgs>
+    ): Prisma__EventClient<EventGetPayload<T>>
 
     /**
      * Find the first Event that matches the filter.
@@ -2250,12 +2367,26 @@ export namespace Prisma {
     >(
       args?: SelectSubset<T, EventFindFirstArgs>
     ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Event'> extends True
-      ? CheckSelect<T, Prisma__EventClient<Event>, Prisma__EventClient<EventGetPayload<T>>>
-      : CheckSelect<
-          T,
-          Prisma__EventClient<Event | null>,
-          Prisma__EventClient<EventGetPayload<T> | null>
-        >
+      ? Prisma__EventClient<EventGetPayload<T>>
+      : Prisma__EventClient<EventGetPayload<T> | null, null>
+
+    /**
+     * Find the first Event that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventFindFirstOrThrowArgs} args - Arguments to find a Event
+     * @example
+     * // Get one Event
+     * const event = await prisma.event.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     **/
+    findFirstOrThrow<T extends EventFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, EventFindFirstOrThrowArgs>
+    ): Prisma__EventClient<EventGetPayload<T>>
 
     /**
      * Find zero or more Events that matches the filter.
@@ -2275,7 +2406,7 @@ export namespace Prisma {
      **/
     findMany<T extends EventFindManyArgs>(
       args?: SelectSubset<T, EventFindManyArgs>
-    ): CheckSelect<T, PrismaPromise<Array<Event>>, PrismaPromise<Array<EventGetPayload<T>>>>
+    ): PrismaPromise<Array<EventGetPayload<T>>>
 
     /**
      * Create a Event.
@@ -2291,7 +2422,7 @@ export namespace Prisma {
      **/
     create<T extends EventCreateArgs>(
       args: SelectSubset<T, EventCreateArgs>
-    ): CheckSelect<T, Prisma__EventClient<Event>, Prisma__EventClient<EventGetPayload<T>>>
+    ): Prisma__EventClient<EventGetPayload<T>>
 
     /**
      * Create many Events.
@@ -2323,7 +2454,7 @@ export namespace Prisma {
      **/
     delete<T extends EventDeleteArgs>(
       args: SelectSubset<T, EventDeleteArgs>
-    ): CheckSelect<T, Prisma__EventClient<Event>, Prisma__EventClient<EventGetPayload<T>>>
+    ): Prisma__EventClient<EventGetPayload<T>>
 
     /**
      * Update one Event.
@@ -2342,7 +2473,7 @@ export namespace Prisma {
      **/
     update<T extends EventUpdateArgs>(
       args: SelectSubset<T, EventUpdateArgs>
-    ): CheckSelect<T, Prisma__EventClient<Event>, Prisma__EventClient<EventGetPayload<T>>>
+    ): Prisma__EventClient<EventGetPayload<T>>
 
     /**
      * Delete zero or more Events.
@@ -2400,41 +2531,7 @@ export namespace Prisma {
      **/
     upsert<T extends EventUpsertArgs>(
       args: SelectSubset<T, EventUpsertArgs>
-    ): CheckSelect<T, Prisma__EventClient<Event>, Prisma__EventClient<EventGetPayload<T>>>
-
-    /**
-     * Find one Event that matches the filter or throw
-     * `NotFoundError` if no matches were found.
-     * @param {EventFindUniqueOrThrowArgs} args - Arguments to find a Event
-     * @example
-     * // Get one Event
-     * const event = await prisma.event.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     **/
-    findUniqueOrThrow<T extends EventFindUniqueOrThrowArgs>(
-      args?: SelectSubset<T, EventFindUniqueOrThrowArgs>
-    ): CheckSelect<T, Prisma__EventClient<Event>, Prisma__EventClient<EventGetPayload<T>>>
-
-    /**
-     * Find the first Event that matches the filter or
-     * throw `NotFoundError` if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {EventFindFirstOrThrowArgs} args - Arguments to find a Event
-     * @example
-     * // Get one Event
-     * const event = await prisma.event.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     **/
-    findFirstOrThrow<T extends EventFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, EventFindFirstOrThrowArgs>
-    ): CheckSelect<T, Prisma__EventClient<Event>, Prisma__EventClient<EventGetPayload<T>>>
+    ): Prisma__EventClient<EventGetPayload<T>>
 
     /**
      * Count the number of Events.
@@ -2565,7 +2662,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export class Prisma__EventClient<T> implements PrismaPromise<T> {
+  export class Prisma__EventClient<T, Null = never> implements PrismaPromise<T> {
     [prisma]: true
     private readonly _dmmf
     private readonly _fetcher
@@ -2595,15 +2692,11 @@ export namespace Prisma {
 
     category<T extends EventCategoryArgs = {}>(
       args?: Subset<T, EventCategoryArgs>
-    ): CheckSelect<
-      T,
-      Prisma__EventCategoryClient<EventCategory | null>,
-      Prisma__EventCategoryClient<EventCategoryGetPayload<T> | null>
-    >
+    ): Prisma__EventCategoryClient<EventCategoryGetPayload<T> | Null>
 
     user<T extends UserArgs = {}>(
       args?: Subset<T, UserArgs>
-    ): CheckSelect<T, Prisma__UserClient<User | null>, Prisma__UserClient<UserGetPayload<T> | null>>
+    ): Prisma__UserClient<UserGetPayload<T> | Null>
 
     private get _document()
     /**
@@ -2657,7 +2750,7 @@ export namespace Prisma {
   }
 
   /**
-   * Event: findUnique
+   * Event findUnique
    */
   export interface EventFindUniqueArgs extends EventFindUniqueArgsBase {
     /**
@@ -2665,6 +2758,27 @@ export namespace Prisma {
      * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
      */
     rejectOnNotFound?: RejectOnNotFound
+  }
+
+  /**
+   * Event findUniqueOrThrow
+   */
+  export type EventFindUniqueOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the Event
+     *
+     **/
+    select?: EventSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     *
+     **/
+    include?: EventInclude | null
+    /**
+     * Filter, which Event to fetch.
+     *
+     **/
+    where: EventWhereUniqueInput
   }
 
   /**
@@ -2724,7 +2838,7 @@ export namespace Prisma {
   }
 
   /**
-   * Event: findFirst
+   * Event findFirst
    */
   export interface EventFindFirstArgs extends EventFindFirstArgsBase {
     /**
@@ -2732,6 +2846,62 @@ export namespace Prisma {
      * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
      */
     rejectOnNotFound?: RejectOnNotFound
+  }
+
+  /**
+   * Event findFirstOrThrow
+   */
+  export type EventFindFirstOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the Event
+     *
+     **/
+    select?: EventSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     *
+     **/
+    include?: EventInclude | null
+    /**
+     * Filter, which Event to fetch.
+     *
+     **/
+    where?: EventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Events to fetch.
+     *
+     **/
+    orderBy?: Enumerable<EventOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for Events.
+     *
+     **/
+    cursor?: EventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Events from the position of the cursor.
+     *
+     **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Events.
+     *
+     **/
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of Events.
+     *
+     **/
+    distinct?: Enumerable<EventScalarFieldEnum>
   }
 
   /**
@@ -2923,16 +3093,6 @@ export namespace Prisma {
   }
 
   /**
-   * Event: findUniqueOrThrow
-   */
-  export type EventFindUniqueOrThrowArgs = EventFindUniqueArgsBase
-
-  /**
-   * Event: findFirstOrThrow
-   */
-  export type EventFindFirstOrThrowArgs = EventFindFirstArgsBase
-
-  /**
    * Event without action
    */
   export type EventArgs = {
@@ -3106,50 +3266,48 @@ export namespace Prisma {
     name?: boolean
     body?: boolean
     createdAt?: boolean
-    events?: boolean | EventFindManyArgs
+    events?: boolean | EventCategoryEventsArgs
     user?: boolean | UserArgs
     user_id?: boolean
     _count?: boolean | EventCategoryCountOutputTypeArgs
   }
 
   export type EventCategoryInclude = {
-    events?: boolean | EventFindManyArgs
+    events?: boolean | EventCategoryEventsArgs
     user?: boolean | UserArgs
     _count?: boolean | EventCategoryCountOutputTypeArgs
   }
 
-  export type EventCategoryGetPayload<
-    S extends boolean | null | undefined | EventCategoryArgs,
-    U = keyof S
-  > = S extends true
-    ? EventCategory
-    : S extends undefined
-    ? never
-    : S extends EventCategoryArgs | EventCategoryFindManyArgs
-    ? 'include' extends U
+  export type EventCategoryGetPayload<S extends boolean | null | undefined | EventCategoryArgs> =
+    S extends { select: any; include: any }
+      ? 'Please either choose `select` or `include`'
+      : S extends true
+      ? EventCategory
+      : S extends undefined
+      ? never
+      : S extends { include: any } & (EventCategoryArgs | EventCategoryFindManyArgs)
       ? EventCategory & {
-          [P in TrueKeys<S['include']>]: P extends 'events'
-            ? Array<EventGetPayload<Exclude<S['include'], undefined | null>[P]>>
+          [P in TruthyKeys<S['include']>]: P extends 'events'
+            ? Array<EventGetPayload<S['include'][P]>>
             : P extends 'user'
-            ? UserGetPayload<Exclude<S['include'], undefined | null>[P]>
+            ? UserGetPayload<S['include'][P]>
             : P extends '_count'
-            ? EventCategoryCountOutputTypeGetPayload<Exclude<S['include'], undefined | null>[P]>
+            ? EventCategoryCountOutputTypeGetPayload<S['include'][P]>
             : never
         }
-      : 'select' extends U
+      : S extends { select: any } & (EventCategoryArgs | EventCategoryFindManyArgs)
       ? {
-          [P in TrueKeys<S['select']>]: P extends 'events'
-            ? Array<EventGetPayload<Exclude<S['select'], undefined | null>[P]>>
+          [P in TruthyKeys<S['select']>]: P extends 'events'
+            ? Array<EventGetPayload<S['select'][P]>>
             : P extends 'user'
-            ? UserGetPayload<Exclude<S['select'], undefined | null>[P]>
+            ? UserGetPayload<S['select'][P]>
             : P extends '_count'
-            ? EventCategoryCountOutputTypeGetPayload<Exclude<S['select'], undefined | null>[P]>
+            ? EventCategoryCountOutputTypeGetPayload<S['select'][P]>
             : P extends keyof EventCategory
             ? EventCategory[P]
             : never
         }
       : EventCategory
-    : EventCategory
 
   type EventCategoryCountArgs = Merge<
     Omit<EventCategoryFindManyArgs, 'select' | 'include'> & {
@@ -3188,16 +3346,24 @@ export namespace Prisma {
       'findUnique',
       'EventCategory'
     > extends True
-      ? CheckSelect<
-          T,
-          Prisma__EventCategoryClient<EventCategory>,
-          Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
-        >
-      : CheckSelect<
-          T,
-          Prisma__EventCategoryClient<EventCategory | null>,
-          Prisma__EventCategoryClient<EventCategoryGetPayload<T> | null>
-        >
+      ? Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
+      : Prisma__EventCategoryClient<EventCategoryGetPayload<T> | null, null>
+
+    /**
+     * Find one EventCategory that matches the filter or throw an error  with `error.code='P2025'`
+     *     if no matches were found.
+     * @param {EventCategoryFindUniqueOrThrowArgs} args - Arguments to find a EventCategory
+     * @example
+     * // Get one EventCategory
+     * const eventCategory = await prisma.eventCategory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     **/
+    findUniqueOrThrow<T extends EventCategoryFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, EventCategoryFindUniqueOrThrowArgs>
+    ): Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
 
     /**
      * Find the first EventCategory that matches the filter.
@@ -3225,16 +3391,26 @@ export namespace Prisma {
       'findFirst',
       'EventCategory'
     > extends True
-      ? CheckSelect<
-          T,
-          Prisma__EventCategoryClient<EventCategory>,
-          Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
-        >
-      : CheckSelect<
-          T,
-          Prisma__EventCategoryClient<EventCategory | null>,
-          Prisma__EventCategoryClient<EventCategoryGetPayload<T> | null>
-        >
+      ? Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
+      : Prisma__EventCategoryClient<EventCategoryGetPayload<T> | null, null>
+
+    /**
+     * Find the first EventCategory that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventCategoryFindFirstOrThrowArgs} args - Arguments to find a EventCategory
+     * @example
+     * // Get one EventCategory
+     * const eventCategory = await prisma.eventCategory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     **/
+    findFirstOrThrow<T extends EventCategoryFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, EventCategoryFindFirstOrThrowArgs>
+    ): Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
 
     /**
      * Find zero or more EventCategories that matches the filter.
@@ -3254,11 +3430,7 @@ export namespace Prisma {
      **/
     findMany<T extends EventCategoryFindManyArgs>(
       args?: SelectSubset<T, EventCategoryFindManyArgs>
-    ): CheckSelect<
-      T,
-      PrismaPromise<Array<EventCategory>>,
-      PrismaPromise<Array<EventCategoryGetPayload<T>>>
-    >
+    ): PrismaPromise<Array<EventCategoryGetPayload<T>>>
 
     /**
      * Create a EventCategory.
@@ -3274,11 +3446,7 @@ export namespace Prisma {
      **/
     create<T extends EventCategoryCreateArgs>(
       args: SelectSubset<T, EventCategoryCreateArgs>
-    ): CheckSelect<
-      T,
-      Prisma__EventCategoryClient<EventCategory>,
-      Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
-    >
+    ): Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
 
     /**
      * Create many EventCategories.
@@ -3310,11 +3478,7 @@ export namespace Prisma {
      **/
     delete<T extends EventCategoryDeleteArgs>(
       args: SelectSubset<T, EventCategoryDeleteArgs>
-    ): CheckSelect<
-      T,
-      Prisma__EventCategoryClient<EventCategory>,
-      Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
-    >
+    ): Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
 
     /**
      * Update one EventCategory.
@@ -3333,11 +3497,7 @@ export namespace Prisma {
      **/
     update<T extends EventCategoryUpdateArgs>(
       args: SelectSubset<T, EventCategoryUpdateArgs>
-    ): CheckSelect<
-      T,
-      Prisma__EventCategoryClient<EventCategory>,
-      Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
-    >
+    ): Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
 
     /**
      * Delete zero or more EventCategories.
@@ -3395,53 +3555,7 @@ export namespace Prisma {
      **/
     upsert<T extends EventCategoryUpsertArgs>(
       args: SelectSubset<T, EventCategoryUpsertArgs>
-    ): CheckSelect<
-      T,
-      Prisma__EventCategoryClient<EventCategory>,
-      Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
-    >
-
-    /**
-     * Find one EventCategory that matches the filter or throw
-     * `NotFoundError` if no matches were found.
-     * @param {EventCategoryFindUniqueOrThrowArgs} args - Arguments to find a EventCategory
-     * @example
-     * // Get one EventCategory
-     * const eventCategory = await prisma.eventCategory.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     **/
-    findUniqueOrThrow<T extends EventCategoryFindUniqueOrThrowArgs>(
-      args?: SelectSubset<T, EventCategoryFindUniqueOrThrowArgs>
-    ): CheckSelect<
-      T,
-      Prisma__EventCategoryClient<EventCategory>,
-      Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
-    >
-
-    /**
-     * Find the first EventCategory that matches the filter or
-     * throw `NotFoundError` if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {EventCategoryFindFirstOrThrowArgs} args - Arguments to find a EventCategory
-     * @example
-     * // Get one EventCategory
-     * const eventCategory = await prisma.eventCategory.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     **/
-    findFirstOrThrow<T extends EventCategoryFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, EventCategoryFindFirstOrThrowArgs>
-    ): CheckSelect<
-      T,
-      Prisma__EventCategoryClient<EventCategory>,
-      Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
-    >
+    ): Prisma__EventCategoryClient<EventCategoryGetPayload<T>>
 
     /**
      * Count the number of EventCategories.
@@ -3572,7 +3686,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export class Prisma__EventCategoryClient<T> implements PrismaPromise<T> {
+  export class Prisma__EventCategoryClient<T, Null = never> implements PrismaPromise<T> {
     [prisma]: true
     private readonly _dmmf
     private readonly _fetcher
@@ -3600,13 +3714,13 @@ export namespace Prisma {
     )
     readonly [Symbol.toStringTag]: 'PrismaClientPromise'
 
-    events<T extends EventFindManyArgs = {}>(
-      args?: Subset<T, EventFindManyArgs>
-    ): CheckSelect<T, PrismaPromise<Array<Event>>, PrismaPromise<Array<EventGetPayload<T>>>>
+    events<T extends EventCategoryEventsArgs = {}>(
+      args?: Subset<T, EventCategoryEventsArgs>
+    ): PrismaPromise<Array<EventGetPayload<T>> | Null>
 
     user<T extends UserArgs = {}>(
       args?: Subset<T, UserArgs>
-    ): CheckSelect<T, Prisma__UserClient<User | null>, Prisma__UserClient<UserGetPayload<T> | null>>
+    ): Prisma__UserClient<UserGetPayload<T> | Null>
 
     private get _document()
     /**
@@ -3660,7 +3774,7 @@ export namespace Prisma {
   }
 
   /**
-   * EventCategory: findUnique
+   * EventCategory findUnique
    */
   export interface EventCategoryFindUniqueArgs extends EventCategoryFindUniqueArgsBase {
     /**
@@ -3668,6 +3782,27 @@ export namespace Prisma {
      * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
      */
     rejectOnNotFound?: RejectOnNotFound
+  }
+
+  /**
+   * EventCategory findUniqueOrThrow
+   */
+  export type EventCategoryFindUniqueOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the EventCategory
+     *
+     **/
+    select?: EventCategorySelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     *
+     **/
+    include?: EventCategoryInclude | null
+    /**
+     * Filter, which EventCategory to fetch.
+     *
+     **/
+    where: EventCategoryWhereUniqueInput
   }
 
   /**
@@ -3727,7 +3862,7 @@ export namespace Prisma {
   }
 
   /**
-   * EventCategory: findFirst
+   * EventCategory findFirst
    */
   export interface EventCategoryFindFirstArgs extends EventCategoryFindFirstArgsBase {
     /**
@@ -3735,6 +3870,62 @@ export namespace Prisma {
      * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
      */
     rejectOnNotFound?: RejectOnNotFound
+  }
+
+  /**
+   * EventCategory findFirstOrThrow
+   */
+  export type EventCategoryFindFirstOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the EventCategory
+     *
+     **/
+    select?: EventCategorySelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     *
+     **/
+    include?: EventCategoryInclude | null
+    /**
+     * Filter, which EventCategory to fetch.
+     *
+     **/
+    where?: EventCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of EventCategories to fetch.
+     *
+     **/
+    orderBy?: Enumerable<EventCategoryOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for EventCategories.
+     *
+     **/
+    cursor?: EventCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` EventCategories from the position of the cursor.
+     *
+     **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` EventCategories.
+     *
+     **/
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of EventCategories.
+     *
+     **/
+    distinct?: Enumerable<EventCategoryScalarFieldEnum>
   }
 
   /**
@@ -3926,14 +4117,26 @@ export namespace Prisma {
   }
 
   /**
-   * EventCategory: findUniqueOrThrow
+   * EventCategory.events
    */
-  export type EventCategoryFindUniqueOrThrowArgs = EventCategoryFindUniqueArgsBase
-
-  /**
-   * EventCategory: findFirstOrThrow
-   */
-  export type EventCategoryFindFirstOrThrowArgs = EventCategoryFindFirstArgsBase
+  export type EventCategoryEventsArgs = {
+    /**
+     * Select specific fields to fetch from the Event
+     *
+     **/
+    select?: EventSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     *
+     **/
+    include?: EventInclude | null
+    where?: EventWhereInput
+    orderBy?: Enumerable<EventOrderByWithRelationInput>
+    cursor?: EventWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Enumerable<EventScalarFieldEnum>
+  }
 
   /**
    * EventCategory without action

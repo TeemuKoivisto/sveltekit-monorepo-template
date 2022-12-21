@@ -3,7 +3,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import path from 'path'
 import typescript from 'rollup-plugin-typescript2'
 
-import pkg from './package.json'
+import pkg from './package.json' assert { type: 'json' }
 
 export default {
   input: 'src/index.ts',
@@ -17,16 +17,16 @@ export default {
   plugins: [
     alias({
       entries: [
-        { find: '$common', replacement: path.resolve(__dirname, 'src/common') },
-        { find: '$jwt', replacement: path.resolve(__dirname, 'src/jwt') },
+        { find: '$common', replacement: path.resolve('src/common') },
+        { find: '$jwt', replacement: path.resolve('src/jwt') },
         {
           find: '$middlewares',
-          replacement: path.resolve(__dirname, 'src/middlewares')
+          replacement: path.resolve('src/middlewares')
         },
-        { find: '$routes', replacement: path.resolve(__dirname, 'src/routes') },
+        { find: '$routes', replacement: path.resolve('src/routes') },
         {
           find: '$typings',
-          replacement: path.resolve(__dirname, 'src/typings')
+          replacement: path.resolve('src/typings')
         }
       ]
     }),

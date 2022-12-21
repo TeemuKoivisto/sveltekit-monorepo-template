@@ -19,6 +19,7 @@ export type AuthRequest<
 
 export type AuthResponse<R extends Record<string, any> = {}> = Response<R, AuthLocals>
 
-export type AnyRequest<B = Record<string, any>, Q extends ParamsDictionary = Record<string, any>> =
-  | IRequest<B, Q>
-  | AuthRequest<B, Q>
+export type AnyRequest<
+  B extends Record<string, any> = Record<string, any>,
+  Q extends ParamsDictionary = Record<string, any>
+> = IRequest<B, Q> | AuthRequest<B, Q>
