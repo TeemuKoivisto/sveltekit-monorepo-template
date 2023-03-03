@@ -5,6 +5,7 @@ Monorepo boilerplate that I use, transformed into its own template repository.
 ### [Netlify](https://marvelous-madeleine-842e30.netlify.app)
 
 ### [GitHub pages](https://teemukoivisto.github.io/sveltekit-monorepo-template/)
+
 Not working as of 22.12.2022 due to how base paths are configured with SvelteKit
 
 ## How to setup

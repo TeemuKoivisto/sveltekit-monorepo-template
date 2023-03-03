@@ -5,4 +5,5 @@ build
 dist
 tmp
 packages/db/generated
-packages/client/.svelte-kit
+packages/types/prisma
+.svelte-kit

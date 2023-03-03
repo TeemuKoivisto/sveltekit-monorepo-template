@@ -14,12 +14,13 @@
     "@iconify-icons/fe": "^1.2.3",
     "@iconify-icons/feather": "^1.2.3",
     "@iconify-icons/mdi": "^1.2.36",
-    "@sveltejs/adapter-static": "1.0.0",
-    "@sveltejs/kit": "1.0.1",
+    "@sveltejs/adapter-static": "1.0.5",
+    "@sveltejs/kit": "^1.9.3",
     "@types/lodash.debounce": "^4.0.7",
     "@types/luxon": "^3.1.0",
     "@types/uuid": "^9.0.0",
     "cross-fetch": "^3.1.5",
+    "msw": "^1.1.0",
     "postcss": "^8.4.20",
     "postcss-load-config": "^4.0.1",
     "prettier-plugin-svelte": "^2.9.0",
@@ -39,5 +40,8 @@
     "luxon": "^3.1.1",
     "tailwindcss": "^3.2.4",
     "uuid": "^9.0.0"
+  },
+  "msw": {
+    "workerDirectory": "static"
   }
 }
