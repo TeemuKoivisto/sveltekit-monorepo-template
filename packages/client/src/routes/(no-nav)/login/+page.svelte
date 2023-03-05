@@ -31,15 +31,15 @@
 
 <div class="h-full w-full absolute bg-gray-100">
   <div class="absolute inset-0 flex items-center main-bg">
-    <section class="p-16 mx-auto inline-block bg-white text-container border rounded-2xl">
-      <h1 class="mb-8 text-5xl font-bold cursive">login</h1>
+    <section class="w-[32rem] p-16 mx-auto inline-block bg-white text-container border rounded-2xl">
+      <h1 class="mb-10 text-4xl font-bold cursive text-center">Sign in</h1>
       <div>
         <a
-          class="py-2 px-2 border border-gray-400 flex items-center hover:border-gray-600 rounded w-full"
+          class="py-2 px-2 border border-gray-400 flex items-center justify-center hover:border-gray-600 rounded w-full"
           href={`${API_URL}/google/login`}
         >
-          <img class="ml-2 h-[20px]" src="google-logo.svg" alt="Google logo" />
-          <div class="w-full">Sign in with Google</div>
+          <img class="mx-3 h-[20px]" src="google-logo.svg" alt="Google logo" />
+          <div>Sign in with Google</div>
         </a>
         <hr class="mt-10 mb-8 border-gray-400" />
         <LoginForm {loading} error={loginError} on:submit={handleSubmit} />

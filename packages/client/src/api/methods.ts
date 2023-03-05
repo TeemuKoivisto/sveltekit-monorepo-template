@@ -25,10 +25,17 @@ export async function wrappedFetch<T>(
     console.error(err)
     return { err: 'Connection error', code: 550 }
   }
-  const data = await resp.json()
+  let data
+  const contentType = resp.headers.get('content-type')
+  if (contentType?.startsWith('application/json')) {
+    data = await resp.json()
+  } else {
+    data = await resp.text()
+  }
   if (!resp.ok) {
-    console.error(data?.message || defaultError)
-    return { err: data?.message || defaultError, code: resp.status }
+    const msg = (typeof data === 'string' ? data : data?.message) || defaultError
+    console.error(msg)
+    return { err: msg, code: resp.status }
   }
   return { data }
 }

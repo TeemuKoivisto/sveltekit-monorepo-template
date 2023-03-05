@@ -72,7 +72,11 @@ function parsePersisted(persisted: Persisted) {
   }
 }
 
-export function persist(value: any, key: string, storage: StorageType = 'local'): Result<undefined> {
+export function persist(
+  value: any,
+  key: string,
+  storage: StorageType = 'local'
+): Result<undefined> {
   try {
     const persisted = createPersistable(value)
     if (persisted.type === 'function') {
