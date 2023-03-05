@@ -12,7 +12,9 @@
     "utils": "concurrently --kill-others 'pnpm --filter types watch'",
     "api": "concurrently --kill-others 'pnpm --filter api watch' 'sleep 2 && pnpm --filter api dev'",
     "client": "concurrently --kill-others 'pnpm --filter client dev'",
-    "start": "concurrently --kill-others 'pnpm utils' 'pnpm api' 'pnpm client'"
+    "client:msw": "concurrently --kill-others 'VITE_USE_MSW=1 pnpm --filter client dev'",
+    "start": "concurrently --kill-others 'pnpm utils' 'pnpm api' 'pnpm client'",
+    "test:e2e": "pnpm --filter e2e test"
   },
   "engines": {
     "node": ">=16",

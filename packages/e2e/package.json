@@ -4,8 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "cy": "cypress",
-    "open": "cypress open"
+    "test": "cypress run --browser chrome",
+    "open": "cypress open",
+    "cy": "cypress"
   },
   "devDependencies": {
     "cypress": "^12.7.0",

@@ -8,6 +8,6 @@ describe('# Login page', () => {
 
     // cy.visit('/users')
 
-    cy.get('li').should('have.length', 3)
+    cy.get('tr').should('have.length', 3)
   })
 })
