@@ -29,7 +29,7 @@ export const userActions = {
   async editUser(userId: string, params: IUserEditParams) {
     const result = await userApi.editUser(userId, params)
     if ('data' in result && get(user)?.id === result.data.user.id) {
-      authActions.updateUser(result.data.user)
+      authActions.handleEditUser(result.data.user)
     }
     return result
   },

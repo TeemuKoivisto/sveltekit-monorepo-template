@@ -4,8 +4,9 @@ import type { ParamsDictionary } from 'express-serve-static-core'
 
 export type IRequest<
   B = Record<string, any>,
-  P extends ParamsDictionary = Record<string, any>
-> = Request<P, {}, B, {}>
+  P extends ParamsDictionary = Record<string, any>,
+  Q extends Record<string, any> = {}
+> = Request<P, {}, B, Q>
 
 type AuthLocals = {
   user: IUser

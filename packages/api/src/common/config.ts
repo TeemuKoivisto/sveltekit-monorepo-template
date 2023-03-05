@@ -38,7 +38,13 @@ export const config = {
     PORT: parseInteger(process.env.POSTGRES_PORT) || 5432,
     DB: process.env.POSTGRES_DB || 'my_example_db'
   },
+  GOOGLE: {
+    CLIENT_ID: process.env.GOOGLE_CLIENT_ID || '',
+    CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || ''
+  },
   TWILIO: {
     SENDGRID_API_KEY: process.env.SENDGRID_API_KEY || ''
-  }
+  },
+  API_URL: process.env.API_URL || '',
+  CLIENT_URL: process.env.CLIENT_URL || ''
 }

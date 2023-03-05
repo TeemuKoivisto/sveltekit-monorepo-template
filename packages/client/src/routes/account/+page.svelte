@@ -1,6 +1,7 @@
 <script lang="ts">
   import { user, isLoggedIn } from '$stores/auth'
   import { userActions } from '$stores/user'
+  import { authActions } from '$stores/auth.actions'
   import { goto } from '$app/navigation'
 
   import Button from '$elements/Button.svelte'
@@ -19,8 +20,18 @@
   // }
 
   $: {
-    if (typeof window !== 'undefined' && !$isLoggedIn) {
-      goto('/login')
+    if (typeof window !== 'undefined') {
+      try {
+        const url = new URL(window.location.href)
+        const parsedUser = JSON.parse(url.searchParams.get('user') || '')
+        const parsedJwt = JSON.parse(url.searchParams.get('jwt') || '')
+        if (parsedUser && parsedJwt) {
+          authActions.handleGoogleSignIn(parsedUser, parsedJwt)
+        }
+      } catch (err) {}
+      if (!$isLoggedIn) {
+        goto('/login')
+      }
     }
   }
 

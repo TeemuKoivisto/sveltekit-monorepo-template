@@ -7,6 +7,8 @@
 
   import type { ILoginParams } from '@awesome-org/types'
 
+  import { API_URL } from '$config'
+
   let loading = false,
     loginError: string | null = null
   $: {
@@ -32,9 +34,13 @@
     <section class="p-16 mx-auto inline-block bg-white text-container border rounded-2xl">
       <h1 class="mb-8 text-5xl font-bold cursive">login</h1>
       <div>
-        <button class="py-1 px-2 border border-gray-400 hover:border-gray-600 rounded w-full"
-          >Sign in with Google</button
+        <a
+          class="py-2 px-2 border border-gray-400 flex items-center hover:border-gray-600 rounded w-full"
+          href={`${API_URL}/google/login`}
         >
+          <img class="ml-2 h-[20px]" src="google-logo.svg" alt="Google logo" />
+          <div class="w-full">Sign in with Google</div>
+        </a>
         <hr class="mt-10 mb-8 border-gray-400" />
         <LoginForm {loading} error={loginError} on:submit={handleSubmit} />
       </div>

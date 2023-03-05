@@ -1,4 +1,4 @@
-import { Maybe, IUserEditParams, IUser } from '@awesome-org/types'
+import { Maybe, IUserEditParams, IUser, ListedUser } from '@awesome-org/types'
 import { User } from '@awesome-org/db'
 
 import { CustomError, prisma } from '$common'
@@ -6,7 +6,7 @@ import { CustomError, prisma } from '$common'
 type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>
 
 export const userService = {
-  async listUsers(): Promise<Maybe<IUser[]>> {
+  async listUsers(): Promise<Maybe<ListedUser[]>> {
     const found = await prisma.user.findMany({
       select: {
         id: true,

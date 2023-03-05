@@ -1,4 +1,4 @@
-import type { ILoginParams, ISignUpParams, IUser } from '@awesome-org/types'
+import type { IJwt, ILoginParams, ISignUpParams, IUser } from '@awesome-org/types'
 
 import * as authApi from '$api/auth'
 
@@ -7,8 +7,12 @@ import { categoryActions } from './category'
 import { eventActions } from './event'
 
 export const authActions = {
-  updateUser(updated: IUser) {
-    user.set(updated)
+  handleGoogleSignIn(parsedUser: IUser, parsedJwt: IJwt) {
+    user.set(parsedUser)
+    jwt.set(parsedJwt)
+  },
+  handleEditUser(editedUser: IUser) {
+    user.set(editedUser)
   },
   async login(params: ILoginParams) {
     const result = await authApi.login(params)
