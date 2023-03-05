@@ -27,9 +27,9 @@
   }
 </script>
 
-<div class="w-full h-full p-8 absolute bg-gray-100">
-  <div class="relative inset-0 flex items-center main-bg">
-    <section class="w-[32rem] p-16 mx-auto inline-block bg-white text-container border rounded-2xl">
+<div class="w-full h-full p-8 absolute flex items-center justify-center">
+  <div class="flex items-center main-bg">
+    <section class="w-[32rem] p-16 mx-auto inline-block bg-zinc-800 text-container rounded-2xl">
       <h1 class="mb-8 text-4xl font-bold cursive text-center">Sign up</h1>
       <div>
         <SignUpForm {loading} error={signUpError} on:submit={handleSubmit} />

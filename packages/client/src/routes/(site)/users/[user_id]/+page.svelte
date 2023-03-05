@@ -80,14 +80,8 @@
 </script>
 
 <section class="p-4 h-full m-auto flex lg:container md:p-16 md:pt-16 xs:p-8 rounded-2xl">
-  <div class="flex mr-8 overflow-hidden">
-    <div>
-      <UserCircle>{initials}</UserCircle>
-    </div>
-    <div class="mx-4 flex-col justify-between items-center">
-      <h3>{firstName} {lastName}</h3>
-      <small>{email}</small>
-    </div>
+  <div class="flex mr-8">
+    <UserCircle>{initials}</UserCircle>
   </div>
   <form on:submit|preventDefault={handleSubmit} class="w-full items-center">
     <h1 class="text-5xl font-bold flex items-center">Edit user: {firstName}</h1>
@@ -141,7 +135,7 @@
       </Button>
       <Button
         on:click={handleCancel}
-        class="ml-4 border-gray-300 hover:border-gray-400"
+        class="bg-gray-200 ml-4 border-gray-300 hover:border-gray-400"
         type="button">Cancel</Button
       >
       <Button on:click={handleDelete} class="bg-red-400 hover:bg-red-500 ml-4" type="button"
@@ -170,7 +164,7 @@
       max-width: 75%;
       @apply px-4;
       input {
-        @apply px-2 py-1 border border-gray-400 rounded w-full;
+        @apply bg-zinc-600 px-2 py-1 rounded w-full;
       }
     }
   }

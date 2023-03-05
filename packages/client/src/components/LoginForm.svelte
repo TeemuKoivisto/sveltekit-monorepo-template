@@ -66,10 +66,7 @@
   {#if validationError || error}
     <div class="error">{validationError || error}</div>
   {/if}
-  <button
-    class="flex justify-center w-full px-4 py-3 mt-8 text-lg leading-tight text-white bg-red-500 rounded"
-    type="submit"
-  >
+  <button class="btn mt-8 w-full hover:-translate-y-1 hover:scale-105" type="submit">
     {#if loading}
       <Spinner />
     {:else}

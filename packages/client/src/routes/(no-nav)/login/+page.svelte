@@ -29,13 +29,13 @@
   }
 </script>
 
-<div class="h-full w-full absolute bg-gray-100">
+<div class="h-full w-full absolute">
   <div class="absolute inset-0 flex items-center main-bg">
-    <section class="w-[32rem] p-16 mx-auto inline-block bg-white text-container border rounded-2xl">
-      <h1 class="mb-10 text-4xl font-bold cursive text-center">Sign in</h1>
+    <section class="w-[32rem] p-16 mx-auto inline-block bg-zinc-800 text-container rounded-2xl">
+      <h1 class="mb-12 text-4xl font-bold cursive text-center">Sign in</h1>
       <div>
         <a
-          class="py-3 px-2 border border-gray-400 text-lg flex items-center justify-center hover:border-gray-600 rounded w-full"
+          class="btn-white hover:-translate-y-1 hover:scale-105 w-full"
           href={`${API_URL}/google/login`}
         >
           <img class="mx-3 h-[20px]" src="google-logo.svg" alt="Google logo" />

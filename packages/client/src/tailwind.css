@@ -8,3 +8,51 @@
 html {
   font-size: 16px;
 }
+
+* {
+  @apply text-white;
+}
+
+body {
+  @apply bg-zinc-900;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  @apply text-white;
+}
+
+@layer utilities {
+  .btn-old {
+    @apply py-2 px-4 text-black text-sm uppercase font-sans cursor-pointer rounded border border-transparent;
+  }
+  .btn-small {
+    @apply px-4 py-1 font-bold flex text-base justify-center items-center bg-primary-dark text-white rounded shadow text-center transition duration-500 ease-in-out transform;
+  }
+  .btn {
+    /* flex justify-center w-full px-4 py-3 mt-8 text-lg leading-tight text-white bg-red-500 rounded hover:-translate-y-1 hover:scale-110" */
+    /* focus:outline-none hover:bg-blue-700 hover:no-underline */
+    @apply px-5 py-3 font-bold flex text-lg justify-center items-center bg-primary-dark text-white rounded shadow text-center transition duration-500 ease-in-out transform;
+  }
+  .btn-white {
+    @apply px-5 py-3 flex text-lg justify-center items-center bg-white text-black rounded shadow text-center transition duration-500 ease-in-out transform;
+  }
+  .btn-white * {
+    @apply text-black;
+  }
+  .raise {
+    @apply -translate-y-1 scale-105;
+  }
+  .ease {
+    transition: 0.3s ease all;
+  }
+  .raised {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 7px 0 rgb(0 0 0 / 10%);
+  }
+}
