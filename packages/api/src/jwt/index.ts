@@ -3,7 +3,7 @@ const { sign, verify } = pkg
 
 import { config } from '$common'
 
-import { Maybe, IUser } from '@awesome-org/types'
+import { Result, IUser } from '@awesome-org/types'
 import { ILoginJwt, IResetPasswordJwt } from '$typings/auth'
 
 export function generateLoginPayload(user: IUser) {
@@ -23,7 +23,7 @@ export function generatePasswordResetJwt(userId: string) {
   })
 }
 
-function decryptToken<T>(token: string): Maybe<T> {
+function decryptToken<T>(token: string): Result<T> {
   try {
     return { data: verify(token, config.JWT.SECRET) as T }
   } catch (err: any) {

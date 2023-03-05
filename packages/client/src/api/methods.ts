@@ -2,7 +2,7 @@ import { get as storeGet } from 'svelte/store'
 import { jwt } from '$stores/auth'
 import { API_URL } from '$config'
 
-import type { Maybe } from '@awesome-org/types'
+import type { Result } from '@awesome-org/types'
 
 export const DEFAULT_HEADERS = {
   Accept: 'application/json',
@@ -16,7 +16,7 @@ export async function wrappedFetch<T>(
   path: string,
   options: RequestInit,
   defaultError = 'Request failed'
-): Promise<Maybe<T>> {
+): Promise<Result<T>> {
   let resp: Response
   try {
     resp = await fetch(`${API_URL}/${path}`, options)
@@ -37,7 +37,7 @@ export function get<T>(
   path: string,
   defaultError?: string,
   headers: Record<string, string> = { ...DEFAULT_HEADERS, ...getAuthHeader() }
-): Promise<Maybe<T>> {
+): Promise<Result<T>> {
   return wrappedFetch(
     path,
     {
@@ -53,7 +53,7 @@ export function post<T>(
   payload: any,
   defaultError?: string,
   headers: Record<string, string> = { ...DEFAULT_HEADERS, ...getAuthHeader() }
-): Promise<Maybe<T>> {
+): Promise<Result<T>> {
   return wrappedFetch(
     path,
     {
@@ -70,7 +70,7 @@ export function put<T>(
   payload: any,
   defaultError?: string,
   headers: Record<string, string> = { ...DEFAULT_HEADERS, ...getAuthHeader() }
-): Promise<Maybe<T>> {
+): Promise<Result<T>> {
   return wrappedFetch(
     path,
     {
@@ -86,7 +86,7 @@ export function del<T>(
   path: string,
   defaultError?: string,
   headers: Record<string, string> = { ...DEFAULT_HEADERS, ...getAuthHeader() }
-): Promise<Maybe<T>> {
+): Promise<Result<T>> {
   return wrappedFetch(
     path,
     {

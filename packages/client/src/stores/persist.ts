@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store'
-import type { Maybe } from '@awesome-org/types'
+import type { Result } from '@awesome-org/types'
 
 import type {
   Persisted,
@@ -72,7 +72,7 @@ function parsePersisted(persisted: Persisted) {
   }
 }
 
-export function persist(value: any, key: string, storage: StorageType = 'local'): Maybe<undefined> {
+export function persist(value: any, key: string, storage: StorageType = 'local'): Result<undefined> {
   try {
     const persisted = createPersistable(value)
     if (persisted.type === 'function') {
@@ -89,7 +89,7 @@ export function persist(value: any, key: string, storage: StorageType = 'local')
 export function hydrate<T extends PersistableValues>(
   key: string,
   storage: StorageType = 'local'
-): Maybe<T> {
+): Result<T> {
   let json
   try {
     const store = storage === 'local' ? window.localStorage : window.sessionStorage

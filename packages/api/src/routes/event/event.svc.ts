@@ -1,9 +1,9 @@
-import { Maybe, Event, ICreateEventRequest, IUpdateEventRequest } from '@awesome-org/types'
+import { Result, Event, ICreateEventRequest, IUpdateEventRequest } from '@awesome-org/types'
 
 import { CustomError, log, prisma } from '$common'
 
 export const eventService = {
-  async listEvents(userId: string): Promise<Maybe<Event[]>> {
+  async listEvents(userId: string): Promise<Result<Event[]>> {
     const found = await prisma.event.findMany({
       where: {
         user_id: userId
@@ -11,7 +11,7 @@ export const eventService = {
     })
     return { data: found }
   },
-  async findEvent(id: string): Promise<Maybe<Event>> {
+  async findEvent(id: string): Promise<Result<Event>> {
     const found = await prisma.event.findUnique({
       where: {
         id: id
@@ -22,7 +22,7 @@ export const eventService = {
     }
     return { data: found }
   },
-  async createEvent(payload: ICreateEventRequest, userId: string): Promise<Maybe<Event>> {
+  async createEvent(payload: ICreateEventRequest, userId: string): Promise<Result<Event>> {
     const saved = await prisma.event.create({
       data: {
         ...payload,
@@ -31,7 +31,7 @@ export const eventService = {
     })
     return { data: saved }
   },
-  async updateEvent(eventId: string, payload: IUpdateEventRequest): Promise<Maybe<Event>> {
+  async updateEvent(eventId: string, payload: IUpdateEventRequest): Promise<Result<Event>> {
     const saved = await prisma.event.update({
       data: payload,
       where: {
@@ -40,7 +40,7 @@ export const eventService = {
     })
     return { data: saved }
   },
-  async deleteEvent(eventId: string): Promise<Maybe<Event>> {
+  async deleteEvent(eventId: string): Promise<Result<Event>> {
     const deleted = await prisma.event.delete({
       where: {
         id: eventId

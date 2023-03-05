@@ -1,4 +1,4 @@
-import { Maybe, ILoginParams, ISignUpParams, IUser } from '@awesome-org/types'
+import { Result, ILoginParams, ISignUpParams, IUser } from '@awesome-org/types'
 import { User } from '@awesome-org/db'
 import { compare, hash } from 'bcrypt'
 
@@ -7,7 +7,7 @@ import { prisma } from '$common'
 type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>
 
 export const authService = {
-  loginUser: async ({ email, password }: ILoginParams): Promise<Maybe<IUser>> => {
+  loginUser: async ({ email, password }: ILoginParams): Promise<Result<IUser>> => {
     const user: Optional<User, 'password'> | null = await prisma.user.findFirst({
       where: { email }
     })
@@ -23,7 +23,7 @@ export const authService = {
     delete user.password
     return { data: user }
   },
-  async createUser(params: ISignUpParams): Promise<Maybe<IUser>> {
+  async createUser(params: ISignUpParams): Promise<Result<IUser>> {
     const { email, firstname, lastname, password } = params
     const user = await prisma.user.findFirst({ where: { email } })
     if (user) {
@@ -46,14 +46,14 @@ export const authService = {
     delete created?.password
     return { data: created }
   },
-  async findUserWithEmail(email: string): Promise<Maybe<{ id: string }>> {
+  async findUserWithEmail(email: string): Promise<Result<{ id: string }>> {
     const user = await prisma.user.findFirst({ where: { email }, select: { id: true } })
     if (user === null) {
       return { err: 'No user found with email', code: 400 }
     }
     return { data: user }
   },
-  async updateUserPassword(userId: string, password: string): Promise<Maybe<boolean>> {
+  async updateUserPassword(userId: string, password: string): Promise<Result<boolean>> {
     let hashedPass
     try {
       hashedPass = await hash(password, 15)

@@ -1,5 +1,5 @@
 import {
-  Maybe,
+  Result,
   EventCategory,
   ICreateCategoryRequest,
   IUpdateCategoryRequest
@@ -8,7 +8,7 @@ import {
 import { CustomError, log, prisma } from '$common'
 
 export const categoryService = {
-  async listCategoryLabels(userId: string): Promise<Maybe<EventCategory[]>> {
+  async listCategoryLabels(userId: string): Promise<Result<EventCategory[]>> {
     const found = await prisma.eventCategory.findMany({
       where: {
         user_id: userId
@@ -16,7 +16,7 @@ export const categoryService = {
     })
     return { data: found }
   },
-  async getCategory(categoryId: string): Promise<Maybe<EventCategory>> {
+  async getCategory(categoryId: string): Promise<Result<EventCategory>> {
     const found = await prisma.eventCategory.findUnique({
       where: {
         id: categoryId
@@ -30,7 +30,7 @@ export const categoryService = {
   async saveCategory(
     payload: ICreateCategoryRequest,
     userId: string
-  ): Promise<Maybe<EventCategory>> {
+  ): Promise<Result<EventCategory>> {
     const saved = await prisma.eventCategory.create({
       data: {
         ...payload,
@@ -42,7 +42,7 @@ export const categoryService = {
   async updateCategory(
     categoryId: string,
     payload: IUpdateCategoryRequest
-  ): Promise<Maybe<EventCategory>> {
+  ): Promise<Result<EventCategory>> {
     const saved = await prisma.eventCategory.update({
       data: payload,
       where: {
@@ -51,7 +51,7 @@ export const categoryService = {
     })
     return { data: saved }
   },
-  async deleteCategory(categoryId: string): Promise<Maybe<EventCategory>> {
+  async deleteCategory(categoryId: string): Promise<Result<EventCategory>> {
     const deleted = await prisma.eventCategory.delete({
       where: {
         id: categoryId
