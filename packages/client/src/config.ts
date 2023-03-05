@@ -1,6 +1,6 @@
-const getEnv = (key: string) => {
+const getEnv = (key: string, required = true) => {
   const env = import.meta.env[key]
-  if (!env) {
+  if (!env && required) {
     throw new Error(`Environment variable ${key} was undefined!`)
   }
   return env
@@ -14,7 +14,7 @@ const parseInteger = (env?: string) => {
 }
 
 export const API_URL = getEnv('VITE_API_URL')
-export const USE_MSW = parseInteger(getEnv('VITE_USE_MSW')) || 0
+export const USE_MSW = parseInteger(getEnv('VITE_USE_MSW', false)) ? true : false
 export const DEV = import.meta.env.DEV
 // More about SvelteKit's default env variables https://vitejs.dev/guide/env-and-mode.html
 // TODO rather than importing DEV everywhere, create logger that checks for DEV

@@ -10,4 +10,3 @@
 - move persist into own package
 - add docs for cypress, google oauth
 - fix private-pkg
-
