@@ -24,13 +24,12 @@ export const listEvents = async (
       return next(new CustomError('Missing user.id from res.locals', 401))
     }
     const resp = await eventService.listEvents(userId)
-    if ('data' in resp) {
-      res.json({
-        events: resp.data
-      })
-    } else {
-      next(new CustomError(resp.err, resp.code))
+    if ('err' in resp) {
+      return next(new CustomError(resp.err, resp.code))
     }
+    res.json({
+      events: resp.data
+    })
   } catch (err) {
     next(err)
   }
@@ -44,11 +43,10 @@ export const getEvent = async (
   try {
     const { eventId } = req.params
     const resp = await eventService.findEvent(eventId)
-    if ('data' in resp) {
-      res.json(resp.data)
-    } else {
-      next(new CustomError(resp.err, resp.code))
+    if ('err' in resp) {
+      return next(new CustomError(resp.err, resp.code))
     }
+    res.json(resp.data)
   } catch (err) {
     next(err)
   }
@@ -61,11 +59,10 @@ export const createEvent = async (
 ) => {
   try {
     const resp = await eventService.createEvent(req.body, res.locals.user.id)
-    if ('data' in resp) {
-      res.json(resp.data)
-    } else {
-      next(new CustomError(resp.err, resp.code))
+    if ('err' in resp) {
+      return next(new CustomError(resp.err, resp.code))
     }
+    res.json(resp.data)
   } catch (err) {
     next(err)
   }
@@ -79,11 +76,10 @@ export const updateEvent = async (
   try {
     const { eventId } = req.params
     const resp = await eventService.updateEvent(eventId, req.body)
-    if ('data' in resp) {
-      res.json(true)
-    } else {
-      next(new CustomError(resp.err, resp.code))
+    if ('err' in resp) {
+      return next(new CustomError(resp.err, resp.code))
     }
+    res.json(true)
   } catch (err) {
     next(err)
   }
@@ -97,11 +93,10 @@ export const deleteEvent = async (
   try {
     const { eventId } = req.params
     const resp = await eventService.deleteEvent(eventId)
-    if ('data' in resp) {
-      res.json(true)
-    } else {
-      next(new CustomError(resp.err, resp.code))
+    if ('err' in resp) {
+      return next(new CustomError(resp.err, resp.code))
     }
+    res.json(true)
   } catch (err) {
     next(err)
   }

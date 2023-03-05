@@ -21,11 +21,10 @@ export const listCategoryLabels = async (
   try {
     const { documentId } = req.params
     const resp = await categoryService.listCategoryLabels(documentId)
-    if ('data' in resp) {
-      res.json({ categories: resp.data })
-    } else {
-      next(new CustomError(resp.err, resp.code))
+    if ('err' in resp) {
+      return next(new CustomError(resp.err, resp.code))
     }
+    res.json({ categories: resp.data })
   } catch (err) {
     next(err)
   }
@@ -39,11 +38,10 @@ export const getCategory = async (
   try {
     const { categoryId } = req.params
     const resp = await categoryService.getCategory(categoryId)
-    if ('data' in resp) {
-      res.json(resp.data)
-    } else {
-      next(new CustomError(resp.err, resp.code))
+    if ('err' in resp) {
+      return next(new CustomError(resp.err, resp.code))
     }
+    res.json(resp.data)
   } catch (err) {
     next(err)
   }
@@ -60,11 +58,10 @@ export const saveCategory = async (
       return next(new CustomError('Missing user.id from res.locals', 401))
     }
     const resp = await categoryService.saveCategory(req.body, userId)
-    if ('data' in resp) {
-      res.json(resp.data)
-    } else {
-      next(new CustomError(resp.err, resp.code))
+    if ('err' in resp) {
+      return next(new CustomError(resp.err, resp.code))
     }
+    res.json(resp.data)
   } catch (err) {
     next(err)
   }
@@ -78,11 +75,10 @@ export const updateCategory = async (
   try {
     const { categoryId } = req.params
     const resp = await categoryService.updateCategory(categoryId, req.body)
-    if ('data' in resp) {
-      res.json(true)
-    } else {
-      next(new CustomError(resp.err, resp.code))
+    if ('err' in resp) {
+      return next(new CustomError(resp.err, resp.code))
     }
+    res.json(true)
   } catch (err) {
     next(err)
   }
@@ -96,11 +92,10 @@ export const deleteCategory = async (
   try {
     const { categoryId } = req.params
     const resp = await categoryService.deleteCategory(categoryId)
-    if ('data' in resp) {
-      res.json(true)
-    } else {
-      next(new CustomError(resp.err, resp.code))
+    if ('err' in resp) {
+      return next(new CustomError(resp.err, resp.code))
     }
+    res.json(true)
   } catch (err) {
     next(err)
   }

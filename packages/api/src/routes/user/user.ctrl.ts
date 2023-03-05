@@ -55,11 +55,10 @@ export const getUser = async (
       return next(new CustomError('You do not have privileges to get this user', 403))
     }
     const resp = await userService.findUser(userId)
-    if ('data' in resp) {
-      res.json(resp.data)
-    } else {
-      next(new CustomError(resp.err, resp.code))
+    if ('err' in resp && resp.err) {
+      return next(new CustomError(resp.err, resp.code))
     }
+    res.json(resp.data)
   } catch (err) {
     next(err)
   }
@@ -96,11 +95,10 @@ export const deleteUser = async (
       return next(new CustomError('You do not have privileges to delete this user', 403))
     }
     const resp = await userService.deleteUser(userId)
-    if ('data' in resp) {
-      res.json(true)
-    } else {
-      next(new CustomError(resp.err, resp.code))
+    if ('err' in resp) {
+      return next(new CustomError(resp.err, resp.code))
     }
+    res.json(true)
   } catch (err) {
     next(err)
   }

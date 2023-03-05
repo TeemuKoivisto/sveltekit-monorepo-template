@@ -83,9 +83,8 @@ export const resetPassword = async (
     const resp = await authService.updateUserPassword(validToken.data.userId, req.body.password)
     if ('err' in resp) {
       return next(new CustomError(resp.err, resp.code))
-    } else {
-      res.json(true)
     }
+    res.json(true)
   } catch (err) {
     next(err)
   }
