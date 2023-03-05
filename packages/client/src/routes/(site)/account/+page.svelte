@@ -69,14 +69,8 @@
 </script>
 
 <section class="mt-8 p-4 h-full m-auto flex lg:container md:p-16 md:pt-8 xs:p-8 rounded-2xl">
-  <div class="flex mr-8 overflow-hidden">
-    <div>
-      <UserCircle>{initials}</UserCircle>
-    </div>
-    <div class="mx-4 flex-col justify-between items-center">
-      <h3>{$user?.firstname} {$user?.lastname}</h3>
-      <small>{$user?.email}</small>
-    </div>
+  <div class="flex mr-8">
+    <UserCircle>{initials}</UserCircle>
   </div>
   <form on:submit|preventDefault={handleSubmit} class="w-full">
     <h1 class="text-5xl font-bold flex items-center">Account</h1>

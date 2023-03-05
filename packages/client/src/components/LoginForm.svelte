@@ -39,7 +39,7 @@
         name="email"
         class="w-full"
         autoComplete="on"
-        placeholder="Email"
+        placeholder="user@example.com"
         bind:value={email}
       />
     </FormField>
@@ -67,7 +67,7 @@
     <div class="error">{validationError || error}</div>
   {/if}
   <button
-    class="flex justify-center w-full px-4 py-2 mt-5 leading-tight text-white bg-red-500 rounded"
+    class="flex justify-center w-full px-4 py-3 mt-8 text-lg leading-tight text-white bg-red-500 rounded"
     type="submit"
   >
     {#if loading}
@@ -81,7 +81,7 @@
     href="signup"
     class="px-4 py-2 mt-5 leading-tight text-center rounded hover:underline"
   >
-    Register
+    Sign up
   </a>
 </form>
 

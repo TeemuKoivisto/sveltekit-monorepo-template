@@ -8,6 +8,7 @@
   function loginLogoutClick() {
     if ($isLoggedIn) {
       authActions.logout()
+      goto('/')
     } else {
       goto('/login')
     }

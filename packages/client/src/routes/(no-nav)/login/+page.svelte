@@ -35,7 +35,7 @@
       <h1 class="mb-10 text-4xl font-bold cursive text-center">Sign in</h1>
       <div>
         <a
-          class="py-2 px-2 border border-gray-400 flex items-center justify-center hover:border-gray-600 rounded w-full"
+          class="py-3 px-2 border border-gray-400 text-lg flex items-center justify-center hover:border-gray-600 rounded w-full"
           href={`${API_URL}/google/login`}
         >
           <img class="mx-3 h-[20px]" src="google-logo.svg" alt="Google logo" />

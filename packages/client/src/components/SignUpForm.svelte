@@ -121,7 +121,7 @@
     <div class="error">{validationError || error}</div>
   {/if}
   <button
-    class="flex justify-center w-full px-4 py-2 mt-5 leading-tight text-white bg-red-500 rounded"
+    class="flex justify-center w-full px-4 py-3 text-lg mt-8 leading-tight text-white bg-red-500 rounded"
     type="submit"
   >
     {#if loading}
