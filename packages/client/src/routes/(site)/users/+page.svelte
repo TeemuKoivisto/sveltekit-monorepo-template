@@ -37,7 +37,7 @@
             <td>{user.lastname}</td>
             <td>{user.email}</td>
             <td>
-              <button class="btn-small !bg-green-500 hover:raise">
+              <button class="btn-xs bg-green-600 hover:raise hover:bg-green-700">
                 <a data-sveltekit:prefetch href={`users/${user.id}`}> Edit </a>
               </button>
             </td>

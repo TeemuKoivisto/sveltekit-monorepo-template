@@ -4,7 +4,6 @@
   import { authActions } from '$stores/auth.actions'
   import { goto } from '$app/navigation'
 
-  import Button from '$elements/Button.svelte'
   import UserCircle from '$elements/UserCircle.svelte'
 
   let loading = false,
@@ -114,17 +113,17 @@
       </div>
     </div>
     <hr />
-    <div class="buttons">
-      <Button class="bg-green-300 hover:bg-green-400" type="submit" disabled={loading}
-        >Update</Button
+    <div class="buttons flex">
+      <button class="btn-sm bg-green-600 hover:bg-green-700" type="submit" disabled={loading}
+        >Update</button
       >
-      <Button
+      <button on:click={handleDelete} class="btn-sm bg-red-600 hover:bg-red-700 ml-4" type="button"
+        >Delete</button
+      >
+      <button
         on:click={handleCancel}
-        class="bg-gray-200 ml-4 border-gray-300 hover:border-gray-400"
-        type="button">Cancel</Button
-      >
-      <Button on:click={handleDelete} class="bg-red-400 hover:bg-red-500 ml-4" type="button"
-        >Delete</Button
+        class="btn-sm bg-transparent ml-4 border-gray-300 hover:border-gray-400"
+        type="button">Cancel</button
       >
     </div>
     {#if error}
@@ -158,11 +157,6 @@
   }
   hr {
     @apply my-8 border-gray-300;
-  }
-  .left-col {
-  }
-  .buttons > * {
-    margin-left: 4rem;
   }
   .error {
     color: red;

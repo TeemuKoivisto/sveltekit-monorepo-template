@@ -9,7 +9,6 @@
   import { userActions } from '$stores/user'
   import { goto } from '$app/navigation'
 
-  import Button from '$elements/Button.svelte'
   import Spinner from '$elements/Spinner.svelte'
   import UserCircle from '$elements/UserCircle.svelte'
 
@@ -125,21 +124,21 @@
       </div>
     </div>
     <hr />
-    <div class="buttons">
-      <Button class="bg-green-300 hover:bg-green-400" type="submit">
+    <div class="flex buttons">
+      <button class="btn-sm bg-green-600 hover:bg-green-700" type="submit">
         {#if loading}
           <Spinner />
         {:else}
           Update
         {/if}
-      </Button>
-      <Button
-        on:click={handleCancel}
-        class="bg-gray-200 ml-4 border-gray-300 hover:border-gray-400"
-        type="button">Cancel</Button
+      </button>
+      <button on:click={handleDelete} class="btn-sm bg-red-600 hover:bg-red-700 ml-4" type="button"
+        >Delete</button
       >
-      <Button on:click={handleDelete} class="bg-red-400 hover:bg-red-500 ml-4" type="button"
-        >Delete</Button
+      <button
+        on:click={handleCancel}
+        class="btn-sm bg-transparent ml-4 border-gray-300 hover:border-gray-400"
+        type="button">Cancel</button
       >
     </div>
     {#if error}
@@ -173,11 +172,6 @@
   }
   hr {
     @apply my-8 border-gray-300;
-  }
-  .left-col {
-  }
-  .buttons > * {
-    margin-left: 4rem;
   }
   .error {
     color: red;
