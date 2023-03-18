@@ -12,8 +12,8 @@
   let loading = false,
     loginError: string | null = null
   $: {
-    if (typeof window !== 'undefined' && !$isLoggedIn) {
-      goto('/login')
+    if (typeof window !== 'undefined' && $isLoggedIn) {
+      goto('/')
     }
   }
   async function handleSubmit(e: CustomEvent<ILoginParams>) {
@@ -41,7 +41,7 @@
           <img class="mx-3 h-[20px]" src="google-logo.svg" alt="Google logo" />
           <div>Sign in with Google</div>
         </a>
-        <hr class="mt-10 mb-8 border-gray-400" />
+        <hr class="mt-8 mb-4 border-gray-400" />
         <LoginForm {loading} error={loginError} on:submit={handleSubmit} />
       </div>
     </section>

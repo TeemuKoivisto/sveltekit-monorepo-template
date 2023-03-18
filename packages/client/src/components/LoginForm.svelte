@@ -44,7 +44,7 @@
       />
     </FormField>
   </div>
-  <div class="mt-2 w-full">
+  <div class="row">
     <label for="login-password" class="flex justify-between">
       Password
       <!-- <a href="/password/reset" class="text-xs text-blue-900">Forgot password?</a> -->
@@ -83,6 +83,12 @@
 </form>
 
 <style>
+  label {
+    @apply text-sm;
+  }
+  .row {
+    @apply mt-3 w-full;
+  }
   .error {
     color: red;
     font-size: 0.9rem;

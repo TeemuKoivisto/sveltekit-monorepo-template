@@ -9,8 +9,6 @@
     if ($isLoggedIn) {
       authActions.logout()
       goto('/')
-    } else {
-      goto('/login')
     }
   }
 </script>
@@ -29,9 +27,11 @@
       {/if}
     </div>
     <div>
-      <button on:click={loginLogoutClick} class="hover:underline text-white"
-        >{$isLoggedIn ? 'logout' : 'login'}</button
-      >
+      {#if $isLoggedIn}
+        <button on:click={loginLogoutClick} class="hover:underline text-white">logout</button>
+      {:else}
+        <a data-sveltekit:prefetch href="/login" class="hover:underline text-white"> login </a>
+      {/if}
     </div>
   </nav>
 </div>

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
+
   import { user, isLoggedIn } from '$stores/auth'
   import { userActions } from '$stores/user'
   import { authActions } from '$stores/auth.actions'
@@ -13,11 +15,6 @@
     email = $user?.email,
     error: string | null = null
 
-  // $: {
-  //   nameText = category.name
-  //   categoryItems = category.items
-  // }
-
   $: {
     if (typeof window !== 'undefined') {
       try {
@@ -26,13 +23,23 @@
         const parsedJwt = JSON.parse(url.searchParams.get('jwt') || '')
         if (parsedUser && parsedJwt) {
           authActions.handleGoogleSignIn(parsedUser, parsedJwt)
+          firstName = $user?.firstname
+          lastName = $user?.lastname
+          initials = `${(firstName || '').charAt(0)}${(lastName || '').charAt(0)}`.toUpperCase()
+          email = $user?.email
         }
+        url.searchParams.delete('user')
+        url.searchParams.delete('jwt')
+        window.history.pushState({}, '', url)
       } catch (err) {}
-      if (!$isLoggedIn) {
-        goto('/login')
-      }
     }
   }
+
+  onMount(() => {
+    if (!$isLoggedIn) {
+      goto('/login')
+    }
+  })
 
   async function handleSubmit() {
     if ($user === null) {

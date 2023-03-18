@@ -36,7 +36,7 @@
   on:submit|preventDefault={handleSubmit}
   class={`${$$props.class} flex items-center flex-col justify-center`}
 >
-  <div class="mt-2 w-full">
+  <div class="row">
     <label for="signup-email">Email</label>
     <FormField>
       <Icon icon={emailIcon} width={24} slot="icon" />
@@ -51,7 +51,7 @@
       />
     </FormField>
   </div>
-  <div class="mt-2 w-full">
+  <div class="row">
     <label for="signup-firstname">First name</label>
     <FormField>
       <Icon icon={accountCircle} width={24} slot="icon" />
@@ -66,7 +66,7 @@
       />
     </FormField>
   </div>
-  <div class="mt-2 w-full">
+  <div class="row">
     <label for="signup-lastname">Last name</label>
     <FormField>
       <Icon icon={accountCircle} width={24} slot="icon" />
@@ -81,7 +81,7 @@
       />
     </FormField>
   </div>
-  <div class="mt-2 w-full">
+  <div class="row">
     <label
       for="signup-password"
       title="Password must be 8 characters long and contain one number, one lowercase and one uppercase letter"
@@ -101,7 +101,7 @@
       />
     </FormField>
   </div>
-  <div class="mt-2 w-full">
+  <div class="row">
     <label for="signup-password-check">Password again</label>
     <FormField>
       <Icon icon={lock} width={24} slot="icon" />
@@ -137,6 +137,12 @@
 </form>
 
 <style>
+  label {
+    @apply text-sm;
+  }
+  .row {
+    @apply mt-3 w-full;
+  }
   .error {
     color: red;
     font-size: 0.9rem;

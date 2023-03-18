@@ -13,7 +13,7 @@
     @apply flex items-center relative rounded bg-zinc-600 focus-within:ring focus-within:ring-blue-200;
   }
   :global([slot='icon'] *) {
-    @apply text-black;
+    @apply text-gray-900;
   }
   :global([slot='input']) {
     @apply w-full p-1 bg-transparent rounded outline-none;
