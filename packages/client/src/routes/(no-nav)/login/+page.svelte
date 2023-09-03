@@ -13,7 +13,7 @@
     loginError: string | null = null
   $: {
     if (typeof window !== 'undefined' && $isLoggedIn) {
-      goto('/')
+      goto('/account')
     }
   }
   async function handleSubmit(e: CustomEvent<ILoginParams>) {
@@ -24,7 +24,6 @@
       loginError = resp.err
     } else {
       loginError = null
-      goto('/users')
     }
   }
 </script>

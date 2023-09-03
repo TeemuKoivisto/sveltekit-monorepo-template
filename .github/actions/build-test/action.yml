@@ -8,7 +8,7 @@ runs:
       run: pnpm -r build
       shell: bash
       env:
-        VITE_API_URL: https://example-api.teemukoivisto.xyz
+        VITE_API_URL: http://localhost:7180
 
     # - name: Run type check and unit tests
     #   run: |
@@ -30,7 +30,7 @@ runs:
         working-directory: ./packages/e2e
       env:
         NODE_OPTIONS: --dns-result-order=ipv4first
-        VITE_API_URL: https://example-api.teemukoivisto.xyz
+        VITE_API_URL: http://localhost:7180
 
     - name: Export screenshots (on failure only)
       uses: actions/upload-artifact@v3
