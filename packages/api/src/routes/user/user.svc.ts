@@ -1,10 +1,8 @@
 import { IUserEditParams, IUser, ListedUser } from '@awesome-org/types'
 import { User } from '@awesome-org/db'
-import { Result } from '@awesome-org/utils'
+import { Optional, Result } from '@awesome-org/utils'
 
 import { CustomError, prisma } from '$common'
-
-type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>
 
 export const userService = {
   async listUsers(): Promise<Result<ListedUser[]>> {

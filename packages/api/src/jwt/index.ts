@@ -1,9 +1,10 @@
 import pkg from 'jsonwebtoken'
 const { sign, verify } = pkg
 
-import { config } from '$common'
+import { IUser } from '@awesome-org/types'
+import { Result } from '@awesome-org/utils'
 
-import { Result, IUser } from '@awesome-org/types'
+import { config } from '$common'
 import { ILoginJwt, IResetPasswordJwt } from '$typings/auth'
 
 export function generateLoginPayload(user: IUser) {

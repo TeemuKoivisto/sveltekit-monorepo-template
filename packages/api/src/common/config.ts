@@ -11,11 +11,11 @@ function parseInteger(env?: string) {
   return undefined
 }
 
-function parseNodeEnv(NODE_ENV?: string): 'production' | 'dev' {
+function parseNodeEnv(NODE_ENV?: string): 'production' | 'development' {
   if (NODE_ENV === 'production') {
     return 'production'
   }
-  return 'dev'
+  return 'development'
 }
 
 // TODO use default import

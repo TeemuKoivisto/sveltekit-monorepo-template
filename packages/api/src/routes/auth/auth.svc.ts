@@ -1,11 +1,9 @@
 import { ILoginParams, ISignUpParams, IUser } from '@awesome-org/types'
 import { User } from '@awesome-org/db'
-import { Result } from '@awesome-org/utils'
+import { Optional, Result } from '@awesome-org/utils'
 import { compare, hash } from 'bcrypt'
 
 import { prisma } from '$common'
-
-type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>
 
 export const authService = {
   loginUser: async ({ email, password }: ILoginParams): Promise<Result<IUser>> => {

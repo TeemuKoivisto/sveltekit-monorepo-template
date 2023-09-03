@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express'
 import { ObjectSchema } from 'joi'
 
-import { ValidationError } from '$common/error'
+import { CustomError } from '$common/error'
 import { log } from '$common/logger'
 import { AnyRequest } from '$typings/request'
 
@@ -12,7 +12,7 @@ export const validateBody =
     const result = schema.strict().validate(body)
     log.debug('parsed JSON body', result)
     if (result.error) {
-      next(new ValidationError(result.error.message))
+      next(new CustomError(result.error.message, 400))
     } else {
       await next()
     }
