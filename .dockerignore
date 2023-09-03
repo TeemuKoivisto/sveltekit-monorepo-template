@@ -1,8 +1,9 @@
-vol/postgres
+vol/**
 **node_modules
 **dist
 **tmp
 **build
-**Dockerfile
-**.prisma
+**out
+**.svelte-kit
 **.env
+**/target

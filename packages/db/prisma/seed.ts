@@ -20,7 +20,7 @@ const DEFAULT_USERS = [
   }
 ]
 
-async function insertUser(userParams: typeof DEFAULT_USERS[0], password: string) {
+async function insertUser(userParams: (typeof DEFAULT_USERS)[0], password: string) {
   return prisma.user.upsert({
     where: { email: userParams.email },
     update: {},

@@ -1,7 +1,8 @@
 {
-  "name": "@teemukoivisto/private-pkg",
+  "name": "@awesome-org/private-pkg",
   "version": "0.0.1",
   "private": true,
+  "homepage": "https://github.com/TeemuKoivisto/sveltekit-monorepo-template/packages/private-pkg/README.md",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "type": "module",
@@ -16,17 +17,9 @@
   "files": [
     "dist"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TeemuKoivisto/sveltekit-monorepo-template.git"
-  },
   "scripts": {
-    "build": "rimraf dist && rollup -c",
-    "watch": "rimraf dist && rollup -cw"
+    "build": "vite build",
+    "watch": "rimraf dist && vite build --watch"
   },
-  "devDependencies": {
-    "rollup": "^3.7.5",
-    "rollup-plugin-typescript2": "^0.34.1",
-    "typescript": "^4.9.4"
-  }
+  "dependencies": {}
 }

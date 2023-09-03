@@ -6,4 +6,6 @@ dist
 tmp
 packages/db/generated
 packages/types/prisma
+.prisma
+.changeset
 .svelte-kit

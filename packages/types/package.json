@@ -1,6 +1,8 @@
 {
   "name": "@awesome-org/types",
   "version": "0.0.1",
+  "private": true,
+  "homepage": "https://github.com/TeemuKoivisto/sveltekit-monorepo-template/packages/types/README.md",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "type": "module",
@@ -12,22 +14,18 @@
       "require": "./dist/index.cjs"
     }
   },
-  "scripts": {
-    "build": "rimraf dist && rollup -c",
-    "watch": "rimraf dist && rollup -cw"
-  },
-  "devDependencies": {
-    "rollup": "^3.7.5",
-    "rollup-plugin-typescript2": "^0.34.1",
-    "typescript": "^4.9.4"
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "dist",
-    "src",
     "prisma",
+    "src",
     "types"
   ],
-  "publishConfig": {
-    "access": "public"
-  }
+  "scripts": {
+    "build": "vite build",
+    "watch": "rimraf dist && vite build --watch"
+  },
+  "dependencies": {}
 }
