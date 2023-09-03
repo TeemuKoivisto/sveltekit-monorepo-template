@@ -8,7 +8,7 @@ runs:
       run: pnpm -r build
       shell: bash
       env:
-        VITE_API_URL: https://example-api.teemukoivisto.xyz
+        VITE_API_URL: http://localhost:7180
 
     # - name: Run type check and unit tests
     #   run: |
@@ -22,12 +22,15 @@ runs:
       with:
         browser: chrome
         cache-key: ${{ runner.os }}-node-${{ matrix.node-version }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-        command: pnpm test:e2e
+        command: pnpm --filter e2e test
         install: false
         quiet: false
         start: pnpm --filter client dev
         wait-on: http://localhost:5577
         working-directory: ./packages/e2e
+      env:
+        NODE_OPTIONS: --dns-result-order=ipv4first
+        VITE_API_URL: http://localhost:7180
 
     - name: Export screenshots (on failure only)
       uses: actions/upload-artifact@v3

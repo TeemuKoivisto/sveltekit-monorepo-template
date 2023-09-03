@@ -70,7 +70,7 @@
     {#if loading}
       <Spinner />
     {:else}
-      Log in
+      Sign in
     {/if}
   </button>
   <a
