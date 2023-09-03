@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "cypress run --browser=chrome --config baseUrl=http://localhost:5577",
+    "test": "cypress run --browser=chrome",
     "open": "cypress open",
     "cy": "cypress"
   },

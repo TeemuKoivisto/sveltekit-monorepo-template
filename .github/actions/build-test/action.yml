@@ -28,6 +28,8 @@ runs:
         start: pnpm --filter client dev
         wait-on: http://localhost:5577
         working-directory: ./packages/e2e
+      env:
+        NODE_OPTIONS: --dns-result-order=ipv4first
 
     - name: Export screenshots (on failure only)
       uses: actions/upload-artifact@v3
