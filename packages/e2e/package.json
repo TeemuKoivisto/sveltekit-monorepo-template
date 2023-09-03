@@ -9,6 +9,7 @@
     "cy": "cypress"
   },
   "devDependencies": {
+    "@testing-library/cypress": "^9.0.0",
     "cypress": "^13.1.0"
   }
 }
