@@ -8,6 +8,7 @@ export default {
   resolve: {
     alias: {
       $api: resolve('./src/api'),
+      $actions: resolve('./src/actions'),
       $components: resolve('./src/components'),
       $config: resolve('./src/config'),
       $context: resolve('./src/context'),

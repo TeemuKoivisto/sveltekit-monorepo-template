@@ -7,6 +7,9 @@ export const user = persistedWritable<IUser | null>(null, {
   key: 'user',
   storage: 'session'
 })
+export const initials = derived(user, u =>
+  u ? `${(u.firstname || '').charAt(0)}${(u.lastname || '').charAt(0)}`.toUpperCase() : ''
+)
 export const jwt = persistedWritable<IJwt | null>(null, {
   key: 'jwt',
   storage: 'session'
