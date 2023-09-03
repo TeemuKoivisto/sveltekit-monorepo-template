@@ -1,7 +1,5 @@
 import { defineConfig } from 'cypress'
 
-const shouldSkip = false
-
 export default defineConfig({
   e2e: {
     baseUrl: 'http://localhost:5577',

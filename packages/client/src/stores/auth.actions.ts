@@ -3,8 +3,6 @@ import type { IJwt, ILoginParams, ISignUpParams, IUser } from '@awesome-org/type
 import * as authApi from '$api/auth'
 
 import { user, jwt } from './auth'
-import { categoryActions } from './category'
-import { eventActions } from './event'
 
 export const authActions = {
   handleGoogleSignIn(parsedUser: IUser, parsedJwt: IJwt) {
@@ -43,7 +41,5 @@ export const authActions = {
   logout() {
     user.set(null)
     jwt.set(null)
-    eventActions.reset()
-    categoryActions.reset()
   }
 }

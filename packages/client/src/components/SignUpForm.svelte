@@ -128,7 +128,7 @@
     {/if}
   </button>
   <a
-    data-sveltekit:prefetch
+    data-sveltekit-preload-data="viewport"
     href="login"
     class="px-4 py-2 mt-5 leading-tight text-center rounded hover:underline"
   >

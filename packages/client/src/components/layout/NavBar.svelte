@@ -16,21 +16,31 @@
 <div class="py-4 bg-primary-dark">
   <nav class="flex items-center px-12 py-1 justify-between xs:flex-row xs:items-start">
     <div>
-      <a data-sveltekit:prefetch href="/" class="hover:underline text-white"> Example </a>
+      <a data-sveltekit-preload-data="viewport" href="/" class="hover:underline text-white">
+        Example
+      </a>
       {#if isLoggedIn && $user}
-        <a data-sveltekit:prefetch href="/account" class="hover:underline text-white">
+        <a
+          data-sveltekit-preload-data="viewport"
+          href="/account"
+          class="hover:underline text-white"
+        >
           {$user.firstname}
         </a>
       {/if}
       {#if $user?.role === UserRole.ADMIN}
-        <a data-sveltekit:prefetch href="/users" class="hover:underline text-white"> Users </a>
+        <a data-sveltekit-preload-data="viewport" href="/users" class="hover:underline text-white">
+          Users
+        </a>
       {/if}
     </div>
     <div>
       {#if $isLoggedIn}
         <button on:click={loginLogoutClick} class="hover:underline text-white">logout</button>
       {:else}
-        <a data-sveltekit:prefetch href="/login" class="hover:underline text-white"> login </a>
+        <a data-sveltekit-preload-data="viewport" href="/login" class="hover:underline text-white">
+          login
+        </a>
       {/if}
     </div>
   </nav>
