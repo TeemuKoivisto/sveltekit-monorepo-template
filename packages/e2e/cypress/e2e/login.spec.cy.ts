@@ -4,8 +4,9 @@ describe('# Login page', () => {
     cy.visit('/login').wait(2000)
     cy.get('#login-email').type('john@awesome.test')
     cy.get('#login-password').type('asdfasdf')
-    cy.get('button').contains('Log in').click() //.wait(2000)
-
+    cy.get('#login-email').should('have.value', 'john@awesome.test')
+    cy.get('#login-password').should('have.value', 'asdfasdf')
+    cy.get('button').contains('Sign in').click() //.wait(2000)
     cy.get('.spinner').should('not.exist')
 
     cy.visit('/users') //.wait(2000)
