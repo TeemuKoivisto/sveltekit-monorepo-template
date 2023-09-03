@@ -1,12 +1,12 @@
 describe('# Login page', () => {
   it('Should allow logging in', () => {
-    cy.visit('/login').wait(1000)
     cy.stubApi()
+    cy.visit('/login').wait(2000)
     cy.get('#login-email').type('john@awesome.test')
     cy.get('#login-password').type('asdfasdf')
-    cy.get('button').contains('Log in').click()
+    cy.get('button').contains('Log in').click().wait(500)
 
-    cy.visit('/users')
+    cy.visit('/users').wait(500)
 
     cy.get('tr').should('have.length.gte', 2)
   })
