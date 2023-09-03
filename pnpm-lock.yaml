@@ -83,6 +83,9 @@ importers:
       '@awesome-org/types':
         specifier: workspace:*
         version: link:../types
+      '@awesome-org/utils':
+        specifier: workspace:*
+        version: link:../utils
       bcrypt:
         specifier: 5.1.1
         version: 5.1.1
@@ -141,6 +144,9 @@ importers:
       '@awesome-org/types':
         specifier: workspace:*
         version: link:../types
+      '@awesome-org/utils':
+        specifier: workspace:*
+        version: link:../utils
       '@iconify/svelte':
         specifier: ^3.1.4
         version: 3.1.4(svelte@4.2.0)
@@ -249,6 +255,8 @@ importers:
   packages/private-pkg: {}
 
   packages/types: {}
+
+  packages/utils: {}
 
 packages:
 

@@ -23,6 +23,7 @@
   "dependencies": {
     "@awesome-org/db": "workspace:*",
     "@awesome-org/types": "workspace:*",
+    "@awesome-org/utils": "workspace:*",
     "bcrypt": "5.1.1",
     "cors": "^2.8.5",
     "express": "^4.18.2",

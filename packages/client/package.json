@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@awesome-org/types": "workspace:*",
+    "@awesome-org/utils": "workspace:*",
     "@iconify/svelte": "^3.1.4",
     "autoprefixer": "^10.4.15",
     "lodash.debounce": "^4.0.8",

@@ -1,5 +1,6 @@
-import { Result, IUserEditParams, IUser, ListedUser } from '@awesome-org/types'
+import { IUserEditParams, IUser, ListedUser } from '@awesome-org/types'
 import { User } from '@awesome-org/db'
+import { Result } from '@awesome-org/utils'
 
 import { CustomError, prisma } from '$common'
 

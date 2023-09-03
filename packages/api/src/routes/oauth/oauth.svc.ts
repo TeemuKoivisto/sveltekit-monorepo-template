@@ -1,6 +1,6 @@
-import { User } from '@awesome-org/db'
 import { Auth } from 'googleapis'
-import { Optional } from '@awesome-org/types'
+import { User } from '@awesome-org/db'
+import { Optional } from '@awesome-org/utils'
 
 import { config } from '$common/config'
 import { prisma, Prisma } from '$common'
@@ -12,7 +12,7 @@ import { prisma, Prisma } from '$common'
 //   given_name: 'Teemu',
 //   family_name: 'K',
 //   picture: 'https://lh3.googleusercontent.com/a/AGNmyxafmEKpoqG9LLnY22AH9mV_OkJPeQaiV08kGZux=s96-c',
-//   email: 'tkoivisto456@gmail.com',
+//   email: 'tk@gmail.com',
 //   email_verified: true,
 //   locale: 'en-GB'
 // },

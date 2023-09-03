@@ -1,5 +1,6 @@
-import { Result, ILoginParams, ISignUpParams, IUser } from '@awesome-org/types'
+import { ILoginParams, ISignUpParams, IUser } from '@awesome-org/types'
 import { User } from '@awesome-org/db'
+import { Result } from '@awesome-org/utils'
 import { compare, hash } from 'bcrypt'
 
 import { prisma } from '$common'

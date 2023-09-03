@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store'
-import type { Result } from '@awesome-org/types'
+import type { Result } from '@awesome-org/utils'
 
 import type {
   Persisted,
