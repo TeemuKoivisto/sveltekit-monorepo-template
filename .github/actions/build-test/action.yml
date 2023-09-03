@@ -25,7 +25,7 @@ runs:
         command: pnpm test:e2e
         install: false
         quiet: false
-        start: pnpm client
+        start: pnpm --filter client dev
         wait-on: http://localhost:5577
         working-directory: ./packages/e2e
 
