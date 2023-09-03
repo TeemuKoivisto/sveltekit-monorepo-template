@@ -30,6 +30,7 @@ runs:
         working-directory: ./packages/e2e
       env:
         NODE_OPTIONS: --dns-result-order=ipv4first
+        VITE_API_URL: https://example-api.teemukoivisto.xyz
 
     - name: Export screenshots (on failure only)
       uses: actions/upload-artifact@v3
