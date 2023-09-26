@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "format": "pnpm pretty && pnpm lint",
-    "pretty": "prettier --write \"**/*.+(js|jsx|json|html|css|less|scss|ts|tsx|svelte|yml|yaml|md|graphql|mdx)\" .",
+    "pretty": "prettier --write \"**/*.+(js|cjs|mjs|jsx|json|html|css|less|scss|ts|tsx|svelte|yml|yaml|md|graphql|mdx)\" .",
     "lint": "eslint --ignore-path .gitignore --fix --ext .js,.cjs,.ts,.tsx,.svelte,.css,.scss,.html .",
     "cs": "changeset && git add .changeset",
     "ci:version": "changeset version",
