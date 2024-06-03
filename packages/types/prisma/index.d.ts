@@ -470,7 +470,7 @@ export namespace Prisma {
   ? False
   : T extends Uint8Array
   ? False
-  : T extends BigInt
+  : T extends bigint
   ? False
   : T extends object
   ? True
@@ -499,7 +499,7 @@ export namespace Prisma {
   type _Either<
     O extends object,
     K extends Key,
-    strict extends Boolean
+    strict extends boolean
   > = {
     1: EitherStrict<O, K>
     0: EitherLoose<O, K>
@@ -508,7 +508,7 @@ export namespace Prisma {
   type Either<
     O extends object,
     K extends Key,
-    strict extends Boolean = 1
+    strict extends boolean = 1
   > = O extends unknown ? _Either<O, K, strict> : never
 
   export type Union = any
@@ -536,7 +536,7 @@ export namespace Prisma {
   type AtBasic<O extends object, K extends Key> = K extends keyof O ? O[K] : never;
   type AtStrict<O extends object, K extends Key> = O[K & keyof O];
   type AtLoose<O extends object, K extends Key> = O extends unknown ? AtStrict<O, K> : never;
-  export type At<O extends object, K extends Key, strict extends Boolean = 1> = {
+  export type At<O extends object, K extends Key, strict extends boolean = 1> = {
       1: AtStrict<O, K>;
       0: AtLoose<O, K>;
   }[strict];
@@ -585,7 +585,7 @@ export namespace Prisma {
   */
   export type False = 0
 
-  export type Not<B extends Boolean> = {
+  export type Not<B extends boolean> = {
     0: 1
     1: 0
   }[B]
@@ -600,7 +600,7 @@ export namespace Prisma {
     Extends<Exclude<U1, U>, U1>
   >
 
-  export type Or<B1 extends Boolean, B2 extends Boolean> = {
+  export type Or<B1 extends boolean, B2 extends boolean> = {
     0: {
       0: 0
       1: 1

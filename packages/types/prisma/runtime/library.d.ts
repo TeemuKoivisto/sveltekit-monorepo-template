@@ -2420,7 +2420,7 @@ declare type QueryEngineResult<T> = {
 };
 
 declare type QueryEngineTelemetry = {
-    enabled: Boolean;
+    enabled: boolean;
     endpoint: string;
 };
 

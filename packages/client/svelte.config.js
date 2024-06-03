@@ -14,11 +14,7 @@ export default {
   preprocess: [
     preprocess({
       postcss: {
-        plugins: [
-          autoprefixer(),
-          nested(),
-          tailwindcss()
-        ]
+        plugins: [autoprefixer(), nested(), tailwindcss()]
       }
     })
   ],
