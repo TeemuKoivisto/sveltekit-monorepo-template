@@ -8,12 +8,12 @@
     "cs": "changeset && git add .changeset",
     "ci:version": "changeset version",
     "ci:publish": "changeset publish && git push --follow-tags",
+    "test:e2e": "pnpm --filter e2e test",
     "prepare": "husky install",
-    "utils": "concurrently --kill-others 'pnpm --filter utils watch' 'pnpm --filter types watch'",
+    "libs": "concurrently --kill-others 'pnpm --filter utils watch' 'pnpm --filter types watch'",
     "api": "concurrently --kill-others 'pnpm --filter api watch' 'sleep 2 && pnpm --filter api dev'",
     "client": "concurrently --kill-others 'pnpm --filter client dev'",
-    "start": "concurrently --kill-others 'pnpm utils' 'pnpm api' 'pnpm client'",
-    "test:e2e": "pnpm --filter e2e test"
+    "start": "concurrently --kill-others 'pnpm utils' 'pnpm api' 'pnpm client'"
   },
   "engines": {
     "node": ">=16",
@@ -24,7 +24,7 @@
     "@typescript-eslint/eslint-plugin": "^7.12.0",
     "@typescript-eslint/parser": "^7.12.0",
     "concurrently": "^8.2.2",
-    "eslint": "^9.4.0",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
@@ -38,7 +38,6 @@
     "prettier-plugin-svelte": "^3.2.3",
     "rimraf": "^5.0.7",
     "typescript": "^5.4.5",
-    "ts-node": "^10.9.2",
     "vite": "^5.2.12",
     "vite-plugin-dts": "^3.9.1",
     "vite-tsconfig-paths": "^4.3.2"

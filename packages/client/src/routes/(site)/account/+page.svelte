@@ -139,7 +139,7 @@
   </form>
 </section>
 
-<style lang="scss">
+<style lang="postcss">
   .left-side {
     overflow: hidden;
   }

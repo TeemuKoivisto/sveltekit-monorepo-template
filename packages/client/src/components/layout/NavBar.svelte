@@ -46,7 +46,7 @@
   </nav>
 </div>
 
-<style lang="scss">
+<style lang="postcss">
   a + a {
     @apply pl-4;
   }

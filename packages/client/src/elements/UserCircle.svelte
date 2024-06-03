@@ -5,7 +5,7 @@
   <slot />
 </div>
 
-<style lang="scss">
+<style lang="postcss">
   .circle {
     align-items: center;
     background: red;

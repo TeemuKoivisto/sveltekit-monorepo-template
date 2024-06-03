@@ -48,7 +48,7 @@
   </div>
 </section>
 
-<style lang="scss">
+<style lang="postcss">
   tr:nth-child(even) {
     @apply bg-gray-800;
   }

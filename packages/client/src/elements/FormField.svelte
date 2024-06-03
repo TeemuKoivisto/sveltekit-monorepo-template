@@ -8,7 +8,7 @@
   </div>
 </span>
 
-<style lang="scss">
+<style lang="postcss">
   :global(:where([data-component='field']) div) {
     @apply flex items-center relative rounded bg-zinc-600 focus-within:ring focus-within:ring-blue-200;
   }

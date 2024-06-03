@@ -1,6 +1,10 @@
 import adapter from '@sveltejs/adapter-static'
 import preprocess from 'svelte-preprocess'
 
+import autoprefixer from 'autoprefixer'
+import nested from 'postcss-nested'
+import tailwindcss from 'tailwindcss'
+
 // const { DEPLOY_TO_GH } = process.env
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -9,7 +13,13 @@ export default {
   // for more information about preprocessors
   preprocess: [
     preprocess({
-      postcss: true
+      postcss: {
+        plugins: [
+          autoprefixer(),
+          nested(),
+          tailwindcss()
+        ]
+      }
     })
   ],
 
