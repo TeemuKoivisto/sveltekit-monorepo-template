@@ -1,0 +1,40 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deployment:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Install dependencies with pnpm
+        uses: ./.github/actions/pnpm
+
+      - name: Install dependencies
+        run: |
+          pnpm i --frozen-lockfile --filter client --filter types --filter utils
+
+      - name: Build packages
+        run: |
+          pnpm --filter types --filter tuils build && \
+          pnpm --filter client build
+        env:
+          VITE_API_URL: https://api.teemukoivisto.xyz/sveltekit-monorepo
+
+      - name: Run tests
+        run: pnpm -r test
+
+      - name: Publish site to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          projectName: sveltekit-monorepo-template
+          directory: ./packages/client/build

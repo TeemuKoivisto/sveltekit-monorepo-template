@@ -20,7 +20,3 @@ runs:
           ~/.cache/Cypress
         key: ${{ runner.os }}-node-${{ matrix.node-version }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
         restore-keys: ${{ runner.os }}-node-${{ matrix.node-version }}-pnpm-
-
-    - name: Install dependencies
-      shell: bash
-      run: pnpm i --frozen-lockfile
