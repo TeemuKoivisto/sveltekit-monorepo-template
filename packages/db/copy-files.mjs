@@ -1,15 +1,14 @@
 import * as fs from 'node:fs/promises'
 
+/**
+ * Copy Prisma types manually since using it directly in types package will cause client to
+ * throw due to *require* syntax in the .js files
+ */
 async function copyFiles() {
-  const [indexDts, library, schema] = await Promise.all([
+  const [indexDts, library] = await Promise.all([
     fs.readFile('./generated/index.d.ts'),
-    fs.readFile('./generated/runtime/library.d.ts'),
-    fs.readFile('./generated/schema.prisma')
+    fs.readFile('./generated/runtime/library.d.ts')
   ])
-  await fs
-    .access('../api/.prisma')
-    .catch(() => fs.mkdir('../api/.prisma'))
-    .then(() => fs.writeFile('../api/.prisma/schema.prisma', schema))
   await fs
     .access('../types/prisma')
     .catch(() => fs.mkdir('../types/prisma'))

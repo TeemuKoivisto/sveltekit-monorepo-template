@@ -20,7 +20,7 @@ const DEFAULT_USERS = [
   }
 ]
 
-async function insertUser(userParams: (typeof DEFAULT_USERS)[0], password: string) {
+async function insertUser(userParams: (typeof DEFAULT_USERS)[number], password: string) {
   return prisma.user.upsert({
     where: { email: userParams.email },
     update: {},
@@ -32,8 +32,10 @@ async function insertUser(userParams: (typeof DEFAULT_USERS)[0], password: strin
 }
 
 async function main() {
+  console.log('Seeding database...')
   const password = await hash('asdfasdf', 10)
   const users = await Promise.all(DEFAULT_USERS.map(user => insertUser(user, password)))
+  console.log('Database seeded successfully!')
 }
 
 main()

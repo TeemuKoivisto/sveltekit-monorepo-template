@@ -13,17 +13,14 @@
     }
   },
   "scripts": {
-    "prod:init": "prisma generate && prisma migrate deploy && pnpm run cp-files",
-    "prod:migrate": "prisma migrate deploy --schema=./prisma/schema.prisma",
-    "prod:reset": "prisma migrate reset --force --preview-feature && prisma migrate deploy --preview-feature",
-    "init": "pnpm run migrate && pnpm run cp-files",
-    "cp-files": "node copy-files.mjs",
+    "prod:migrate": "prisma migrate deploy",
     "build": "prisma generate && pnpm run cp-files",
+    "cp-files": "node copy-files.mjs",
+    "delete": "prisma migrate reset",
     "format": "prisma format",
     "generate": "prisma generate",
     "migrate": "prisma migrate dev && pnpm run cp-files",
-    "delete": "prisma migrate reset",
-    "reset": "prisma migrate reset && pnpm run cp-files",
+    "reset": "prisma migrate reset && pnpm run cp-files && pnpm seed",
     "seed": "ts-node ./prisma/seed.ts"
   },
   "devDependencies": {

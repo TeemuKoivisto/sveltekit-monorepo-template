@@ -2165,8 +2165,8 @@ export namespace Prisma {
   export type EventMinAggregateOutputType = {
     id: string | null
     name: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    created_at: Date | null
+    updated_at: Date | null
     category_id: string | null
     user_id: string | null
   }
@@ -2174,8 +2174,8 @@ export namespace Prisma {
   export type EventMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    created_at: Date | null
+    updated_at: Date | null
     category_id: string | null
     user_id: string | null
   }
@@ -2184,8 +2184,8 @@ export namespace Prisma {
     id: number
     name: number
     body: number
-    createdAt: number
-    updatedAt: number
+    created_at: number
+    updated_at: number
     category_id: number
     user_id: number
     _all: number
@@ -2195,8 +2195,8 @@ export namespace Prisma {
   export type EventMinAggregateInputType = {
     id?: true
     name?: true
-    createdAt?: true
-    updatedAt?: true
+    created_at?: true
+    updated_at?: true
     category_id?: true
     user_id?: true
   }
@@ -2204,8 +2204,8 @@ export namespace Prisma {
   export type EventMaxAggregateInputType = {
     id?: true
     name?: true
-    createdAt?: true
-    updatedAt?: true
+    created_at?: true
+    updated_at?: true
     category_id?: true
     user_id?: true
   }
@@ -2214,8 +2214,8 @@ export namespace Prisma {
     id?: true
     name?: true
     body?: true
-    createdAt?: true
-    updatedAt?: true
+    created_at?: true
+    updated_at?: true
     category_id?: true
     user_id?: true
     _all?: true
@@ -2297,8 +2297,8 @@ export namespace Prisma {
     id: string
     name: string
     body: JsonValue
-    createdAt: Date
-    updatedAt: Date
+    created_at: Date
+    updated_at: Date
     category_id: string
     user_id: string
     _count: EventCountAggregateOutputType | null
@@ -2324,8 +2324,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     body?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    created_at?: boolean
+    updated_at?: boolean
     category_id?: boolean
     user_id?: boolean
     category?: boolean | EventCategoryDefaultArgs<ExtArgs>
@@ -2336,8 +2336,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     body?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    created_at?: boolean
+    updated_at?: boolean
     category_id?: boolean
     user_id?: boolean
   }
@@ -2359,8 +2359,8 @@ export namespace Prisma {
       id: string
       name: string
       body: Prisma.JsonValue
-      createdAt: Date
-      updatedAt: Date
+      created_at: Date
+      updated_at: Date
       category_id: string
       user_id: string
     }, ExtArgs["result"]["event"]>
@@ -2789,8 +2789,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Event", 'String'>
     readonly name: FieldRef<"Event", 'String'>
     readonly body: FieldRef<"Event", 'Json'>
-    readonly createdAt: FieldRef<"Event", 'DateTime'>
-    readonly updatedAt: FieldRef<"Event", 'DateTime'>
+    readonly created_at: FieldRef<"Event", 'DateTime'>
+    readonly updated_at: FieldRef<"Event", 'DateTime'>
     readonly category_id: FieldRef<"Event", 'String'>
     readonly user_id: FieldRef<"Event", 'String'>
   }
@@ -3138,14 +3138,16 @@ export namespace Prisma {
   export type EventCategoryMinAggregateOutputType = {
     id: string | null
     name: string | null
-    createdAt: Date | null
+    created_at: Date | null
+    updated_at: Date | null
     user_id: string | null
   }
 
   export type EventCategoryMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    createdAt: Date | null
+    created_at: Date | null
+    updated_at: Date | null
     user_id: string | null
   }
 
@@ -3153,7 +3155,8 @@ export namespace Prisma {
     id: number
     name: number
     body: number
-    createdAt: number
+    created_at: number
+    updated_at: number
     user_id: number
     _all: number
   }
@@ -3162,14 +3165,16 @@ export namespace Prisma {
   export type EventCategoryMinAggregateInputType = {
     id?: true
     name?: true
-    createdAt?: true
+    created_at?: true
+    updated_at?: true
     user_id?: true
   }
 
   export type EventCategoryMaxAggregateInputType = {
     id?: true
     name?: true
-    createdAt?: true
+    created_at?: true
+    updated_at?: true
     user_id?: true
   }
 
@@ -3177,7 +3182,8 @@ export namespace Prisma {
     id?: true
     name?: true
     body?: true
-    createdAt?: true
+    created_at?: true
+    updated_at?: true
     user_id?: true
     _all?: true
   }
@@ -3258,7 +3264,8 @@ export namespace Prisma {
     id: string
     name: string
     body: JsonValue
-    createdAt: Date
+    created_at: Date
+    updated_at: Date
     user_id: string
     _count: EventCategoryCountAggregateOutputType | null
     _min: EventCategoryMinAggregateOutputType | null
@@ -3283,10 +3290,11 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     body?: boolean
-    createdAt?: boolean
+    created_at?: boolean
+    updated_at?: boolean
     user_id?: boolean
-    events?: boolean | EventCategory$eventsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    events?: boolean | EventCategory$eventsArgs<ExtArgs>
     _count?: boolean | EventCategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["eventCategory"]>
 
@@ -3294,14 +3302,15 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     body?: boolean
-    createdAt?: boolean
+    created_at?: boolean
+    updated_at?: boolean
     user_id?: boolean
   }
 
 
   export type EventCategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    events?: boolean | EventCategory$eventsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    events?: boolean | EventCategory$eventsArgs<ExtArgs>
     _count?: boolean | EventCategoryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3309,14 +3318,15 @@ export namespace Prisma {
   export type $EventCategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "EventCategory"
     objects: {
-      events: Prisma.$EventPayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
+      events: Prisma.$EventPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
       body: Prisma.JsonValue
-      createdAt: Date
+      created_at: Date
+      updated_at: Date
       user_id: string
     }, ExtArgs["result"]["eventCategory"]>
     composites: {}
@@ -3709,9 +3719,9 @@ export namespace Prisma {
   export interface Prisma__EventCategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    events<T extends EventCategory$eventsArgs<ExtArgs> = {}>(args?: Subset<T, EventCategory$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, 'findMany'> | Null>;
-
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    events<T extends EventCategory$eventsArgs<ExtArgs> = {}>(args?: Subset<T, EventCategory$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3744,7 +3754,8 @@ export namespace Prisma {
     readonly id: FieldRef<"EventCategory", 'String'>
     readonly name: FieldRef<"EventCategory", 'String'>
     readonly body: FieldRef<"EventCategory", 'Json'>
-    readonly createdAt: FieldRef<"EventCategory", 'DateTime'>
+    readonly created_at: FieldRef<"EventCategory", 'DateTime'>
+    readonly updated_at: FieldRef<"EventCategory", 'DateTime'>
     readonly user_id: FieldRef<"EventCategory", 'String'>
   }
     
@@ -4129,8 +4140,8 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     body: 'body',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
     category_id: 'category_id',
     user_id: 'user_id'
   };
@@ -4142,7 +4153,8 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     body: 'body',
-    createdAt: 'createdAt',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
     user_id: 'user_id'
   };
 
@@ -4343,8 +4355,8 @@ export namespace Prisma {
     id?: StringFilter<"Event"> | string
     name?: StringFilter<"Event"> | string
     body?: JsonFilter<"Event">
-    createdAt?: DateTimeFilter<"Event"> | Date | string
-    updatedAt?: DateTimeFilter<"Event"> | Date | string
+    created_at?: DateTimeFilter<"Event"> | Date | string
+    updated_at?: DateTimeFilter<"Event"> | Date | string
     category_id?: StringFilter<"Event"> | string
     user_id?: StringFilter<"Event"> | string
     category?: XOR<EventCategoryRelationFilter, EventCategoryWhereInput>
@@ -4355,8 +4367,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     body?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
     category_id?: SortOrder
     user_id?: SortOrder
     category?: EventCategoryOrderByWithRelationInput
@@ -4370,8 +4382,8 @@ export namespace Prisma {
     NOT?: EventWhereInput | EventWhereInput[]
     name?: StringFilter<"Event"> | string
     body?: JsonFilter<"Event">
-    createdAt?: DateTimeFilter<"Event"> | Date | string
-    updatedAt?: DateTimeFilter<"Event"> | Date | string
+    created_at?: DateTimeFilter<"Event"> | Date | string
+    updated_at?: DateTimeFilter<"Event"> | Date | string
     category_id?: StringFilter<"Event"> | string
     user_id?: StringFilter<"Event"> | string
     category?: XOR<EventCategoryRelationFilter, EventCategoryWhereInput>
@@ -4382,8 +4394,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     body?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
     category_id?: SortOrder
     user_id?: SortOrder
     _count?: EventCountOrderByAggregateInput
@@ -4398,8 +4410,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Event"> | string
     name?: StringWithAggregatesFilter<"Event"> | string
     body?: JsonWithAggregatesFilter<"Event">
-    createdAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
+    created_at?: DateTimeWithAggregatesFilter<"Event"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"Event"> | Date | string
     category_id?: StringWithAggregatesFilter<"Event"> | string
     user_id?: StringWithAggregatesFilter<"Event"> | string
   }
@@ -4411,20 +4423,22 @@ export namespace Prisma {
     id?: StringFilter<"EventCategory"> | string
     name?: StringFilter<"EventCategory"> | string
     body?: JsonFilter<"EventCategory">
-    createdAt?: DateTimeFilter<"EventCategory"> | Date | string
+    created_at?: DateTimeFilter<"EventCategory"> | Date | string
+    updated_at?: DateTimeFilter<"EventCategory"> | Date | string
     user_id?: StringFilter<"EventCategory"> | string
-    events?: EventListRelationFilter
     user?: XOR<UserRelationFilter, UserWhereInput>
+    events?: EventListRelationFilter
   }
 
   export type EventCategoryOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     body?: SortOrder
-    createdAt?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
     user_id?: SortOrder
-    events?: EventOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
+    events?: EventOrderByRelationAggregateInput
   }
 
   export type EventCategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -4434,17 +4448,19 @@ export namespace Prisma {
     NOT?: EventCategoryWhereInput | EventCategoryWhereInput[]
     name?: StringFilter<"EventCategory"> | string
     body?: JsonFilter<"EventCategory">
-    createdAt?: DateTimeFilter<"EventCategory"> | Date | string
+    created_at?: DateTimeFilter<"EventCategory"> | Date | string
+    updated_at?: DateTimeFilter<"EventCategory"> | Date | string
     user_id?: StringFilter<"EventCategory"> | string
-    events?: EventListRelationFilter
     user?: XOR<UserRelationFilter, UserWhereInput>
+    events?: EventListRelationFilter
   }, "id">
 
   export type EventCategoryOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     body?: SortOrder
-    createdAt?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
     user_id?: SortOrder
     _count?: EventCategoryCountOrderByAggregateInput
     _max?: EventCategoryMaxOrderByAggregateInput
@@ -4458,7 +4474,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"EventCategory"> | string
     name?: StringWithAggregatesFilter<"EventCategory"> | string
     body?: JsonWithAggregatesFilter<"EventCategory">
-    createdAt?: DateTimeWithAggregatesFilter<"EventCategory"> | Date | string
+    created_at?: DateTimeWithAggregatesFilter<"EventCategory"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"EventCategory"> | Date | string
     user_id?: StringWithAggregatesFilter<"EventCategory"> | string
   }
 
@@ -4544,8 +4561,8 @@ export namespace Prisma {
     id?: string
     name?: string
     body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
     category: EventCategoryCreateNestedOneWithoutEventsInput
     user: UserCreateNestedOneWithoutEventsInput
   }
@@ -4554,8 +4571,8 @@ export namespace Prisma {
     id?: string
     name?: string
     body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
     category_id: string
     user_id: string
   }
@@ -4564,8 +4581,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: EventCategoryUpdateOneRequiredWithoutEventsNestedInput
     user?: UserUpdateOneRequiredWithoutEventsNestedInput
   }
@@ -4574,8 +4591,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     category_id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
   }
@@ -4584,8 +4601,8 @@ export namespace Prisma {
     id?: string
     name?: string
     body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
     category_id: string
     user_id: string
   }
@@ -4594,16 +4611,16 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EventUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     category_id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
   }
@@ -4612,16 +4629,18 @@ export namespace Prisma {
     id?: string
     name?: string
     body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    events?: EventCreateNestedManyWithoutCategoryInput
+    created_at?: Date | string
+    updated_at?: Date | string
     user: UserCreateNestedOneWithoutCategoriesInput
+    events?: EventCreateNestedManyWithoutCategoryInput
   }
 
   export type EventCategoryUncheckedCreateInput = {
     id?: string
     name?: string
     body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
     user_id: string
     events?: EventUncheckedCreateNestedManyWithoutCategoryInput
   }
@@ -4630,16 +4649,18 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    events?: EventUpdateManyWithoutCategoryNestedInput
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutCategoriesNestedInput
+    events?: EventUpdateManyWithoutCategoryNestedInput
   }
 
   export type EventCategoryUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     user_id?: StringFieldUpdateOperationsInput | string
     events?: EventUncheckedUpdateManyWithoutCategoryNestedInput
   }
@@ -4648,7 +4669,8 @@ export namespace Prisma {
     id?: string
     name?: string
     body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
     user_id: string
   }
 
@@ -4656,14 +4678,16 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EventCategoryUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     user_id?: StringFieldUpdateOperationsInput | string
   }
 
@@ -4864,8 +4888,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     body?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
     category_id?: SortOrder
     user_id?: SortOrder
   }
@@ -4873,8 +4897,8 @@ export namespace Prisma {
   export type EventMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
     category_id?: SortOrder
     user_id?: SortOrder
   }
@@ -4882,8 +4906,8 @@ export namespace Prisma {
   export type EventMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
     category_id?: SortOrder
     user_id?: SortOrder
   }
@@ -4931,21 +4955,24 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     body?: SortOrder
-    createdAt?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
     user_id?: SortOrder
   }
 
   export type EventCategoryMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    createdAt?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
     user_id?: SortOrder
   }
 
   export type EventCategoryMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    createdAt?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
     user_id?: SortOrder
   }
 
@@ -5073,6 +5100,12 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEventsInput, UserUpdateWithoutEventsInput>, UserUncheckedUpdateWithoutEventsInput>
   }
 
+  export type UserCreateNestedOneWithoutCategoriesInput = {
+    create?: XOR<UserCreateWithoutCategoriesInput, UserUncheckedCreateWithoutCategoriesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCategoriesInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type EventCreateNestedManyWithoutCategoryInput = {
     create?: XOR<EventCreateWithoutCategoryInput, EventUncheckedCreateWithoutCategoryInput> | EventCreateWithoutCategoryInput[] | EventUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: EventCreateOrConnectWithoutCategoryInput | EventCreateOrConnectWithoutCategoryInput[]
@@ -5080,17 +5113,19 @@ export namespace Prisma {
     connect?: EventWhereUniqueInput | EventWhereUniqueInput[]
   }
 
-  export type UserCreateNestedOneWithoutCategoriesInput = {
-    create?: XOR<UserCreateWithoutCategoriesInput, UserUncheckedCreateWithoutCategoriesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutCategoriesInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type EventUncheckedCreateNestedManyWithoutCategoryInput = {
     create?: XOR<EventCreateWithoutCategoryInput, EventUncheckedCreateWithoutCategoryInput> | EventCreateWithoutCategoryInput[] | EventUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: EventCreateOrConnectWithoutCategoryInput | EventCreateOrConnectWithoutCategoryInput[]
     createMany?: EventCreateManyCategoryInputEnvelope
     connect?: EventWhereUniqueInput | EventWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutCategoriesNestedInput = {
+    create?: XOR<UserCreateWithoutCategoriesInput, UserUncheckedCreateWithoutCategoriesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCategoriesInput
+    upsert?: UserUpsertWithoutCategoriesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCategoriesInput, UserUpdateWithoutCategoriesInput>, UserUncheckedUpdateWithoutCategoriesInput>
   }
 
   export type EventUpdateManyWithoutCategoryNestedInput = {
@@ -5105,14 +5140,6 @@ export namespace Prisma {
     update?: EventUpdateWithWhereUniqueWithoutCategoryInput | EventUpdateWithWhereUniqueWithoutCategoryInput[]
     updateMany?: EventUpdateManyWithWhereWithoutCategoryInput | EventUpdateManyWithWhereWithoutCategoryInput[]
     deleteMany?: EventScalarWhereInput | EventScalarWhereInput[]
-  }
-
-  export type UserUpdateOneRequiredWithoutCategoriesNestedInput = {
-    create?: XOR<UserCreateWithoutCategoriesInput, UserUncheckedCreateWithoutCategoriesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutCategoriesInput
-    upsert?: UserUpsertWithoutCategoriesInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCategoriesInput, UserUpdateWithoutCategoriesInput>, UserUncheckedUpdateWithoutCategoriesInput>
   }
 
   export type EventUncheckedUpdateManyWithoutCategoryNestedInput = {
@@ -5272,8 +5299,8 @@ export namespace Prisma {
     id?: string
     name?: string
     body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
     category: EventCategoryCreateNestedOneWithoutEventsInput
   }
 
@@ -5281,8 +5308,8 @@ export namespace Prisma {
     id?: string
     name?: string
     body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
     category_id: string
   }
 
@@ -5300,7 +5327,8 @@ export namespace Prisma {
     id?: string
     name?: string
     body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
     events?: EventCreateNestedManyWithoutCategoryInput
   }
 
@@ -5308,7 +5336,8 @@ export namespace Prisma {
     id?: string
     name?: string
     body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
     events?: EventUncheckedCreateNestedManyWithoutCategoryInput
   }
 
@@ -5345,8 +5374,8 @@ export namespace Prisma {
     id?: StringFilter<"Event"> | string
     name?: StringFilter<"Event"> | string
     body?: JsonFilter<"Event">
-    createdAt?: DateTimeFilter<"Event"> | Date | string
-    updatedAt?: DateTimeFilter<"Event"> | Date | string
+    created_at?: DateTimeFilter<"Event"> | Date | string
+    updated_at?: DateTimeFilter<"Event"> | Date | string
     category_id?: StringFilter<"Event"> | string
     user_id?: StringFilter<"Event"> | string
   }
@@ -5374,7 +5403,8 @@ export namespace Prisma {
     id?: StringFilter<"EventCategory"> | string
     name?: StringFilter<"EventCategory"> | string
     body?: JsonFilter<"EventCategory">
-    createdAt?: DateTimeFilter<"EventCategory"> | Date | string
+    created_at?: DateTimeFilter<"EventCategory"> | Date | string
+    updated_at?: DateTimeFilter<"EventCategory"> | Date | string
     user_id?: StringFilter<"EventCategory"> | string
   }
 
@@ -5382,7 +5412,8 @@ export namespace Prisma {
     id?: string
     name?: string
     body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
     user: UserCreateNestedOneWithoutCategoriesInput
   }
 
@@ -5390,7 +5421,8 @@ export namespace Prisma {
     id?: string
     name?: string
     body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
     user_id: string
   }
 
@@ -5441,7 +5473,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutCategoriesNestedInput
   }
 
@@ -5449,7 +5482,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     user_id?: StringFieldUpdateOperationsInput | string
   }
 
@@ -5486,34 +5520,6 @@ export namespace Prisma {
     categories?: EventCategoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type EventCreateWithoutCategoryInput = {
-    id?: string
-    name?: string
-    body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutEventsInput
-  }
-
-  export type EventUncheckedCreateWithoutCategoryInput = {
-    id?: string
-    name?: string
-    body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user_id: string
-  }
-
-  export type EventCreateOrConnectWithoutCategoryInput = {
-    where: EventWhereUniqueInput
-    create: XOR<EventCreateWithoutCategoryInput, EventUncheckedCreateWithoutCategoryInput>
-  }
-
-  export type EventCreateManyCategoryInputEnvelope = {
-    data: EventCreateManyCategoryInput | EventCreateManyCategoryInput[]
-    skipDuplicates?: boolean
-  }
-
   export type UserCreateWithoutCategoriesInput = {
     id?: string
     email: string
@@ -5541,20 +5547,32 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutCategoriesInput, UserUncheckedCreateWithoutCategoriesInput>
   }
 
-  export type EventUpsertWithWhereUniqueWithoutCategoryInput = {
+  export type EventCreateWithoutCategoryInput = {
+    id?: string
+    name?: string
+    body: JsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    user: UserCreateNestedOneWithoutEventsInput
+  }
+
+  export type EventUncheckedCreateWithoutCategoryInput = {
+    id?: string
+    name?: string
+    body: JsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    user_id: string
+  }
+
+  export type EventCreateOrConnectWithoutCategoryInput = {
     where: EventWhereUniqueInput
-    update: XOR<EventUpdateWithoutCategoryInput, EventUncheckedUpdateWithoutCategoryInput>
     create: XOR<EventCreateWithoutCategoryInput, EventUncheckedCreateWithoutCategoryInput>
   }
 
-  export type EventUpdateWithWhereUniqueWithoutCategoryInput = {
-    where: EventWhereUniqueInput
-    data: XOR<EventUpdateWithoutCategoryInput, EventUncheckedUpdateWithoutCategoryInput>
-  }
-
-  export type EventUpdateManyWithWhereWithoutCategoryInput = {
-    where: EventScalarWhereInput
-    data: XOR<EventUpdateManyMutationInput, EventUncheckedUpdateManyWithoutCategoryInput>
+  export type EventCreateManyCategoryInputEnvelope = {
+    data: EventCreateManyCategoryInput | EventCreateManyCategoryInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutCategoriesInput = {
@@ -5590,12 +5608,28 @@ export namespace Prisma {
     events?: EventUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type EventUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: EventWhereUniqueInput
+    update: XOR<EventUpdateWithoutCategoryInput, EventUncheckedUpdateWithoutCategoryInput>
+    create: XOR<EventCreateWithoutCategoryInput, EventUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type EventUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: EventWhereUniqueInput
+    data: XOR<EventUpdateWithoutCategoryInput, EventUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type EventUpdateManyWithWhereWithoutCategoryInput = {
+    where: EventScalarWhereInput
+    data: XOR<EventUpdateManyMutationInput, EventUncheckedUpdateManyWithoutCategoryInput>
+  }
+
   export type EventCreateManyUserInput = {
     id?: string
     name?: string
     body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
     category_id: string
   }
 
@@ -5603,15 +5637,16 @@ export namespace Prisma {
     id?: string
     name?: string
     body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
   }
 
   export type EventUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: EventCategoryUpdateOneRequiredWithoutEventsNestedInput
   }
 
@@ -5619,8 +5654,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     category_id?: StringFieldUpdateOperationsInput | string
   }
 
@@ -5628,8 +5663,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     category_id?: StringFieldUpdateOperationsInput | string
   }
 
@@ -5637,7 +5672,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     events?: EventUpdateManyWithoutCategoryNestedInput
   }
 
@@ -5645,7 +5681,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     events?: EventUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
@@ -5653,15 +5690,16 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EventCreateManyCategoryInput = {
     id?: string
     name?: string
     body: JsonNullValueInput | InputJsonValue
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
     user_id: string
   }
 
@@ -5669,8 +5707,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutEventsNestedInput
   }
 
@@ -5678,8 +5716,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     user_id?: StringFieldUpdateOperationsInput | string
   }
 
@@ -5687,8 +5725,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     body?: JsonNullValueInput | InputJsonValue
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     user_id?: StringFieldUpdateOperationsInput | string
   }
 

@@ -9,10 +9,10 @@ ENV INSTALL_PATH /usr/local/awesome_api
 
 WORKDIR ${INSTALL_PATH}
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@9
 RUN apk upgrade --update-cache --available && \
-    apk add openssl && \
-    rm -rf /var/cache/apk/*
+  apk add --no-cache curl openssl && \
+  rm -rf /var/cache/apk/*
 
 COPY package.json tsconfig.json pnpm-lock.yaml pnpm-workspace.yaml ./
 # Copy package.jsons first to cache pnpm install to run only if they were changed, not on source file changes
@@ -44,4 +44,4 @@ ENV CORS_ENABLED 0
 
 EXPOSE ${PORT}
 
-CMD pnpm --filter @awesome-org/db prod:migrate && node ./packages/api/dist/index.js
+CMD ./packages/api/run.sh
