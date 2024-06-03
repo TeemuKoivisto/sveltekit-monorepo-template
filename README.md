@@ -2,7 +2,7 @@
 
 Monorepo boilerplate that I use, transformed into its own template repository.
 
-### [Netlify](https://marvelous-madeleine-842e30.netlify.app)
+### [Cloudflare](https://sveltekit-monorepo-template.pages.dev/)
 
 ### [GitHub pages](https://teemukoivisto.github.io/sveltekit-monorepo-template/)
 
