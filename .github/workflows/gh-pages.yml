@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install dependencies with pnpm
+      - name: Setup pnpm
         uses: ./.github/actions/pnpm
 
       - name: Build the packages
