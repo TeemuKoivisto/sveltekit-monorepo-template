@@ -25,11 +25,10 @@ runs:
         command: pnpm --filter e2e test
         install: false
         quiet: false
-        start: pnpm --filter client dev
+        start: pnpm --filter client dev --host
         wait-on: http://localhost:5577
         working-directory: ./packages/e2e
       env:
-        NODE_OPTIONS: --dns-result-order=ipv4first
         VITE_API_URL: http://localhost:7180
 
     - name: Export screenshots (on failure only)
