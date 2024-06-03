@@ -27,14 +27,14 @@
     "seed": "ts-node ./prisma/seed.ts"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.0",
-    "@types/node": "^20.5.9",
+    "@types/bcrypt": "^5.0.2",
+    "@types/node": "^20.14.0",
     "@awesome-org/types": "workspace:*",
     "bcrypt": "5.1.1",
-    "prisma": "^5.2.0",
-    "ts-node": "^10.9.1"
+    "prisma": "^5.14.0",
+    "ts-node": "^10.9.2"
   },
   "dependencies": {
-    "@prisma/client": "^5.2.0"
+    "@prisma/client": "^5.14.0"
   }
 }

@@ -23,10 +23,19 @@ export default {
     //   base: DEPLOY_TO_GH ? '/sveltekit-monorepo-template' : ''
     // },
     adapter: adapter({
-      // default options are shown
       pages: 'build',
       assets: 'build',
-      fallback: '200.html'
-    })
+      fallback: '404.html'
+    }),
+    alias: {
+      $api: 'src/api',
+      $components: 'src/components',
+      $config: 'src/config',
+      $context: 'src/context',
+      $elements: 'src/elements',
+      $stores: 'src/stores',
+      $types: 'src/types',
+      $utils: 'src/utils'
+    }
   }
 }

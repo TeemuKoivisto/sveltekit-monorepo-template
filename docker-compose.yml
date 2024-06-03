@@ -15,7 +15,7 @@ services:
       DATABASE_URL: postgresql://pg-user:pg-password@host.docker.internal:5552/local_example_db?schema=public
     restart: always
   postgres:
-    image: postgres:13.4-alpine
+    image: postgres:16.2-alpine
     ports:
       - 5552:5432
     environment:
