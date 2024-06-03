@@ -1,6 +1,8 @@
 import adapter from '@sveltejs/adapter-static'
 import preprocess from 'svelte-preprocess'
 
+import { resolve } from 'path'
+
 import autoprefixer from 'autoprefixer'
 import nested from 'postcss-nested'
 import tailwindcss from 'tailwindcss'
@@ -14,7 +16,10 @@ export default {
   preprocess: [
     preprocess({
       postcss: {
-        plugins: [autoprefixer(), nested(), tailwindcss()]
+        // @TODO you are not supposed to need both configFilePath & plugins but the intellisense doesn't
+        // work with configFilePath and providing plugins directly doesn't load Tailwind so...
+        configFilePath: resolve('postcss.config.js'),
+        plugins: [tailwindcss, autoprefixer, nested]
       }
     })
   ],
@@ -31,7 +36,7 @@ export default {
     adapter: adapter({
       pages: 'build',
       assets: 'build',
-      fallback: '404.html'
+      fallback: '200.html'
     }),
     alias: {
       $api: 'src/api',

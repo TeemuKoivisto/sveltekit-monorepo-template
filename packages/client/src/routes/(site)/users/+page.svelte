@@ -38,7 +38,7 @@
             <td>{user.email}</td>
             <td>
               <button class="btn-xs bg-green-600 hover:raise hover:bg-green-700">
-                <a data-sveltekit-preload-data="viewport" href={`users/${user.id}`}> Edit </a>
+                <a data-sveltekit-preload-data="hover" href={`users/${user.id}`}> Edit </a>
               </button>
             </td>
           </tr>
