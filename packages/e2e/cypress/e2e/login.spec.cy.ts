@@ -12,5 +12,15 @@ describe('# Login page', () => {
     cy.visit('/users')
 
     cy.get('tr').should('have.length.gte', 2)
+    cy.matchImage({
+      screenshotConfig: {
+        capture: 'viewport'
+      },
+      maxDiffThreshold: 0.01,
+      diffConfig: {
+        threshold: 0.01,
+        alpha: 0.2
+      }
+    })
   })
 })

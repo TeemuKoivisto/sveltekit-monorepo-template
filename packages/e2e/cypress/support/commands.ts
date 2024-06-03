@@ -7,9 +7,14 @@
 // For more comprehensive examples of custom
 // commands please read more here:
 // https://on.cypress.io/custom-commands
-// ***********************************************
+// **********************************************
+import '@frsource/cypress-plugin-visual-regression-diff'
 
 import { api } from './stubApi'
+
+Cypress.Commands.add('interrupt', () => {
+  eval("window.top.document.body.querySelector('header button.stop').click()")
+})
 
 Cypress.Commands.add('stubApi', () => {
   cy.intercept('POST', 'http://localhost:7180/login', api.login)
