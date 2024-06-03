@@ -24,5 +24,15 @@ jobs:
       - name: Setup pnpm
         uses: ./.github/actions/pnpm
 
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      - name: Build packages
+        run: |
+          pnpm --filter types --filter utils build --filter db build && \
+          pnpm --filter client --filter api build
+        env:
+          VITE_API_URL: https://api.teemukoivisto.xyz/sveltekit-monorepo
+
       - name: Build & test
-        uses: ./.github/actions/build-test
+        uses: ./.github/actions/e2e

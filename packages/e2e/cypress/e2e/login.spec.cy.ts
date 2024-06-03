@@ -12,6 +12,8 @@ describe('# Login page', () => {
     cy.visit('/users')
 
     cy.get('tr').should('have.length.gte', 2)
+    // @TODO the font size seems too much off in the CI server for the locally
+    // created snapshots to match
     cy.matchImage({
       screenshotConfig: {
         capture: 'viewport'

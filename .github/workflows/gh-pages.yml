@@ -16,9 +16,6 @@ jobs:
       - name: Build the packages
         run: pnpm --filter !client --filter !api build
 
-      - name: Run tests
-        run: pnpm -r test
-
       - name: Build the GitHub pages distribution
         run: VITE_DEPLOY_TO_GH=true pnpm --filter client build
 
