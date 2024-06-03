@@ -26,7 +26,7 @@ runs:
         install: false
         quiet: false
         start: pnpm --filter client dev --host
-        wait-on: http://localhost:5577
+        wait-on: http://127.0.0.1:5577
         working-directory: ./packages/e2e
       env:
         VITE_API_URL: http://localhost:7180
