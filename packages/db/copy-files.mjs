@@ -10,13 +10,13 @@ async function copyFiles() {
     fs.readFile('./generated/runtime/library.d.ts')
   ])
   await fs
-    .access('../types/prisma')
-    .catch(() => fs.mkdir('../types/prisma'))
-    .then(() => fs.writeFile('../types/prisma/index.d.ts', indexDts))
+    .access('../lib/prisma')
+    .catch(() => fs.mkdir('../lib/prisma'))
+    .then(() => fs.writeFile('../lib/prisma/index.d.ts', indexDts))
   await fs
-    .access('../types/prisma/runtime')
-    .catch(() => fs.mkdir('../types/prisma/runtime'))
-    .then(() => fs.writeFile('../types/prisma/runtime/library.d.ts', library))
+    .access('../lib/prisma/runtime')
+    .catch(() => fs.mkdir('../lib/prisma/runtime'))
+    .then(() => fs.writeFile('../lib/prisma/runtime/library.d.ts', library))
 }
 
 copyFiles()
