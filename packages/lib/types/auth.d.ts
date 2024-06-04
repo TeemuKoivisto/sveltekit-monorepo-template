@@ -1,37 +1,37 @@
-import { IUser } from './user'
+import { ClientUser } from './user'
 
 // POST /login
-export interface ILoginParams {
+export interface LoginParams {
   email: string
   password: string
 }
-export interface ILoginResponse {
-  user: IUser
-  jwt: IJwt
+export interface LoginResponse {
+  user: ClientUser
+  jwt: Jwt
 }
-export type IJwt = {
-  expires: number
+export type Jwt = {
+  exp: number
   token: string
 }
 
 // POST /sign-up
-export interface ISignUpParams {
+export interface SignUpParams {
   email: string
   password: string
   firstname: string
   lastname: string
 }
-export interface ISignUpResponse {
-  user: IUser
+export interface SignUpResponse {
+  user: ClientUser
 }
 
 // POST /password/reset-request
-export interface IRequestPasswordResetParams {
+export interface RequestPasswordResetParams {
   email: string
 }
 
 // POST /password/reset
-export interface IPasswordResetParams {
+export interface PasswordResetParams {
   token: string
   password: string
 }

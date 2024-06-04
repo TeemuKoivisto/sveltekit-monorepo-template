@@ -1,5 +1,5 @@
 import { derived, get, writable } from 'svelte/store'
-import type { IUser, IUserEditParams } from '@awesome-org/lib'
+import type { ListedUser, UserEditParams } from '@awesome-org/lib'
 
 import * as userApi from '$api/user'
 
@@ -8,7 +8,7 @@ import { authActions } from './auth.actions'
 
 import { persistedWritable } from './persist'
 
-export const users = persistedWritable<IUser[]>([], {
+export const users = persistedWritable<ListedUser[]>([], {
   key: 'users'
 })
 
@@ -26,7 +26,7 @@ export const userActions = {
     }
     return resp
   },
-  async editUser(userId: string, params: IUserEditParams) {
+  async editUser(userId: string, params: UserEditParams) {
     const result = await userApi.editUser(userId, params)
     if ('data' in result && get(user)?.id === result.data.user.id) {
       authActions.handleEditUser(result.data.user)

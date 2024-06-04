@@ -5,7 +5,7 @@
 
   import SignUpForm from '$components/SignUpForm.svelte'
 
-  import type { ISignUpParams } from '@awesome-org/lib'
+  import type { SignUpParams } from '@awesome-org/lib'
 
   let loading = false,
     signUpError: string | null = null
@@ -14,7 +14,7 @@
       goto('/')
     }
   }
-  async function handleSubmit(e: CustomEvent<ISignUpParams>) {
+  async function handleSubmit(e: CustomEvent<SignUpParams>) {
     loading = true
     const resp = await authActions.signUp(e.detail)
     loading = false

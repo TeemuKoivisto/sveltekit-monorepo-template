@@ -8,12 +8,12 @@
   import FormField from '$elements/FormField.svelte'
   import Spinner from '$elements/Spinner.svelte'
 
-  import type { ISignUpParams } from '@awesome-org/lib'
+  import type { SignUpParams } from '@awesome-org/lib'
 
   export let loading = false,
     error: string | null = null
 
-  const dispatch = createEventDispatcher<{ submit: ISignUpParams }>()
+  const dispatch = createEventDispatcher<{ submit: SignUpParams }>()
 
   let email = '',
     firstname = '',

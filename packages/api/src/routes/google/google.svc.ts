@@ -1,10 +1,10 @@
 import { prisma } from '$apis'
 
-import { IUser, Result } from '@awesome-org/lib'
+import { ClientUser, Result } from '@awesome-org/lib'
 import { GoogleProfile } from '$types/auth'
 
 export const googleService = {
-  signInGoogleUser: async (profile: GoogleProfile): Promise<Result<IUser>> => {
+  signInGoogleUser: async (profile: GoogleProfile): Promise<Result<ClientUser>> => {
     let user = await prisma.user.findFirst({
       where: { email: profile.email },
       select: {
@@ -12,7 +12,8 @@ export const googleService = {
         email: true,
         firstname: true,
         lastname: true,
-        role: true
+        role: true,
+        google_profile: true
       }
     })
     if (!user) {
@@ -28,7 +29,8 @@ export const googleService = {
           email: true,
           firstname: true,
           lastname: true,
-          role: true
+          role: true,
+          google_profile: true
         }
       })
     }

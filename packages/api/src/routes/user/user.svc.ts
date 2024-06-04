@@ -1,4 +1,4 @@
-import { IUserEditParams, IUser, ListedUser, Optional, Result } from '@awesome-org/lib'
+import { UserEditParams, ClientUser, ListedUser, Optional, Result } from '@awesome-org/lib'
 import { User } from '@awesome-org/db'
 
 import { prisma } from '$apis'
@@ -34,8 +34,8 @@ export const userService = {
     }
     return { data: found }
   },
-  updateUser: async (userId: string, params: IUserEditParams): Promise<Result<IUser>> => {
-    const user: Optional<User, 'password'> | null = await prisma.user.update({
+  updateUser: async (userId: string, params: UserEditParams): Promise<Result<ClientUser>> => {
+    const user: Optional<ClientUser, 'password'> | null = await prisma.user.update({
       data: {
         ...params
       },
@@ -46,8 +46,8 @@ export const userService = {
     delete user.password
     return { data: user }
   },
-  async deleteUser(userId: string): Promise<Result<IUser>> {
-    const user: Optional<User, 'password'> | null = await prisma.user.delete({
+  async deleteUser(userId: string): Promise<Result<ClientUser>> {
+    const user: Optional<ClientUser, 'password'> | null = await prisma.user.delete({
       where: { id: userId }
     })
     delete user.password

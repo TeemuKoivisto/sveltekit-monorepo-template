@@ -3,10 +3,10 @@ import { compare, hash } from 'bcrypt'
 import { prisma } from '$apis'
 
 import { User } from '@awesome-org/db'
-import { ILoginParams, ISignUpParams, IUser, Optional, Result } from '@awesome-org/lib'
+import { LoginParams, SignUpParams, ClientUser, Optional, Result } from '@awesome-org/lib'
 
 export const authService = {
-  loginUser: async ({ email, password }: ILoginParams): Promise<Result<IUser>> => {
+  loginUser: async ({ email, password }: LoginParams): Promise<Result<ClientUser>> => {
     const user: Optional<User, 'password'> | null = await prisma.user.findFirst({
       where: { email }
     })
@@ -22,7 +22,7 @@ export const authService = {
     delete user.password
     return { data: user }
   },
-  async createUser(params: ISignUpParams): Promise<Result<IUser>> {
+  async createUser(params: SignUpParams): Promise<Result<ClientUser>> {
     const { email, firstname, lastname, password } = params
     const user = await prisma.user.findFirst({ where: { email } })
     if (user) {

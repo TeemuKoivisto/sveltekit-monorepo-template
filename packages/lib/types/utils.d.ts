@@ -1,5 +1,3 @@
-export { wrappedFetch } from '../src'
-
 export type Ok<T> = {
   data: T
 }

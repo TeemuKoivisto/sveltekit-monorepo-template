@@ -1,10 +1,10 @@
 import {
-  ILoginParams,
-  ILoginResponse,
-  ISignUpParams,
-  ISignUpResponse,
-  IRequestPasswordResetParams,
-  IPasswordResetParams
+  LoginParams,
+  LoginResponse,
+  SignUpParams,
+  SignUpResponse,
+  RequestPasswordResetParams,
+  PasswordResetParams
 } from '@awesome-org/lib'
 import { NextFunction, Request, Response } from 'express'
 import Joi, { valid } from 'joi'
@@ -33,8 +33,8 @@ export const RESET_PASSWORD = Joi.object({
 })
 
 export const login = async (
-  req: IRequest<ILoginParams>,
-  res: Response<ILoginResponse>,
+  req: IRequest<LoginParams>,
+  res: Response<LoginResponse>,
   next: NextFunction
 ) => {
   try {
@@ -52,8 +52,8 @@ export const login = async (
 }
 
 export const signUp = async (
-  req: Request<ISignUpParams>,
-  res: Response<ISignUpResponse>,
+  req: Request<SignUpParams>,
+  res: Response<SignUpResponse>,
   next: NextFunction
 ) => {
   try {
@@ -70,7 +70,7 @@ export const signUp = async (
 }
 
 export const resetPassword = async (
-  req: IRequest<IPasswordResetParams>,
+  req: IRequest<PasswordResetParams>,
   res: Response<boolean>,
   next: NextFunction
 ) => {

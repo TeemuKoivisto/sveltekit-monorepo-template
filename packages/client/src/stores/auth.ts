@@ -1,13 +1,13 @@
 import { derived, get, writable } from 'svelte/store'
-import type { IJwt, IUser, ILoginParams } from '@awesome-org/lib'
+import type { Jwt, ClientUser, LoginParams } from '@awesome-org/lib'
 
 import { persistedWritable } from './persist'
 
-export const user = persistedWritable<IUser | null>(null, {
+export const user = persistedWritable<ClientUser | null>(null, {
   key: 'user',
   storage: 'session'
 })
-export const jwt = persistedWritable<IJwt | null>(null, {
+export const jwt = persistedWritable<Jwt | null>(null, {
   key: 'jwt',
   storage: 'session'
 })

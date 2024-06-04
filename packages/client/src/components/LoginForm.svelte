@@ -7,12 +7,12 @@
   import FormField from '$elements/FormField.svelte'
   import Spinner from '$elements/Spinner.svelte'
 
-  import type { ILoginParams } from '@awesome-org/lib'
+  import type { LoginParams } from '@awesome-org/lib'
 
   export let loading = false,
     error: string | null = null
 
-  const dispatch = createEventDispatcher<{ submit: ILoginParams }>()
+  const dispatch = createEventDispatcher<{ submit: LoginParams }>()
 
   let email = '',
     password = '',

@@ -1,4 +1,4 @@
-import type { IUser } from '@awesome-org/lib'
+import type { ClientUser } from '@awesome-org/lib'
 import type { Request, Response } from 'express'
 import type { ParamsDictionary } from 'express-serve-static-core'
 
@@ -9,7 +9,7 @@ export type IRequest<
 > = Request<P, {}, B, Q>
 
 type AuthLocals = {
-  user: IUser
+  user: ClientUser
 }
 
 export type AuthRequest<

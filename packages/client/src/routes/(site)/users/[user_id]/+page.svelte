@@ -3,7 +3,7 @@
   import { onMount } from 'svelte'
   import { page } from '$app/stores'
   import Icon from '@iconify/svelte/dist/OfflineIcon.svelte'
-  import type { IUser } from '@awesome-org/lib'
+  import type { ClientUser } from '@awesome-org/lib'
 
   import { user, isLoggedIn } from '$stores/auth'
   import { userActions } from '$stores/user'
@@ -12,7 +12,7 @@
   import Spinner from '$elements/Spinner.svelte'
   import UserCircle from '$elements/UserCircle.svelte'
 
-  let editedUser: IUser | undefined
+  let editedUser: ClientUser | undefined
 
   onMount(async () => {
     const params = get(page).params

@@ -32,9 +32,9 @@ model User {
 }
 
 model Event {
-  id          String        @id @default(cuid())
-  name        String        @default("") @db.VarChar(500)
-  body        Json
+  id         String   @id @default(cuid())
+  name       String   @default("") @db.VarChar(500)
+  body       Json
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
@@ -47,15 +47,15 @@ model Event {
 }
 
 model EventCategory {
-  id        String   @id @default(cuid())
-  name      String   @default("") @db.VarChar(500)
-  body      Json
+  id         String   @id @default(cuid())
+  name       String   @default("") @db.VarChar(500)
+  body       Json
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  user_id   String
-  user      User     @relation(fields: [user_id], references: [id])
-  events    Event[]
+  user_id String
+  user    User    @relation(fields: [user_id], references: [id])
+  events  Event[]
 
   @@map("event_category")
 }

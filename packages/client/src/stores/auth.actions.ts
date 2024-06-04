@@ -1,18 +1,18 @@
-import type { IJwt, ILoginParams, ISignUpParams, IUser } from '@awesome-org/lib'
+import type { Jwt, LoginParams, SignUpParams, ClientUser } from '@awesome-org/lib'
 
 import * as authApi from '$api/auth'
 
 import { user, jwt } from './auth'
 
 export const authActions = {
-  handleGoogleSignIn(parsedUser: IUser, parsedJwt: IJwt) {
+  handleGoogleSignIn(parsedUser: ClientUser, parsedJwt: Jwt) {
     user.set(parsedUser)
     jwt.set(parsedJwt)
   },
-  handleEditUser(editedUser: IUser) {
+  handleEditUser(editedUser: ClientUser) {
     user.set(editedUser)
   },
-  async login(params: ILoginParams) {
+  async login(params: LoginParams) {
     const result = await authApi.login(params)
     if ('data' in result) {
       user.set(result.data.user)
@@ -20,7 +20,7 @@ export const authActions = {
     }
     return result
   },
-  async signUp(params: ISignUpParams) {
+  async signUp(params: SignUpParams) {
     const resp = await authApi.signup(params)
     if ('data' in resp) {
     }

@@ -1,13 +1,6 @@
-import { IJwt, ILoginResponse, IUser, Result } from '../types'
+import { Jwt, LoginResponse, ClientUser, Result } from '../types'
 
-export function loginToSearchQuery(
-  user: IUser,
-  jwt: IJwt,
-  xsync: {
-    jwt: string
-    exp: number
-  }
-) {
+export function loginToSearchQuery(user: ClientUser, jwt: Jwt) {
   const params = new URLSearchParams()
   params.set('userId', user.id)
   params.set('email', user.email)
@@ -27,7 +20,7 @@ const parseInteger = (str: string) => {
   }
 }
 
-export function loginFromSearchQuery(url: string): Result<ILoginResponse> {
+export function loginFromSearchQuery(url: string): Result<LoginResponse> {
   const params = new URLSearchParams(url)
   const user = {
     id: params.get('userId'),
@@ -67,6 +60,6 @@ export function loginFromSearchQuery(url: string): Result<ILoginResponse> {
     data: {
       user,
       jwt
-    } as unknown as ILoginResponse
+    } as unknown as LoginResponse
   }
 }

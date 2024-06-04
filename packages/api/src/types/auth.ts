@@ -1,8 +1,8 @@
-import { IUser } from '@awesome-org/lib'
+import { ClientUser } from '@awesome-org/lib'
 
 export interface ILoginJwt {
   expires: number
-  user: IUser
+  user: ClientUser
 }
 export interface IResetPasswordJwt {
   userId: string

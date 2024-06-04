@@ -5,7 +5,7 @@
 
   import LoginForm from '$components/LoginForm.svelte'
 
-  import type { ILoginParams } from '@awesome-org/lib'
+  import type { LoginParams } from '@awesome-org/lib'
 
   import { API_URL } from '$config'
 
@@ -16,7 +16,7 @@
       goto('/account')
     }
   }
-  async function handleSubmit(e: CustomEvent<ILoginParams>) {
+  async function handleSubmit(e: CustomEvent<LoginParams>) {
     loading = true
     const resp = await authActions.login(e.detail)
     loading = false

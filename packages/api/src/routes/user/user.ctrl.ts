@@ -1,9 +1,9 @@
 import { UserRole } from '@awesome-org/db'
 import {
-  IUserListResponse,
-  IUserGetResponse,
-  IUserEditParams,
-  IUserEditResponse
+  UserListResponse,
+  UserGetResponse,
+  UserEditParams,
+  UserEditResponse
 } from '@awesome-org/lib'
 import { NextFunction, Response } from 'express'
 import Joi from 'joi'
@@ -22,7 +22,7 @@ export const USER_EDIT_SCHEMA = Joi.object({
 
 export const listUsers = async (
   req: AuthRequest,
-  res: AuthResponse<IUserListResponse>,
+  res: AuthResponse<UserListResponse>,
   next: NextFunction
 ) => {
   try {
@@ -45,7 +45,7 @@ export const listUsers = async (
 
 export const getUser = async (
   req: AuthRequest<{}, { userId: string }>,
-  res: AuthResponse<IUserGetResponse>,
+  res: AuthResponse<UserGetResponse>,
   next: NextFunction
 ) => {
   try {
@@ -65,8 +65,8 @@ export const getUser = async (
 }
 
 export const editUser = async (
-  req: AuthRequest<IUserEditParams, { userId: string }>,
-  res: AuthResponse<IUserEditResponse>,
+  req: AuthRequest<UserEditParams, { userId: string }>,
+  res: AuthResponse<UserEditResponse>,
   next: NextFunction
 ) => {
   try {

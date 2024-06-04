@@ -1,17 +1,16 @@
 import pkg from 'jsonwebtoken'
 const { sign, verify } = pkg
 
-import { Result, IUser } from '@awesome-org/lib'
+import { Result, ClientUser } from '@awesome-org/lib'
 
 import { config } from '$common'
 import { ILoginJwt, IResetPasswordJwt } from '$types/auth'
 
-export function generateLoginPayload(user: IUser) {
-  const expires = Date.now() + 86400000 * 14 // 2 weeks
-  const payload: ILoginJwt = { expires, user }
+export function generateLoginPayload(user: ClientUser) {
+  const exp = Date.now() + 86400000 * 14 // 2 weeks
   return {
-    expires,
-    token: sign(payload, config.JWT.SECRET, { algorithm: 'HS512', expiresIn: '2w' })
+    exp,
+    token: sign(user, config.JWT.SECRET, { algorithm: 'HS512', expiresIn: '2w' })
   }
 }
 
