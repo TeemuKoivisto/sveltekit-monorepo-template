@@ -3,7 +3,7 @@
   import { onMount } from 'svelte'
   import { page } from '$app/stores'
   import Icon from '@iconify/svelte/dist/OfflineIcon.svelte'
-  import type { IUser } from '@awesome-org/utils'
+  import type { IUser } from '@awesome-org/lib'
 
   import { user, isLoggedIn } from '$stores/auth'
   import { userActions } from '$stores/user'

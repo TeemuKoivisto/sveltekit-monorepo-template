@@ -21,7 +21,6 @@ export default defineConfig({
     alias: {
       $apis: resolve('./src/apis'),
       $common: resolve('./src/common'),
-      $jwt: resolve('./src/jwt'),
       $middlewares: resolve('./src/middlewares'),
       $routes: resolve('./src/routes'),
       $types: resolve('./src/types')

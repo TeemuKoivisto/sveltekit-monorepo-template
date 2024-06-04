@@ -9,7 +9,7 @@ import { GoogleProfile } from '$types/auth'
 import { IRequest } from '$types/request'
 import { googleService } from './google.svc'
 
-import { loginToSearchQuery } from '@awesome-org/utils'
+import { loginToSearchQuery } from '@awesome-org/lib'
 
 export const LOGIN_SCHEMA = Joi.object({
   email: Joi.string().email().required(),

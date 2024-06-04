@@ -4,7 +4,7 @@ import {
   IUserGetResponse,
   IUserEditParams,
   IUserEditResponse
-} from '@awesome-org/utils'
+} from '@awesome-org/lib'
 import { NextFunction, Response } from 'express'
 import Joi from 'joi'
 

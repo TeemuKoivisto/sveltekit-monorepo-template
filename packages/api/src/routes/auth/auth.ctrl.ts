@@ -5,7 +5,7 @@ import {
   ISignUpResponse,
   IRequestPasswordResetParams,
   IPasswordResetParams
-} from '@awesome-org/utils'
+} from '@awesome-org/lib'
 import { NextFunction, Request, Response } from 'express'
 import Joi, { valid } from 'joi'
 

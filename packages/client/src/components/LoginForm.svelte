@@ -7,7 +7,7 @@
   import FormField from '$elements/FormField.svelte'
   import Spinner from '$elements/Spinner.svelte'
 
-  import type { ILoginParams } from '@awesome-org/utils'
+  import type { ILoginParams } from '@awesome-org/lib'
 
   export let loading = false,
     error: string | null = null

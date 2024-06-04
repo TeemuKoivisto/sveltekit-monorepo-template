@@ -1,4 +1,4 @@
-import { IUser } from '@awesome-org/utils'
+import { IUser } from '@awesome-org/lib'
 
 export interface ILoginJwt {
   expires: number

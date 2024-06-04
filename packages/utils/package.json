@@ -1,5 +1,5 @@
 {
-  "name": "@awesome-org/utils",
+  "name": "@awesome-org/lib",
   "version": "0.0.1",
   "private": true,
   "homepage": "https://github.com/TeemuKoivisto/sveltekit-monorepo-template/packages/utils/README.md",

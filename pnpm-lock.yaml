@@ -77,7 +77,7 @@ importers:
       '@awesome-org/db':
         specifier: workspace:*
         version: link:../db
-      '@awesome-org/utils':
+      '@awesome-org/lib':
         specifier: workspace:*
         version: link:../utils
       bcrypt:
@@ -135,7 +135,7 @@ importers:
 
   packages/client:
     dependencies:
-      '@awesome-org/utils':
+      '@awesome-org/lib':
         specifier: workspace:*
         version: link:../utils
       '@iconify-icons/fe':
@@ -212,7 +212,7 @@ importers:
         specifier: ^5.14.0
         version: 5.14.0(prisma@5.14.0)
     devDependencies:
-      '@awesome-org/utils':
+      '@awesome-org/lib':
         specifier: workspace:*
         version: link:../utils
       '@types/bcrypt':

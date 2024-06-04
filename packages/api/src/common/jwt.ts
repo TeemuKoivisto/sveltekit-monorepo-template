@@ -1,6 +1,7 @@
-import { sign, verify } from 'jsonwebtoken'
+import pkg from 'jsonwebtoken'
+const { sign, verify } = pkg
 
-import { Result, IUser } from '@awesome-org/utils'
+import { Result, IUser } from '@awesome-org/lib'
 
 import { config } from '$common'
 import { ILoginJwt, IResetPasswordJwt } from '$types/auth'

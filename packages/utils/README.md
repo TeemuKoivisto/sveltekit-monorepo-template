@@ -1,1 +1,1 @@
-# @awesome-org/utils
+# @awesome-org/lib

@@ -3,7 +3,7 @@ import { compare, hash } from 'bcrypt'
 import { prisma } from '$apis'
 
 import { User } from '@awesome-org/db'
-import { ILoginParams, ISignUpParams, IUser, Optional, Result } from '@awesome-org/utils'
+import { ILoginParams, ISignUpParams, IUser, Optional, Result } from '@awesome-org/lib'
 
 export const authService = {
   loginUser: async ({ email, password }: ILoginParams): Promise<Result<IUser>> => {

@@ -1,6 +1,6 @@
 import { prisma } from '$apis'
 
-import { IUser, Result } from '@awesome-org/utils'
+import { IUser, Result } from '@awesome-org/lib'
 import { GoogleProfile } from '$types/auth'
 
 export const googleService = {

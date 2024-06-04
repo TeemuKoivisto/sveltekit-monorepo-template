@@ -1,6 +1,6 @@
 import { Auth } from 'googleapis'
 import { User } from '@awesome-org/db'
-import { Optional } from '@awesome-org/utils'
+import { Optional } from '@awesome-org/lib'
 
 import { config } from '$common/config'
 import { prisma } from '$apis'

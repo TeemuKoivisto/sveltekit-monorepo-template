@@ -5,7 +5,7 @@
 
   import SignUpForm from '$components/SignUpForm.svelte'
 
-  import type { ISignUpParams } from '@awesome-org/utils'
+  import type { ISignUpParams } from '@awesome-org/lib'
 
   let loading = false,
     signUpError: string | null = null

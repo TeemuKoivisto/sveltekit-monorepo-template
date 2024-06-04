@@ -1,4 +1,4 @@
-import { IUserEditParams, IUser, ListedUser, Optional, Result } from '@awesome-org/utils'
+import { IUserEditParams, IUser, ListedUser, Optional, Result } from '@awesome-org/lib'
 import { User } from '@awesome-org/db'
 
 import { prisma } from '$apis'

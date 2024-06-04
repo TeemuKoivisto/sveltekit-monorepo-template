@@ -1,5 +1,5 @@
 <script>
-  import { UserRole } from '@awesome-org/utils'
+  import { UserRole } from '@awesome-org/lib'
 
   import { user, isLoggedIn } from '$stores/auth'
   import { authActions } from '$stores/auth.actions'

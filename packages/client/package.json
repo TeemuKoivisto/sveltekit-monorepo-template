@@ -26,7 +26,7 @@
     "svelte-preprocess": "^5.1.4"
   },
   "dependencies": {
-    "@awesome-org/utils": "workspace:*",
+    "@awesome-org/lib": "workspace:*",
     "@iconify-icons/fe": "^1.2.5",
     "@iconify-icons/feather": "^1.2.3",
     "@iconify-icons/mdi": "^1.2.48",

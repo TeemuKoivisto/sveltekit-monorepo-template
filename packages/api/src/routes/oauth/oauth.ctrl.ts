@@ -1,9 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 
-import { config } from '$common/config'
-import { CustomError, log } from '$common'
+import { config, CustomError, jwt, log } from '$common'
 import { IRequest } from '$types/request'
-import { generateLoginPayload } from '$jwt'
 
 import { GoogleProfile, oAuthService } from './oauth.svc'
 
@@ -30,7 +28,7 @@ export const googleSignIn = async (
   }
 }
 
-// http://localhost:7180/google/callback?state=drive%2Ffalse&code=4%2F0AWtgzh6fcdx5GW5xy-KrualgVFff9N_MWhNnbDHO0elaSsLngeLp7g4z1dcLR2Fnc5jlaQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=0&prompt=consent
+// http://localhost:7180/google/callback?state=drive%2Ffalse&code=4%2F0AWtgzh6acdx5GW5xy-KrualgVFff9N_MWhNnbDHO0elaSsLngeLp7g4z1dcLR2Fnc5jlaQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=0&prompt=consent
 
 export const googleCallback = async (
   req: IRequest<{}, {}, { state: string; code: string; scope: string }>,
@@ -52,7 +50,7 @@ export const googleCallback = async (
         return next(new CustomError('Your Google email must be verified.', 400))
       }
       const user = await oAuthService.googleSignIn(request.data)
-      const jwt = generateLoginPayload(user)
+      const token = jwt.generateLoginPayload(user)
       res
         .status(301)
         .redirect(

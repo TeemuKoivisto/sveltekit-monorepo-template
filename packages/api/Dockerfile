@@ -22,14 +22,14 @@ COPY packages/utils/package.json ./packages/utils/package.json
 
 RUN pnpm i --frozen-lockfile --filter @awesome-org/api \
   --filter @awesome-org/db \
-  --filter @awesome-org/utils
+  --filter @awesome-org/lib
 
 COPY packages/db ./packages/db
 RUN pnpm --filter @awesome-org/db generate
 COPY packages/db/prisma/schema.prisma ./packages/api/.prisma/schema.prisma
 
 COPY packages/utils ./packages/utils
-RUN pnpm --filter @awesome-org/utils build
+RUN pnpm --filter @awesome-org/lib build
 
 COPY packages/api ./packages/api
 RUN pnpm --filter @awesome-org/api build

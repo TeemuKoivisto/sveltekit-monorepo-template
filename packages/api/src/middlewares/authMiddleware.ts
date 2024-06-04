@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 
-import { CustomError } from '$common'
-import { decryptLoginToken } from '$jwt'
+import { CustomError, jwt } from '$common'
 
 function parseJwtFromHeaders(req: Request) {
   if (req.headers.authorization && req.headers.authorization.toLowerCase().includes('bearer')) {
@@ -18,7 +17,7 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
     // -> always remember to return next() inside if
     return next(new CustomError('Missing authorization header with Bearer token', 401))
   }
-  const decrypted = decryptLoginToken(token)
+  const decrypted = jwt.decryptLoginToken(token)
   if ('err' in decrypted) {
     next(new CustomError(decrypted.err, decrypted.code))
   } else {
