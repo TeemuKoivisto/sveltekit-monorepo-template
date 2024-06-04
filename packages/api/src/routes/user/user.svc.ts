@@ -1,8 +1,7 @@
-import { IUserEditParams, IUser, ListedUser } from '@awesome-org/types'
+import { IUserEditParams, IUser, ListedUser, Optional, Result } from '@awesome-org/utils'
 import { User } from '@awesome-org/db'
-import { Optional, Result } from '@awesome-org/utils'
 
-import { CustomError, prisma } from '$common'
+import { prisma } from '$apis'
 
 export const userService = {
   async listUsers(): Promise<Result<ListedUser[]>> {

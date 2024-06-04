@@ -1,11 +1,9 @@
-import pkg from 'jsonwebtoken'
-const { sign, verify } = pkg
+import { sign, verify } from 'jsonwebtoken'
 
-import { IUser } from '@awesome-org/types'
-import { Result } from '@awesome-org/utils'
+import { Result, IUser } from '@awesome-org/utils'
 
 import { config } from '$common'
-import { ILoginJwt, IResetPasswordJwt } from '$typings/auth'
+import { ILoginJwt, IResetPasswordJwt } from '$types/auth'
 
 export function generateLoginPayload(user: IUser) {
   const expires = Date.now() + 86400000 * 14 // 2 weeks

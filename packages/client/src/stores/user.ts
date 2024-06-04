@@ -1,5 +1,5 @@
 import { derived, get, writable } from 'svelte/store'
-import type { IUser, IUserEditParams } from '@awesome-org/types'
+import type { IUser, IUserEditParams } from '@awesome-org/utils'
 
 import * as userApi from '$api/user'
 

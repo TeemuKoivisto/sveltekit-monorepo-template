@@ -1,4 +1,4 @@
-import type { IUser } from '@awesome-org/types'
+import type { IUser } from '@awesome-org/utils'
 import type { Request, Response } from 'express'
 import type { ParamsDictionary } from 'express-serve-static-core'
 

@@ -3,11 +3,11 @@ import { User } from '@awesome-org/db'
 import { Optional } from '@awesome-org/utils'
 
 import { config } from '$common/config'
-import { prisma, Prisma } from '$common'
+import { prisma } from '$apis'
 
 // @example
 // data: {
-//   sub: '103613305673220808199',
+//   sub: '103610303673220808199',
 //   name: 'Teemu K',
 //   given_name: 'Teemu',
 //   family_name: 'K',

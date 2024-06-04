@@ -5,7 +5,7 @@ import { config } from './config'
 
 let logFormat
 // Add colors in local environment
-if (config.ENV === 'production') {
+if (config.ENV === 'prod') {
   logFormat = format.combine(format.json())
 } else {
   logFormat = format.combine(format.colorize(), format.simple())

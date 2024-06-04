@@ -4,12 +4,12 @@ import {
   IUserGetResponse,
   IUserEditParams,
   IUserEditResponse
-} from '@awesome-org/types'
+} from '@awesome-org/utils'
 import { NextFunction, Response } from 'express'
 import Joi from 'joi'
 
 import { CustomError } from '$common'
-import { AuthRequest, AuthResponse } from '$typings/request'
+import { AuthRequest, AuthResponse } from '$types/request'
 
 import { userService } from './user.svc'
 

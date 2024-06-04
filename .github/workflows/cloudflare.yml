@@ -19,11 +19,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pnpm i --frozen-lockfile --filter client --filter types --filter utils
+          pnpm i --frozen-lockfile --filter client --filter utils
 
       - name: Build packages
         run: |
-          pnpm --filter types --filter utils build && \
+          pnpm --filter utils build && \
           pnpm --filter client build
         env:
           VITE_API_URL: https://api.teemukoivisto.xyz/sveltekit-monorepo

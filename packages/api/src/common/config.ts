@@ -11,17 +11,19 @@ function parseInteger(env?: string) {
   return undefined
 }
 
-function parseNodeEnv(NODE_ENV?: string): 'production' | 'development' {
+function parseNodeEnv(NODE_ENV?: string): 'prod' | 'dev' {
   if (NODE_ENV === 'production') {
-    return 'production'
+    return 'prod'
   }
-  return 'development'
+  return 'dev'
 }
 
-// TODO use default import
+const ENV = parseNodeEnv(process.env.NODE_ENV)
+const PORT = parseInteger(process.env.PORT || '') || 7180
+
 export const config = {
-  ENV: parseNodeEnv(process.env.NODE_ENV),
-  PORT: parseInteger(process.env.PORT) || 5070,
+  ENV,
+  PORT,
   CORS: {
     ENABLED: parseInteger(process.env.CORS_ENABLED) === 1
   },
@@ -39,6 +41,10 @@ export const config = {
     DB: process.env.POSTGRES_DB || 'my_example_db'
   },
   GOOGLE: {
+    CALLBACK_URL:
+      ENV === 'prod'
+        ? 'https://sveltekit-monorepo-template.pages.dev/oauth/google/callback'
+        : `http://localhost:${PORT}/oauth/google/callback`,
     CLIENT_ID: process.env.GOOGLE_CLIENT_ID || '',
     CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || ''
   },

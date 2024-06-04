@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 
 import { config } from '$common/config'
 import { CustomError, log } from '$common'
-import { IRequest } from '$typings/request'
+import { IRequest } from '$types/request'
 import { generateLoginPayload } from '$jwt'
 
 import { GoogleProfile, oAuthService } from './oauth.svc'

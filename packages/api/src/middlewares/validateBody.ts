@@ -3,7 +3,7 @@ import { ObjectSchema } from 'joi'
 
 import { CustomError } from '$common/error'
 import { log } from '$common/logger'
-import { AnyRequest } from '$typings/request'
+import { AnyRequest } from '$types/request'
 
 export const validateBody =
   (schema: ObjectSchema) => async (req: AnyRequest, res: Response, next: NextFunction) => {
@@ -14,6 +14,6 @@ export const validateBody =
     if (result.error) {
       next(new CustomError(result.error.message, 400))
     } else {
-      await next()
+      next()
     }
   }

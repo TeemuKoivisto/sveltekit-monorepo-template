@@ -5,7 +5,7 @@
 
   import LoginForm from '$components/LoginForm.svelte'
 
-  import type { ILoginParams } from '@awesome-org/types'
+  import type { ILoginParams } from '@awesome-org/utils'
 
   import { API_URL } from '$config'
 

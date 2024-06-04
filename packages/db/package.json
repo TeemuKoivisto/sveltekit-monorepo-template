@@ -26,7 +26,7 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.14.0",
-    "@awesome-org/types": "workspace:*",
+    "@awesome-org/utils": "workspace:*",
     "bcrypt": "5.1.1",
     "prisma": "^5.14.0",
     "ts-node": "^10.9.2"

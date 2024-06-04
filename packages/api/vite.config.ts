@@ -19,11 +19,12 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      $apis: resolve('./src/apis'),
       $common: resolve('./src/common'),
       $jwt: resolve('./src/jwt'),
       $middlewares: resolve('./src/middlewares'),
       $routes: resolve('./src/routes'),
-      $typings: resolve('./src/typings')
+      $types: resolve('./src/types')
     }
   },
   optimizeDeps: {

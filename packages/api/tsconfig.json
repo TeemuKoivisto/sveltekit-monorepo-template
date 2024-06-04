@@ -3,6 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "$apis": ["src/apis"],
+      "$apis/*": ["src/apis/*"],
       "$common": ["src/common"],
       "$common/*": ["src/common/*"],
       "$jwt": ["src/jwt"],
@@ -10,8 +12,8 @@
       "$middlewares": ["src/middlewares"],
       "$routes": ["src/routes"],
       "$routes/*": ["src/routes/*"],
-      "$typings": ["src/typings"],
-      "$typings/*": ["src/typings/*"]
+      "$types": ["src/types"],
+      "$types/*": ["src/types/*"]
     }
   },
   "include": ["src"],

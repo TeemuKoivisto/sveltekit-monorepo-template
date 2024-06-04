@@ -5,13 +5,12 @@ import {
   ISignUpResponse,
   IRequestPasswordResetParams,
   IPasswordResetParams
-} from '@awesome-org/types'
+} from '@awesome-org/utils'
 import { NextFunction, Request, Response } from 'express'
 import Joi, { valid } from 'joi'
 
-import { CustomError, log } from '$common'
-import { generateLoginPayload, generatePasswordResetJwt, decryptPasswordResetToken } from '$jwt'
-import { IRequest } from '$typings/request'
+import { CustomError, jwt, log } from '$common'
+import { IRequest } from '$types/request'
 
 import { authService } from './auth.svc'
 
@@ -45,7 +44,7 @@ export const login = async (
     }
     res.json({
       user: resp.data,
-      jwt: generateLoginPayload(resp.data)
+      jwt: jwt.generateLoginPayload(resp.data)
     })
   } catch (err) {
     next(err)
@@ -76,7 +75,7 @@ export const resetPassword = async (
   next: NextFunction
 ) => {
   try {
-    const validToken = decryptPasswordResetToken(req.body.token)
+    const validToken = jwt.decryptPasswordResetToken(req.body.token)
     if ('err' in validToken) {
       return next(new CustomError(validToken.err, validToken.code))
     }

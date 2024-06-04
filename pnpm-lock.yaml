@@ -77,9 +77,6 @@ importers:
       '@awesome-org/db':
         specifier: workspace:*
         version: link:../db
-      '@awesome-org/types':
-        specifier: workspace:*
-        version: link:../types
       '@awesome-org/utils':
         specifier: workspace:*
         version: link:../utils
@@ -138,9 +135,6 @@ importers:
 
   packages/client:
     dependencies:
-      '@awesome-org/types':
-        specifier: workspace:*
-        version: link:../types
       '@awesome-org/utils':
         specifier: workspace:*
         version: link:../utils
@@ -218,9 +212,9 @@ importers:
         specifier: ^5.14.0
         version: 5.14.0(prisma@5.14.0)
     devDependencies:
-      '@awesome-org/types':
+      '@awesome-org/utils':
         specifier: workspace:*
-        version: link:../types
+        version: link:../utils
       '@types/bcrypt':
         specifier: ^5.0.2
         version: 5.0.2
@@ -250,8 +244,6 @@ importers:
         version: 13.10.0
 
   packages/private-pkg: {}
-
-  packages/types: {}
 
   packages/utils: {}
 

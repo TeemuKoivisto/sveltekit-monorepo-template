@@ -1,4 +1,4 @@
-import type { IJwt, ILoginParams, ISignUpParams, IUser } from '@awesome-org/types'
+import type { IJwt, ILoginParams, ISignUpParams, IUser } from '@awesome-org/utils'
 
 import * as authApi from '$api/auth'
 
