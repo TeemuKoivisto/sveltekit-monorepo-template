@@ -32,7 +32,7 @@ You must have `pnpm` >=9 installed globally: `npm i -g pnpm`. Also you need Dock
 4. `docker-compose up -d postgres`
 5. `pnpm --filter db migrate`
 6. `pnpm --filter db seed`
-7. Build libraries: `pnpm libs`
+7. Build libraries: `pnpm lib`
 8. Start the client in http://localhost:5577: `pnpm client`
 9. In another terminal, start the API in http://localhost:7180: `pnpm api`
 

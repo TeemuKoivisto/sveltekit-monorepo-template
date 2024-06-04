@@ -23,7 +23,7 @@ jobs:
 
       - name: Build packages
         run: |
-          pnpm --filter utils build && \
+          pnpm --filter lib build && \
           pnpm --filter client build
         env:
           VITE_API_URL: https://api.teemukoivisto.xyz/sveltekit-monorepo

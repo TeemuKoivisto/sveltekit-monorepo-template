@@ -10,7 +10,7 @@
     "ci:publish": "changeset publish && git push --follow-tags",
     "test:e2e": "pnpm --filter e2e test",
     "prepare": "husky install",
-    "libs": "concurrently --kill-others 'pnpm --filter utils watch' 'pnpm --filter types watch'",
+    "lib": "concurrently --kill-others 'pnpm --filter lib watch'",
     "api": "concurrently --kill-others 'pnpm --filter api watch' 'sleep 2 && pnpm --filter api dev'",
     "client": "pnpm --filter client dev",
     "start": "concurrently --kill-others 'pnpm utils' 'pnpm api' 'pnpm client'"
